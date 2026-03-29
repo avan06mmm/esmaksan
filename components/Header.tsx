@@ -10,7 +10,10 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
   const { language, setLanguage, t, isRTL } = useLanguage();
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
+  const isSolid = scrolled || mobileMenuOpen;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -36,14 +39,14 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
 
   return (
     <header className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
-      scrolled ? 'bg-white/80 backdrop-blur-xl shadow-2xl py-4' : 'bg-transparent py-8'
+      isSolid ? 'bg-white/95 backdrop-blur-xl shadow-2xl py-4' : 'bg-transparent py-8'
     }`}>
       <div className={`max-w-7xl mx-auto px-6 flex justify-between items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
         <motion.div 
           className="flex items-center cursor-pointer group" 
           onClick={() => onNavigate('home')}
         >
-          <img src="/logo.png" alt="ESMAKSAN Logo" className={`h-14 md:h-16 w-auto object-contain transition-all duration-500 transform group-hover:scale-125 origin-center ${scrolled ? 'drop-shadow-none' : 'drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]'}`} />
+          <img src="/logo.png" alt="ESMAKSAN Logo" className={`h-14 md:h-16 w-auto object-contain transition-all duration-500 transform group-hover:scale-125 origin-center ${isSolid ? 'drop-shadow-none' : 'drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]'}`} />
         </motion.div>
 
         <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-12' : 'space-x-12'}`}>
@@ -59,7 +62,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                 className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-all relative group py-2 ${
                   currentView === item.value 
                     ? 'text-brand' 
-                    : scrolled ? 'text-ink/60 hover:text-ink' : 'text-white/60 hover:text-white'
+                    : isSolid ? 'text-ink/60 hover:text-ink' : 'text-white/60 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -140,7 +143,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
             <button 
               onClick={() => setLangMenuOpen(!langMenuOpen)}
               className={`flex items-center space-x-2 px-3 py-2 rounded-sm border transition-all ${
-                scrolled 
+                isSolid 
                   ? 'border-ink/10 text-ink hover:bg-ink/5' 
                   : 'border-white/10 text-white hover:bg-white/5'
               }`}
@@ -180,21 +183,63 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
           </div>
 
           <button className={`hidden sm:block px-8 py-3 text-[11px] font-bold uppercase tracking-[0.15em] transition-all rounded-sm border-2 ${
-            scrolled 
+            isSolid 
               ? 'bg-ink text-brand border-ink hover:bg-brand hover:text-ink' 
               : 'bg-white/10 text-white border-white/20 hover:bg-white hover:text-ink'
           }`}>
             {t.nav.getQuote}
           </button>
           
-          {/* Mobile Menu Toggle (Simplified) */}
-          <button className={`lg:hidden p-2 ${scrolled ? 'text-ink' : 'text-white'}`}>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`lg:hidden p-2 ${isSolid ? 'text-ink' : 'text-white'}`}
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className={`lg:hidden overflow-hidden bg-white shadow-2xl border-t border-ink/5 ${isRTL ? 'text-right' : 'text-left'}`}
+          >
+            <div className="flex flex-col py-4 px-6 space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.value}
+                  onClick={() => {
+                    onNavigate(item.value as View);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full py-4 text-sm font-bold uppercase tracking-widest border-b border-ink/5 last:border-0 transition-colors ${
+                    currentView === item.value ? 'text-brand' : 'text-ink/80 hover:text-brand'
+                  } ${isRTL ? 'text-right' : 'text-left'}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+              
+              <button className="w-full bg-brand text-ink font-black uppercase tracking-[0.15em] py-4 mt-6 text-xs rounded-sm hover:bg-ink hover:text-white transition-colors">
+                {t.nav.getQuote}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
