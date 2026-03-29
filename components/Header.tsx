@@ -40,15 +40,17 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
     }`}>
       <div className={`max-w-7xl mx-auto px-6 flex justify-between items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
         <motion.div 
-          className="flex flex-col cursor-pointer group flex-shrink-0 mr-8 md:mr-16" 
+          className="flex flex-col cursor-pointer group" 
           onClick={() => onNavigate('home')}
           whileHover={{ scale: 1.02 }}
         >
-          <img 
-            src="/logo.png" 
-            alt="Esmaksan Logo" 
-            className="h-12 md:h-16 w-auto object-contain"
-          />
+          <span className={`text-2xl font-black tracking-tighter leading-none transition-colors ${
+            scrolled ? 'text-ink' : 'text-white'
+          }`}>ESMAKSAN</span>
+          <div className={`flex items-center space-x-2 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
+            <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-brand">{t.nav.partsProduction}</span>
+            <div className="h-px w-4 bg-brand/30" />
+          </div>
         </motion.div>
 
         <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-12' : 'space-x-12'}`}>
