@@ -23,11 +23,8 @@ const Footer: React.FC<{ onNavigate: (v: View) => void }> = ({ onNavigate }) => 
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24 ${isRTL ? 'text-right' : 'text-left'}`}>
           {/* Brand Column */}
           <div className="space-y-8">
-            <div className={`flex items-center space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
-              <div className="w-10 h-10 bg-brand flex items-center justify-center">
-                <span className="text-ink font-black text-xl">E</span>
-              </div>
-              <span className="text-2xl font-black tracking-tighter uppercase">{t.hero.brand}</span>
+            <div className={`flex items-center space-x-3 cursor-pointer group ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`} onClick={() => onNavigate('home')}>
+              <img src="/logo.png" alt="ESMAKSAN Logo" className="h-14 md:h-16 w-auto object-contain brightness-0 invert opacity-90 transition-all duration-500 transform origin-center group-hover:opacity-100 group-hover:scale-125" />
             </div>
             <p className="text-white/40 text-sm leading-relaxed font-medium">
               {t.footer.brandDesc}
