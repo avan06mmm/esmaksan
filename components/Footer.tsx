@@ -24,10 +24,7 @@ const Footer: React.FC<{ onNavigate: (v: View) => void }> = ({ onNavigate }) => 
           {/* Brand Column */}
           <div className="space-y-8">
             <div className={`flex items-center space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
-              <div className="w-10 h-10 bg-brand flex items-center justify-center">
-                <span className="text-ink font-black text-xl">E</span>
-              </div>
-              <span className="text-2xl font-black tracking-tighter uppercase">{t.hero.brand}</span>
+              <img src="/logo.png" alt="Esmaksan Logo" className="h-12 md:h-14 w-auto object-contain" />
             </div>
             <p className="text-white/40 text-sm leading-relaxed font-medium">
               {t.footer.brandDesc}

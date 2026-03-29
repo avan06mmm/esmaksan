@@ -44,13 +44,11 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
           onClick={() => onNavigate('home')}
           whileHover={{ scale: 1.02 }}
         >
-          <span className={`text-2xl font-black tracking-tighter leading-none transition-colors ${
-            scrolled ? 'text-ink' : 'text-white'
-          }`}>ESMAKSAN</span>
-          <div className={`flex items-center space-x-2 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
-            <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-brand">{t.nav.partsProduction}</span>
-            <div className="h-px w-4 bg-brand/30" />
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Esmaksan Logo" 
+            className="h-12 md:h-16 w-auto object-contain"
+          />
         </motion.div>
 
         <nav className={`hidden lg:flex items-center ${isRTL ? 'space-x-reverse space-x-12' : 'space-x-12'}`}>
