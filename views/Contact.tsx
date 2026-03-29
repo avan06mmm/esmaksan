@@ -42,10 +42,10 @@ const Contact: React.FC = () => {
             <div className="lg:col-span-5 space-y-12">
             <div className={`grid grid-cols-1 md:grid-cols-2 gap-8`}>
               {[
-                { label: t.contact.info.addressLabel, value: t.contact.info.address, icon: '📍' },
-                { label: t.contact.info.phoneLabel, value: '+90 (312) 354 00 00', icon: '📞' },
-                { label: t.contact.info.emailLabel, value: 'info@esmaksan.com.tr', icon: '✉️' },
-                { label: t.contact.info.hoursLabel, value: t.contact.info.hours, icon: '⏰' },
+                { label: t.contact.info.addressLabel, value: "1247 Sk. (Eski 44) No:10-12\n06370 Ostim-Ankara/TÜRKİYE", icon: '📍' },
+                { label: t.contact.info.phoneLabel, value: "+90 312 354 08 45\n+90 312 354 42 76", icon: '📞' },
+                { label: "FAX", value: "+90 312 354 58 71", icon: '📠' },
+                { label: t.contact.info.emailLabel, value: "esmaksan@esmaksan.com.tr", icon: '✉️' },
               ].map((item, idx) => (
                 <motion.div 
                   key={idx}
@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
                 >
                   <span className="text-2xl mb-4 block">{item.icon}</span>
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-ink/40 mb-2 group-hover:text-brand transition-colors">{item.label}</p>
-                  <p className="text-xl font-black text-ink uppercase tracking-tight leading-tight">{item.value}</p>
+                  <p className="text-base sm:text-lg font-black text-ink uppercase tracking-tight leading-relaxed whitespace-pre-line">{item.value}</p>
                 </motion.div>
               ))}
             </div>
@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
       {/* Map Section */}
       <section className="h-[500px] bg-ink-light relative grayscale hover:grayscale-0 transition-all duration-1000">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.843640244747!2d32.7481!3d39.9676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDU4JzAzLjQiTiAzMsKwNDQnNTMuMiJF!5e0!3m2!1str!2str!4v1625561234567!5m2!1str!2str" 
+          src="https://maps.google.com/maps?q=1247.%20Sokak%20(Eski%2044)%20No:10-12%2006370%20Ostim%20Ankara%20Turkey&t=&z=15&ie=UTF8&iwloc=&output=embed" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
