@@ -40,7 +40,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
     }`}>
       <div className={`max-w-7xl mx-auto px-6 flex justify-between items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
         <motion.div 
-          className="flex flex-col cursor-pointer group" 
+          className="flex flex-col cursor-pointer group flex-shrink-0 mr-8 md:mr-16" 
           onClick={() => onNavigate('home')}
           whileHover={{ scale: 1.02 }}
         >
