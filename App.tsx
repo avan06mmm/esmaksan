@@ -9,13 +9,22 @@ import Products from './views/Products';
 import About from './views/About';
 import Production from './views/Production';
 import QualityControl from './views/QualityControl';
+import IntegratedManagementPolicy from './views/IntegratedManagementPolicy';
+import QualityManagement from './views/QualityManagement';
+import EnvironmentalManagement from './views/EnvironmentalManagement';
+import OhsManagement from './views/OhsManagement';
+import Machinery from './views/Machinery';
 import Contact from './views/Contact';
+import InformationSecurity from './views/InformationSecurity';
+import Services from './views/Services';
+import Catalog from './views/Catalog';
 import { useLanguage } from './LanguageContext';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');
   const [productCategory, setProductCategory] = useState<string>('all');
   const [productSubCategory, setProductSubCategory] = useState<string | null>(null);
+  const [selectedMachine, setSelectedMachine] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
   const { t, isRTL } = useLanguage();
 
@@ -35,6 +44,9 @@ const App: React.FC = () => {
       setProductCategory(category || 'all');
       setProductSubCategory(subCategory || null);
     }
+    if (view === 'machinery') {
+      setSelectedMachine(category || null);
+    }
   };
 
   const renderView = () => {
@@ -43,7 +55,15 @@ const App: React.FC = () => {
       case 'products': return <Products initialCategory={productCategory} initialSubCategory={productSubCategory} />;
       case 'about': return <About />;
       case 'production': return <Production />;
+      case 'machinery': return <Machinery initialMachine={selectedMachine} />;
       case 'quality': return <QualityControl />;
+      case 'integratedPolicy': return <IntegratedManagementPolicy />;
+      case 'qualityManagement': return <QualityManagement />;
+      case 'environmentalManagement': return <EnvironmentalManagement />;
+      case 'ohsManagement': return <OhsManagement />;
+      case 'informationSecurity': return <InformationSecurity />;
+      case 'services': return <Services />;
+      case 'catalog': return <Catalog />;
       case 'contact': return <Contact />;
       default: return <Home />;
     }

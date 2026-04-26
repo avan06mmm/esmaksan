@@ -1,5 +1,4 @@
 
-import { Machine } from './types';
 
 export const CONTACT_INFO = {
   phone: '+90 532 123 45 67',

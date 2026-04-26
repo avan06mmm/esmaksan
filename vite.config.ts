@@ -9,6 +9,18 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    port: 3000
+    port: 3000,
+    host: true,
+    strictPort: false
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
+  },
+  // Asset optimization and public directory handling
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
   }
 });

@@ -8,4 +8,4 @@ export interface Machine {
   specs: string[];
 }
 
-export type View = 'home' | 'products' | 'about' | 'production' | 'quality' | 'contact';
+export type View = 'home' | 'products' | 'about' | 'production' | 'machinery' | 'quality' | 'integratedPolicy' | 'qualityManagement' | 'environmentalManagement' | 'ohsManagement' | 'informationSecurity' | 'services' | 'catalog' | 'certificates' | 'contact';

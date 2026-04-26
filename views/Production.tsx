@@ -2,65 +2,100 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
+import PageHero from '../components/PageHero';
 
 const Production: React.FC = () => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
+
+  const local = {
+    tr: {
+      manufacturing: 'İmalat', manufacturingDesc: 'Kesintisiz ve kaliteli teknik döküm.',
+      design: 'Tasarım', designDesc: 'Güçlü mühendislik temelleri.',
+      assembly: 'Montaj', assemblyDesc: 'Zamanında ve kusursuz kurulum.',
+      workArea: 'Çalışma Alanı', workAreaDesc: 'Toplam üretim ve işleme sahası.',
+      storageArea: 'Depolama Alanı', storageAreaDesc: 'Stok ve lojistik depo kapasitesi.',
+      facilityCapacity: 'Tesis Kapasitesi',
+    },
+    en: {
+      manufacturing: 'Manufacturing', manufacturingDesc: 'Continuous and quality technical production.',
+      design: 'Design', designDesc: 'Strong engineering foundations.',
+      assembly: 'Assembly', assemblyDesc: 'On-time and flawless installation.',
+      workArea: 'Work Area', workAreaDesc: 'Total production and processing area.',
+      storageArea: 'Storage Area', storageAreaDesc: 'Stock and logistics warehouse capacity.',
+      facilityCapacity: 'Facility Capacity',
+    },
+    ru: {
+      manufacturing: 'Производство', manufacturingDesc: 'Непрерывное и качественное производство.',
+      design: 'Проектирование', designDesc: 'Прочная инженерная база.',
+      assembly: 'Монтаж', assemblyDesc: 'Своевременный и безупречный монтаж.',
+      workArea: 'Рабочая площадь', workAreaDesc: 'Общая производственная площадь.',
+      storageArea: 'Склад', storageAreaDesc: 'Складская и логистическая мощность.',
+      facilityCapacity: 'Мощность объекта',
+    },
+    ar: {
+      manufacturing: 'التصنيع', manufacturingDesc: 'إنتاج فني متواصل وعالي الجودة.',
+      design: 'التصميم', designDesc: 'أسس هندسية متينة.',
+      assembly: 'التجميع', assemblyDesc: 'تركيب في الوقت المحدد وبلا عيوب.',
+      workArea: 'منطقة العمل', workAreaDesc: 'إجمالي مساحة الإنتاج والمعالجة.',
+      storageArea: 'منطقة التخزين', storageAreaDesc: 'طاقة المستودع اللوجستي.',
+      facilityCapacity: 'طاقة المنشأة',
+    },
+  };
+  const L = local[language] || local.tr;
 
   return (
     <div className="min-h-screen bg-paper">
-      {/* Hero Section */}
-      <section className="relative pt-44 pb-32 bg-ink overflow-hidden">
-        <div className="absolute inset-0 industrial-grid-dark opacity-10" />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-brand/5 to-transparent" />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className={`max-w-4xl ${isRTL ? 'mr-auto text-right' : 'ml-0 text-left'}`}>
-            <motion.div 
-              initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className={`flex items-center space-x-4 mb-8 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}
-            >
-              <div className="h-px w-16 bg-brand" />
-              <span className="text-brand font-black uppercase tracking-[0.5em] text-[10px]">{t.production.hero.tag}</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-12"
-            >
-              {t.production.hero.title} <br/> <span className="text-brand">{t.production.hero.highlight}</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-white/50 font-medium text-lg leading-relaxed"
-            >
-              {t.production.hero.desc}
-            </motion.p>
-          </div>
+      
+      <PageHero 
+        tag={t.production.hero.tag}
+        title={t.production.hero.title}
+        highlight={t.production.hero.highlight}
+        statValue={L.manufacturing}
+        statIcon={
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        }
+      />
+
+      {/* Design Header Section */}
+      <div className="pt-4 md:pt-8 px-6 md:px-8 max-w-[1600px] mx-auto mb-16">
+        <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-8">
+          {[
+            { value: "01", label: L.manufacturing, desc: L.manufacturingDesc },
+            { value: "02", label: L.design, desc: L.designDesc },
+            { value: "03", label: L.assembly, desc: L.assemblyDesc },
+            { value: "12K m²", label: L.workArea, desc: L.workAreaDesc },
+            { value: "2K m²", label: L.storageArea, desc: L.storageAreaDesc },
+          ].map((stat, idx) => (
+            <div key={idx} className="flex-1">
+              <h2 className="text-5xl md:text-7xl font-medium tracking-tighter text-ink mb-2">
+                {stat.value}
+              </h2>
+              <div className="h-px bg-ink/20 mb-4 w-full" />
+              <h3 className="font-bold text-sm text-ink mb-2">{stat.label}</h3>
+              <p className="text-xs text-ink/50 font-medium">
+                {stat.desc}
+              </p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* Expertise Section */}
       <section className="py-32 bg-ink text-white relative overflow-hidden">
         <div className="absolute inset-0 industrial-grid-dark opacity-5" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-24 items-center ${isRTL ? 'lg:flex-row-reverse' : ''}`}>
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8 relative z-10">
+          <div className={`flex flex-col ${isRTL ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-24 items-center`}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative flex-1 min-w-0"
             >
               <div className={`aspect-square bg-brand/10 overflow-hidden border-brand/20 border-2 shadow-2xl`}>
                 <img 
                   src="/uretim2.jpg" 
                   alt="Expertise" 
-                  className="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-700"
                 />
               </div>
               <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-brand/10 border border-brand/20 -z-10" />
@@ -70,7 +105,7 @@ const Production: React.FC = () => {
               initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="flex-1 min-w-0 space-y-8"
             >
               <h2 className="text-4xl font-black uppercase tracking-tighter text-brand">
                 {t.production.expertise.title}
@@ -85,13 +120,13 @@ const Production: React.FC = () => {
 
       {/* Capabilities Section */}
       <section className="py-32 industrial-grid">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-24 items-center ${isRTL ? 'lg:flex-row-reverse' : ''}`}>
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8">
+          <div className={`flex flex-col ${isRTL ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-24 items-center`}>
             <motion.div 
               initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="flex-1 min-w-0 space-y-8"
             >
               <h2 className="text-4xl font-black text-ink uppercase tracking-tighter">
                 {t.production.capabilities.title}
@@ -115,13 +150,13 @@ const Production: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative flex-1 min-w-0"
             >
               <div className={`aspect-video bg-ink-light overflow-hidden ${isRTL ? 'border-r-8' : 'border-l-8'} border-brand shadow-2xl`}>
                 <img 
                   src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=2070" 
                   alt="Advanced Technology" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover hover:opacity-100 transition-all duration-700"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -130,9 +165,55 @@ const Production: React.FC = () => {
         </div>
       </section>
 
+      {/* Facility Area Banner */}
+      <section className="py-20 bg-paper border-y border-ink/8">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative bg-ink rounded-2xl p-10 md:p-14 overflow-hidden flex flex-col justify-between min-h-[220px] hover:shadow-2xl transition-all duration-500"
+            >
+              <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-brand/8 blur-3xl" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand mb-4">{L.facilityCapacity}</p>
+              <div>
+                <div className="flex items-end gap-3 mb-3">
+                  <span className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">12.000</span>
+                  <span className="text-3xl font-bold text-white/50 mb-2">m²</span>
+                </div>
+                <div className="h-px bg-white/10 mb-4" />
+                <p className="text-sm font-semibold text-white/50 uppercase tracking-widest">{L.workArea}</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative bg-white border border-ink/8 rounded-2xl p-10 md:p-14 overflow-hidden flex flex-col justify-between min-h-[220px] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+            >
+              <div className="absolute top-0 right-0 w-48 h-48 bg-brand/5 blur-[60px] rounded-full pointer-events-none group-hover:bg-brand/10 transition-all duration-700" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand mb-4">{L.facilityCapacity}</p>
+              <div>
+                <div className="flex items-end gap-3 mb-3">
+                  <span className="text-6xl md:text-8xl font-black text-ink tracking-tighter leading-none">2.000</span>
+                  <span className="text-3xl font-bold text-ink/30 mb-2">m²</span>
+                </div>
+                <div className="h-px bg-ink/10 mb-4" />
+                <p className="text-sm font-semibold text-ink/40 uppercase tracking-widest">{L.storageArea}</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Team Section */}
       <section className="py-32 bg-paper border-t border-ink/5">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}

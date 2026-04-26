@@ -3,6 +3,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
 
+import PageHero from '../components/PageHero';
+
 interface ProductsProps {
   initialCategory?: string;
   initialSubCategory?: string | null;
@@ -12,6 +14,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
   const { t, isRTL } = useLanguage();
   const [activeFilter, setActiveFilter] = useState(initialCategory);
   const [activeSubFilter, setActiveSubFilter] = useState<string | null>(initialSubCategory);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     setActiveFilter(initialCategory);
@@ -42,162 +45,169 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
   };
 
   return (
-    <div className="min-h-screen bg-paper">
-      {/* Hero Header */}
-      <section className="relative pt-44 pb-24 bg-ink overflow-hidden">
-        <div className="absolute inset-0 industrial-grid-dark opacity-10" />
-        <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} w-1/2 h-full bg-brand/5 ${isRTL ? 'skew-x-12 -translate-x-1/4' : '-skew-x-12 translate-x-1/4'}`} />
+    <div className="min-h-screen bg-[#F8F9FA] pb-24 font-sans text-ink selection:bg-brand selection:text-ink">
+      
+      {/* 1. HERO SECTION */}
+      <PageHero 
+        tag={t.products.hero.tag}
+        title={t.products.hero.title}
+        highlight={t.products.hero.highlight}
+        statValue={filteredItems.length}
+        statLabel={t.products.hero.totalLabel}
+      />
+
+      {/* 2. APP-LIKE LAYOUT: FLOATING SIDEBAR + GRID */}
+      <div className={`max-w-[1600px] mx-auto px-6 md:px-8 mt-16 flex flex-col lg:flex-row gap-10 ${isRTL ? 'lg:flex-row-reverse' : ''}`}>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className={`flex flex-col md:flex-row md:items-end justify-between gap-12 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
-            <div className={`max-w-3xl ${isRTL ? 'text-right' : 'text-left'}`}>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex items-center space-x-4 mb-8 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}
-              >
-                <div className="h-px w-16 bg-brand" />
-                <span className="text-brand font-black uppercase tracking-[0.5em] text-[10px]">{t.products.hero.tag}</span>
-              </motion.div>
-              
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-8"
-              >
-                {t.products.hero.title} <br/> <span className="text-brand">{t.products.hero.highlight}</span>
-              </motion.h1>
-              
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-white/50 font-medium text-lg leading-relaxed max-w-2xl"
-              >
-                {t.products.hero.desc}
-              </motion.p>
+        {/* SLEEK SIDEBAR */}
+        <aside className="w-full lg:w-[320px] flex-shrink-0 relative">
+          <div className="lg:sticky lg:top-[120px] flex flex-col bg-white rounded-[2.5rem] p-6 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.05)] border border-ink/5">
+            <div className={`flex items-center justify-between mb-8 px-4 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+               <h3 className="text-[12px] font-black uppercase tracking-[0.3em] text-ink/40">
+                 {t.footer.categoriesTitle}
+               </h3>
+               <div className="w-8 h-px bg-ink/10" />
             </div>
             
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className={`glass-card p-10 border-brand ${isRTL ? 'border-r-4' : 'border-l-4'}`}
-            >
-               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-2">{t.products.hero.totalLabel}</p>
-               <p className="text-6xl font-tech font-bold text-brand tracking-tighter">{t.products.items.length}</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Filter Bar */}
-      <div className="sticky top-[72px] md:top-[88px] z-40 bg-paper/80 backdrop-blur-xl border-b border-ink/5 py-8">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className={`flex items-center space-x-4 overflow-x-auto no-scrollbar ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
-            {categories.map((cat: any) => (
-              <button
-                key={cat.value}
-                onClick={() => handleFilterChange(cat.value)}
-                className={`px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all whitespace-nowrap rounded-sm border-2 ${
-                  activeFilter === cat.value 
-                    ? 'bg-ink text-brand border-ink shadow-2xl' 
-                    : 'bg-transparent text-ink/40 border-transparent hover:border-ink/10 hover:text-ink'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Sub-category Filter Bar */}
-          {activeFilter !== 'all' && t.nav.categories.find((c: any) => c.value === activeFilter)?.subCategories && (
-            <div className={`mt-8 pt-8 border-t border-ink/5 flex items-center flex-wrap gap-3 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-ink/40 mr-4">
-                {isRTL ? 'الفئة الفرعية:' : 'ALT GRUP:'}
-              </span>
-              <div className="flex flex-wrap gap-3">
-                {t.nav.categories.find((c: any) => c.value === activeFilter)?.subCategories?.map((sub: any) => (
-                  <button
-                    key={sub.value}
-                    onClick={() => setActiveSubFilter(sub.value)}
-                    className={`px-6 py-3 text-[9px] font-black uppercase tracking-[0.15em] transition-all rounded-sm border-2 ${
-                      activeSubFilter === sub.value
-                        ? 'bg-ink text-brand border-ink shadow-lg'
-                        : 'bg-transparent text-ink/40 border-ink/5 hover:border-ink/20 hover:text-ink'
-                    }`}
-                  >
-                    {sub.label}
-                  </button>
-                ))}
-                {activeSubFilter && (
-                  <button
-                    onClick={() => setActiveSubFilter(null)}
-                    className="px-4 py-3 text-[9px] font-black uppercase tracking-widest text-brand hover:text-ink transition-colors bg-ink/5 hover:bg-ink/10 rounded-sm"
-                  >
-                    {isRTL ? 'مسح' : 'TEMİZLE'} ✕
-                  </button>
-                )}
-              </div>
+            <div className="relative space-y-2">
+              {categories.map((cat: any) => {
+                const isActive = activeFilter === cat.value;
+                const hasSubs = activeFilter !== 'all' && t.nav.categories.find((c: any) => c.value === cat.value)?.subCategories;
+                
+                return (
+                  <div key={cat.value} className="relative">
+                    <button
+                      onClick={() => handleFilterChange(cat.value)}
+                      className={`relative w-full flex items-center justify-between px-6 py-4 rounded-[1.5rem] transition-all duration-300 z-10 ${
+                        isActive ? 'text-ink' : 'text-ink/60 hover:text-ink hover:bg-ink/5'
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div 
+                          layoutId="activeCategory"
+                          className="absolute inset-0 bg-brand/20 rounded-[1.5rem] -z-10"
+                          transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
+                        />
+                      )}
+                      
+                      <span className="font-extrabold text-[15px] tracking-tight">{cat.label}</span>
+                      {hasSubs && (
+                        <span className={`transition-transform duration-300 ${isActive ? 'rotate-180 text-brand' : ''}`}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                      )}
+                    </button>
+                    
+                    {/* Subcategories */}
+                    <AnimatePresence>
+                      {isActive && hasSubs && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className={`pt-3 pb-3 px-6 space-y-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+                            {t.nav.categories.find((c: any) => c.value === cat.value)?.subCategories?.map((sub: any) => {
+                               const isSubActive = activeSubFilter === sub.value;
+                               return (
+                                <button
+                                  key={sub.value}
+                                  onClick={() => setActiveSubFilter(sub.value)}
+                                  className={`block w-full px-4 py-2.5 text-[14px] font-bold rounded-[1rem] transition-all ${
+                                    isSubActive ? 'bg-ink text-white shadow-md scale-[1.02]' : 'text-ink/60 hover:text-ink hover:bg-ink/5'
+                                  }`}
+                                >
+                                  {sub.label}
+                                </button>
+                               )
+                            })}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
-          )}
-        </div>
-      </div>
+          </div>
+        </aside>
 
-      {/* Grid Section */}
-      <section className="py-24 industrial-grid">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* PRODUCTS GRID */}
+        <div className="flex-1">
+          {/* Header of the grid */}
+          <div className={`mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
+             <div className={`${isRTL ? 'text-right' : 'text-left'}`}>
+                <motion.h2 
+                   key={activeFilter + (activeSubFilter || '')}
+                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                   className="text-4xl md:text-6xl font-black text-ink tracking-tighter"
+                >
+                  {categories.find((c: any) => c.value === activeFilter)?.label} 
+                </motion.h2>
+                <AnimatePresence>
+                  {activeSubFilter && (
+                     <motion.div 
+                       initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
+                       className={`mt-4 flex items-center space-x-3 text-brand font-black uppercase tracking-[0.2em] text-[13px] ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}
+                     >
+                        <span className="text-xl">↳</span>
+                        <span className="bg-brand/10 px-4 py-1.5 rounded-lg border border-brand/20">{activeSubFilter}</span>
+                        <button onClick={() => setActiveSubFilter(null)} className="ml-4 px-3 py-1.5 rounded-lg text-ink/40 hover:text-white hover:bg-red-500 transition-colors">
+                          ✕ Temizle
+                        </button>
+                     </motion.div>
+                  )}
+                </AnimatePresence>
+             </div>
+             
+             <div className={`md:flex items-center hidden bg-white rounded-full px-5 py-2 shadow-sm border border-ink/5`}>
+               <span className="text-[12px] font-black uppercase tracking-widest text-ink/40">{filteredItems.length} {t.products.hero.totalLabel}</span>
+             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
             <AnimatePresence mode="popLayout">
               {filteredItems.map((item: any, idx: number) => (
                 <motion.div 
                   layout
                   key={item.id} 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="group flex flex-col bg-paper border border-ink/5 hover:border-brand transition-all hover:shadow-2xl overflow-hidden"
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
+                  className="group flex flex-col bg-white rounded-[2rem] p-5 shadow-sm hover:shadow-2xl transition-all duration-500 border border-ink/5"
                 >
-                  {/* Image Container */}
-                  <div className="aspect-[4/3] overflow-hidden bg-ink-light relative">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className={`absolute top-6 ${isRTL ? 'right-6' : 'left-6'}`}>
-                      <span className={`bg-ink text-brand text-[9px] font-black uppercase tracking-[0.2em] px-4 py-2 border-brand ${isRTL ? 'border-r-4' : 'border-l-4'}`}>
-                        {t.nav.categories.find(c => c.value === item.category)?.label || item.category}
-                      </span>
-                    </div>
+                  {/* Category Label (Black text) - slightly above image */}
+                  <div className={`mb-2 flex ${isRTL ? 'justify-end' : 'justify-start'}`}>
+                    <span className="bg-[#f0f2f5] px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-ink">
+                      {t.nav.categories.find((c:any) => c.value === item.category)?.label || item.category}
+                    </span>
                   </div>
 
-                  {/* Content Container */}
-                  <div className={`p-10 flex-1 flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}>
-                    <h3 className="text-2xl font-black text-ink uppercase tracking-tighter mb-6 group-hover:text-brand transition-colors">
+                  {/* Image Area - Shorter height */}
+                  <div 
+                    className="w-full h-48 md:h-52 bg-transparent relative cursor-pointer flex items-center justify-center"
+                    onClick={() => setSelectedImage(item.image)}
+                  >
+                     <img 
+                       src={item.image} 
+                       alt={item.name} 
+                       className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-105 drop-shadow-md mix-blend-multiply"
+                     />
+                     <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+                        <div className="w-14 h-14 bg-white/95 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow-xl border border-ink/5">
+                          <svg className="w-6 h-6 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                          </svg>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Text Area (Yellow text) - slightly below image */}
+                  <div className={`mt-3 mb-1 flex items-center ${isRTL ? 'justify-end' : 'justify-start'}`}>
+                    <h3 className="text-lg lg:text-xl font-black text-brand tracking-tight">
                       {item.name}
                     </h3>
-                    <p className="text-ink/60 text-sm font-medium leading-relaxed mb-10">
-                      {item.description}
-                    </p>
-
-                    {/* Technical Specs */}
-                    <div className="grid grid-cols-1 gap-2 mb-10 mt-auto">
-                      {item.specs.map((spec: any, i: number) => (
-                        <div key={i} className={`flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.1em] text-ink/40 bg-paper-dark px-4 py-3 border border-ink/5 ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
-                          <div className="w-1.5 h-1.5 bg-brand" />
-                          <span>{spec}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Action Button */}
-                    <button className="btn-primary w-full">
-                      {t.products.addToQuote}
-                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -205,29 +215,78 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
           </div>
 
           {filteredItems.length === 0 && (
-            <div className="py-32 text-center">
-               <p className="text-2xl font-black text-ink/20 uppercase tracking-widest">{t.products.noProducts}</p>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              className="py-40 mt-8 text-center bg-white rounded-[3rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-ink/5"
+            >
+               <div className="w-24 h-24 mx-auto mb-6 bg-[#f4f5f7] rounded-full flex items-center justify-center text-4xl">
+                 🔍
+               </div>
+               <p className="text-2xl font-black text-ink/40 uppercase tracking-widest">{t.products.noProducts}</p>
+            </motion.div>
           )}
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="bg-ink py-32 relative overflow-hidden">
-        <div className="absolute inset-0 industrial-grid-dark opacity-10" />
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-8 leading-none">
-            {t.products.cta.title}
-          </h2>
-          <p className="text-xl text-white/50 font-medium mb-16 leading-relaxed">
-            {t.products.cta.desc}
-          </p>
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-8 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <button className="btn-primary">{t.products.cta.button}</button>
-            <button className="px-12 py-4 border-2 border-white/20 text-white font-black text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-ink transition-all">{t.whatsapp}</button>
+        </div>
+      </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 md:p-12 cursor-zoom-out"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="absolute inset-0 bg-[#050505]/90 backdrop-blur-2xl" />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 30 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="relative w-full max-w-6xl max-h-full flex items-center justify-center cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-16 right-0 text-white/50 hover:text-white bg-white/10 hover:bg-white/20 p-4 rounded-full backdrop-blur-md transition-all duration-300"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+              <div className="w-full relative shadow-[0_0_100px_rgba(250,204,21,0.15)] rounded-[2rem] overflow-hidden">
+                <div className="absolute inset-0 bg-white/5 backdrop-blur-sm pointer-events-none" />
+                <img
+                  src={selectedImage}
+                  alt="Product detail fullscreen"
+                  className="w-full max-h-[80vh] object-contain relative z-10 drop-shadow-2xl p-8"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 3. ULTRA MODERN CTA */}
+      <section className="mt-32 max-w-[1600px] mx-auto px-6 md:px-8">
+        <div className="relative bg-[#050505] rounded-[3rem] overflow-hidden py-32 px-6 md:px-20 text-center shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand/30 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
+          
+          <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+            <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9]">
+              {t.products.cta.title}
+            </h2>
+            <p className="text-xl md:text-2xl text-white/60 font-medium mb-14 max-w-2xl leading-relaxed">
+              {t.products.cta.desc}
+            </p>
+            <div className={`flex flex-col sm:flex-row justify-center items-center gap-6 w-full sm:w-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
+              <button className="w-full sm:w-auto bg-brand text-ink font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(250,204,21,0.5)]">
+                {t.products.cta.button}
+              </button>
+              <button className="w-full sm:w-auto bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300">
+                {t.whatsapp}
+              </button>
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 };
