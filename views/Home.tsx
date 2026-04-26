@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
 
 const Home: React.FC = () => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
            className={`absolute top-[55%] left-6 md:left-12 z-10 ${isRTL ? 'text-right right-6 md:right-12 left-auto' : 'text-left'}`}
         >
           <h1 className="text-[7vw] md:text-[5vw] tracking-tighter leading-none font-medium text-white mb-2" style={{ fontFamily: 'var(--font-sans)', letterSpacing: '-0.03em' }}>
-            esmaksan <span className="italic font-serif font-normal">makine</span>
+            esmaksan <span className="italic font-serif font-normal">{language === 'tr' ? 'makine' : language === 'en' ? 'machinery' : language === 'ru' ? 'машины' : 'آلات'}</span>
           </h1>
           <p className="text-sm md:text-base font-bold tracking-widest uppercase text-white/80 leading-relaxed max-w-[250px] md:max-w-md">
             {t.about.hero.highlight.split(':')[0] || 'A GATEWAY TO IMMERSIVE INDUSTRIAL EXPERIENCE'}

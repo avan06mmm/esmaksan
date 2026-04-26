@@ -11,7 +11,7 @@ interface ProductsProps {
 }
 
 const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSubCategory = null }) => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState(initialCategory);
   const [activeSubFilter, setActiveSubFilter] = useState<string | null>(initialSubCategory);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -152,7 +152,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                         <span className="text-xl">↳</span>
                         <span className="bg-brand/10 px-4 py-1.5 rounded-lg border border-brand/20">{activeSubFilter}</span>
                         <button onClick={() => setActiveSubFilter(null)} className="ml-4 px-3 py-1.5 rounded-lg text-ink/40 hover:text-white hover:bg-red-500 transition-colors">
-                          ✕ Temizle
+                          ✕ {language === 'tr' ? 'Temizle' : language === 'en' ? 'Clear' : language === 'ru' ? 'Очистить' : 'مسح'}
                         </button>
                      </motion.div>
                   )}
