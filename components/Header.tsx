@@ -11,6 +11,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
   const [corporateMenuOpen, setCorporateMenuOpen] = useState(false);
   const [certificatesMenuOpen, setCertificatesMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [hoveredMachinery, setHoveredMachinery] = useState(false);
 
@@ -354,129 +355,103 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0, y: -20 }}
+            initial={{ height: 0, opacity: 0, y: -10 }}
             animate={{ height: 'auto', opacity: 1, y: 0 }}
-            exit={{ height: 0, opacity: 0, y: -20 }}
-            transition={{ type: "spring", duration: 0.6, bounce: 0 }}
-            className={`lg:hidden absolute top-[110%] left-4 right-4 bg-white/95 backdrop-blur-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] rounded-3xl border border-white/60 overflow-hidden pointer-events-auto ${isRTL ? 'text-right' : 'text-left'}`}
+            exit={{ height: 0, opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={`lg:hidden absolute top-[110%] left-4 right-4 bg-white/98 backdrop-blur-xl shadow-lg rounded-2xl border border-gray-100 overflow-hidden pointer-events-auto ${isRTL ? 'text-right' : 'text-left'}`}
           >
-            <div className="flex flex-col p-4 space-y-1">
+            <div className="flex flex-col p-3 space-y-0.5">
               {navItems.map((item) => (
-                <React.Fragment key={item.value}>
+                <div key={item.value} className="flex flex-col">
                   <button
                     onClick={() => {
-                      if (item.value === 'corporate') onNavigate('about');
-                      else if (item.value === 'certificates') onNavigate('integratedPolicy');
-                      else onNavigate(item.value as View);
-                      setMobileMenuOpen(false);
+                      if (item.value === 'corporate') {
+                        setExpandedMobileMenu(prev => prev === 'corporate' ? null : 'corporate');
+                      } else if (item.value === 'certificates') {
+                        setExpandedMobileMenu(prev => prev === 'certificates' ? null : 'certificates');
+                      } else {
+                        onNavigate(item.value as View);
+                        setMobileMenuOpen(false);
+                        setExpandedMobileMenu(null);
+                      }
                     }}
-                    className={`block w-full py-4 px-6 text-[15px] font-extrabold uppercase tracking-wider rounded-2xl transition-colors ${
-                      isMenuActive(item.value) ? 'bg-ink/5 text-ink' : 'text-ink/60 hover:bg-ink/5 hover:text-ink'
-                    } ${isRTL ? 'text-right' : 'text-left'}`}
+                    className={`flex justify-between items-center w-full py-3.5 px-4 text-[13px] font-medium tracking-widest uppercase transition-colors ${
+                      isMenuActive(item.value) ? 'text-brand font-bold' : 'text-gray-600 hover:text-black'
+                    } ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    {(item.value === 'corporate' || item.value === 'certificates') && (
+                      <motion.svg 
+                        animate={{ rotate: expandedMobileMenu === item.value ? 180 : 0 }}
+                        className="w-3 h-3 text-gray-400" 
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </motion.svg>
+                    )}
                   </button>
-                  {item.value === 'corporate' && (
-                    <div className="space-y-1">
-                      <button
-                        onClick={() => {
-                          onNavigate('about');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'about' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
+                  
+                  <AnimatePresence>
+                    {item.value === 'corporate' && expandedMobileMenu === 'corporate' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
                       >
-                        ↳ {t.nav.about}
-                      </button>
-                      <button
-                        onClick={() => {
-                          onNavigate('production');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'production' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
+                        <div className={`flex flex-col py-1 ${isRTL ? 'pr-8' : 'pl-8'} space-y-0.5`}>
+                          {['about', 'production', 'machinery', 'informationSecurity'].map((sub) => (
+                            <button
+                              key={sub}
+                              onClick={() => {
+                                onNavigate(sub as View);
+                                setMobileMenuOpen(false);
+                                setExpandedMobileMenu(null);
+                              }}
+                              className={`w-full py-2.5 text-[12px] font-medium tracking-wide transition-colors ${
+                                currentView === sub ? 'text-brand' : 'text-gray-500 hover:text-black'
+                              } ${isRTL ? 'text-right' : 'text-left'}`}
+                            >
+                              {t.nav[sub as keyof typeof t.nav]}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                    
+                    {item.value === 'certificates' && expandedMobileMenu === 'certificates' && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
                       >
-                        ↳ {t.nav.production}
-                      </button>
-                      <button
-                        onClick={() => {
-                          onNavigate('machinery');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'machinery' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
-                      >
-                        ↳ {t.nav.machinery}
-                      </button>
-                      <button
-                        onClick={() => {
-                          onNavigate('informationSecurity');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'informationSecurity' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
-                      >
-                        ↳ {t.nav.informationSecurity}
-                      </button>
-                    </div>
-                  )}
-                  {item.value === 'certificates' && (
-                    <div className="space-y-1">
-                      <button
-                        onClick={() => {
-                          onNavigate('integratedPolicy');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'integratedPolicy' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
-                      >
-                        ↳ {t.nav.integratedPolicy}
-                      </button>
-                      <button
-                        onClick={() => {
-                          onNavigate('qualityManagement');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'qualityManagement' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
-                      >
-                        ↳ {t.nav.qualityManagement}
-                      </button>
-                      <button
-                        onClick={() => {
-                          onNavigate('environmentalManagement');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'environmentalManagement' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
-                      >
-                        ↳ {t.nav.environmentalManagement}
-                      </button>
-                      <button
-                        onClick={() => {
-                          onNavigate('ohsManagement');
-                          setMobileMenuOpen(false);
-                        }}
-                        className={`block w-full py-3 ${isRTL ? 'pr-10 pl-6' : 'pl-10 pr-6'} text-[13px] font-bold uppercase tracking-wider rounded-2xl transition-colors ${
-                          currentView === 'ohsManagement' ? 'bg-brand/10 text-ink' : 'text-ink/50 hover:bg-ink/5 hover:text-ink'
-                        } ${isRTL ? 'text-right' : 'text-left'}`}
-                      >
-                        ↳ {t.nav.ohsManagement}
-                      </button>
-                    </div>
-                  )}
-                </React.Fragment>
+                        <div className={`flex flex-col py-1 ${isRTL ? 'pr-8' : 'pl-8'} space-y-0.5`}>
+                          {['integratedPolicy', 'qualityManagement', 'environmentalManagement', 'ohsManagement'].map((sub) => (
+                            <button
+                              key={sub}
+                              onClick={() => {
+                                onNavigate(sub as View);
+                                setMobileMenuOpen(false);
+                                setExpandedMobileMenu(null);
+                              }}
+                              className={`w-full py-2.5 text-[12px] font-medium tracking-wide transition-colors ${
+                                currentView === sub ? 'text-brand' : 'text-gray-500 hover:text-black'
+                              } ${isRTL ? 'text-right' : 'text-left'}`}
+                            >
+                              {t.nav[sub as keyof typeof t.nav]}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
               
-              <div className="pt-4 px-2">
-                <button className="w-full bg-brand text-ink font-extrabold uppercase tracking-wider py-4 text-[14px] rounded-2xl shadow-md hover:-translate-y-1 transition-all active:translate-y-0">
+              <div className="pt-4 px-2 pb-2">
+                <button className="w-full bg-black text-white font-medium uppercase tracking-widest py-3.5 text-[12px] rounded-xl hover:bg-gray-800 transition-colors">
                   {t.nav.getQuote}
                 </button>
               </div>
