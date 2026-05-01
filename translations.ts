@@ -331,7 +331,7 @@ export const translations: Record<Language, Translation> = {
       ],
       vision: {
         title: 'VİZYONUMUZ',
-        desc: 'Deneyimli kadromuzla, üretimden pazarlamaya, satıştan satış sonrası teknik desteğe kadar uçtan uca bir hizmet anlayışı benimsiyoruz. Portföyümüzde yer alan 2500’ü aşkın nitelikli yedek parçayı, en güncel teknolojik donanımlarla işleyerek hem yurt içinde hem de küresel pazarda çözüm ortaklarımıza sunuyoruz.',
+        desc: 'Sektördeki yarım asırlık tecrübemiz ve uzman kadromuzla; üretimden pazarlamaya, satıştan satış sonrası teknik desteğe kadar uçtan uca, kesintisiz bir hizmet anlayışı benimsiyoruz. En güncel teknolojik donanımlara sahip üretim bantlarımızda işlediğimiz 2500’ü aşkın nitelikli yedek parçayı, sadece yurt içinde değil, dünyanın dört bir yanındaki çözüm ortaklarımıza aynı yüksek kalite standartlarıyla sunuyoruz. İnovasyon ve dayanıklılığı merkeze alarak, iş makinalarının kalbinde yer alan her bir parçayı ustalıkla üretiyor, global endüstrinin gücüne güç katıyoruz.',
       },
       mission: {
         title: 'MİSYONUMUZ',
@@ -1550,7 +1550,7 @@ export const translations: Record<Language, Translation> = {
       ],
       vision: {
         title: 'OUR VISION',
-        desc: 'With our experienced staff, we adopt an end-to-end service approach from production to marketing, from sales to after-sales technical support. We offer more than 2500 qualified spare parts in our portfolio to our solution partners both domestically and in the global market.',
+        desc: 'With nearly half a century of industry experience and our expert team, we adopt an end-to-end, uninterrupted service approach from production to marketing, and from sales to after-sales technical support. We offer over 2,500 highly qualified spare parts, meticulously processed on our production lines equipped with the latest technology, not only domestically but to our solution partners worldwide with the same high quality standards. By putting innovation and durability at the center, we masterfully produce every part at the heart of heavy machinery, empowering the global industry.',
       },
       mission: {
         title: 'OUR MISSION',
@@ -2784,7 +2784,7 @@ export const translations: Record<Language, Translation> = {
       ],
       vision: {
         title: 'НАШЕ ВИДЕНИЕ',
-        desc: 'Благодаря нашему опытному персоналу мы применяем комплексный подход к обслуживанию — от производства до маркетинга, от продаж до послепродажной технической поддержки. Мы предлагаем более 2500 квалифицированных запасных частей в нашем портфеле нашим партнерам.',
+        desc: 'Обладая почти полувековым опытом работы в отрасли и командой экспертов, мы применяем комплексный, бесперебойный подход к обслуживанию: от производства до маркетинга, от продаж до послепродажной технической поддержки. Более 2500 наименований высококачественных запасных частей, тщательно обработанных на наших производственных линиях, оснащенных по последнему слову техники, мы поставляем не только на внутренний рынок, но и нашим партнерам по всему миру с соблюдением единых высоких стандартов качества. Ставя во главу угла инновации и надежность, мы мастерски производим каждую деталь, лежащую в основе тяжелой техники, укрепляя мощь мировой индустрии.',
       },
       mission: {
         title: 'НАША МИССИЯ',
@@ -4018,7 +4018,7 @@ export const translations: Record<Language, Translation> = {
       ],
       vision: {
         title: 'رؤيتنا',
-        desc: 'من خلال طاقمنا ذو الخبرة، نتبنى نهج خدمة شاملاً من الإنتاج إلى التسويق، ومن المبيعات إلى الدعم الفني بعد البيع. نحن نقدم أكثر من 2500 قطعة غيار مؤهلة في محفظتنا لشركائنا في الحلول محلياً وفي السوق العالمية.',
+        desc: 'من خلال خبرتنا التي تقارب نصف قرن في هذه الصناعة وفريقنا الخبير، نعتمد نهج خدمة شامل وغير منقطع من الإنتاج إلى التسويق، ومن المبيعات إلى الدعم الفني لما بعد البيع. نقدم أكثر من 2500 قطعة غيار عالية الجودة، تتم معالجتها بدقة على خطوط إنتاجنا المجهزة بأحدث التقنيات، ليس فقط محليًا بل لشركاء الحلول في جميع أنحاء العالم بنفس معايير الجودة العالية. من خلال وضع الابتكار والمتانة في المركز، ننتج ببراعة كل قطعة في قلب الآلات الثقيلة، مما يعزز قوة الصناعة العالمية.',
       },
       mission: {
         title: 'مهمتنا',

@@ -1,23 +1,16 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
 
 const Home: React.FC = () => {
   const { t, isRTL, language } = useLanguage();
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const videos = ["/Esmaksan3d.mp4", "/EsmaksanVideo.mp4"];
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-    // Poster / fallback image
-  const posterImage = "/uretim2.jpg";
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.playbackRate = 0.5; // Slow cinematic playback
-    }
-  }, []);
 
   return (
     <div className="relative font-sans bg-[#f3f4f6]">
@@ -26,44 +19,43 @@ const Home: React.FC = () => {
         
         {/* Video Background */}
         <div className="absolute inset-0 bg-black">
-          {/* Fallback poster image (shows while video loads or on error) */}
-          <img 
-            src={posterImage} 
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded && !videoError ? 'opacity-0' : 'opacity-100'}`} 
-            alt="Industrial background" 
-          />
+
           
-          {/* Video element */}
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            playsInline
-            poster={posterImage}
-            onLoadedData={() => {
-              setVideoLoaded(true);
-              console.log('Video loaded successfully');
-            }}
-            onError={(e) => {
-              setVideoError(true);
-              console.error('Video loading error:', e);
-            }}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${videoLoaded && !videoError ? 'opacity-100' : 'opacity-0'}`}
-            style={{ objectFit: 'cover', objectPosition: 'center center' }}
-          >
-            <source 
-              src="/Esmaksan3d.mp4" 
-              type="video/mp4" 
-            />
-            {/* Fallback content */}
-            {videoError && (
-              <img 
-                src={posterImage} 
-                className="absolute inset-0 w-full h-full object-cover"
-                alt="Video fallback"
+          {/* Video element with modern crossfade */}
+          <AnimatePresence initial={false}>
+            <motion.video
+              key={currentVideoIndex}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1 }}
+              transition={{ duration: 2.5, ease: "easeInOut" }}
+              ref={(el) => {
+                if (el) {
+                  el.playbackRate = 0.5; // Slow cinematic playback
+                  el.play().catch(e => console.error('Playback prevented', e));
+                }
+              }}
+              muted
+              playsInline
+              onLoadedData={() => {
+                setVideoLoaded(true);
+                console.log('Video loaded successfully');
+              }}
+              onError={(e) => {
+                setVideoError(true);
+                console.error('Video loading error:', e);
+              }}
+              onEnded={() => {
+                setCurrentVideoIndex(prev => (prev + 1) % videos.length);
+              }}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            >
+              <source 
+                src={videos[currentVideoIndex]} 
+                type="video/mp4" 
               />
-            )}
-          </video>
+            </motion.video>
+          </AnimatePresence>
 
           {/* Cinematic gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60" />
@@ -139,29 +131,23 @@ const Home: React.FC = () => {
         {/* Header content of the section */}
         <div className={`flex flex-col gap-10 mb-16 ${isRTL ? 'items-end text-right' : 'items-start text-left'}`}>
           
-          {/* Section Tag with accent line */}
-          <motion.div 
-            initial={{ opacity: 0, width: 0 }}
-            whileInView={{ opacity: 1, width: 'auto' }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
-          >
-            <div className="w-8 h-[2px] bg-[#0a64d9]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#0a64d9]">{t.about.hero.tag}</span>
-          </motion.div>
+
           
-          {/* Mission Statement — smaller, modern */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+          {/* Modern Editorial Statement */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl lg:text-2xl font-normal tracking-tight leading-relaxed text-gray-600 max-w-3xl" 
-            style={{ letterSpacing: '-0.01em' }}
+            className="relative max-w-4xl"
           >
-            {t.about.vision.desc}
-          </motion.p>
+            <div className={`absolute top-0 ${isRTL ? '-right-4 md:-right-8' : '-left-4 md:-left-8'} text-[80px] md:text-[120px] text-[#0a64d9]/10 font-serif leading-none`} style={{ transform: 'translateY(-20%)' }}>
+              &ldquo;
+            </div>
+            <p className="relative text-xl md:text-2xl lg:text-3xl font-light tracking-tight leading-relaxed text-gray-800" style={{ letterSpacing: '-0.015em' }}>
+              {t.about.vision.desc}
+            </p>
+          </motion.div>
         </div>
 
         {/* Feature Cards Grid */}
@@ -205,15 +191,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Products Mini Section to replace the old heavy grid if needed, or keep minimal */}
-      <section className="py-12 bg-white flex justify-center border-t border-gray-100">
-         <motion.button 
-             whileHover={{ scale: 1.05 }}
-             className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#0a64d9] border-b-2 border-[#0a64d9] pb-1"
-          >
-             {t.featured.viewAll}
-         </motion.button>
-      </section>
+
 
     </div>
   );
