@@ -321,29 +321,32 @@ const About: React.FC = () => {
       </section>
 
       {/* Stats Footer Section - Moved to bottom */}
-      <div className="py-32 px-6 md:px-8 max-w-[1600px] mx-auto bg-white">
-        <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-8">
+      <section className="py-24 relative z-10 px-6 md:px-8 max-w-[1600px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {t.about.stats.map((stat: any, idx: number) => (
             <motion.div 
               key={idx} 
-              className={`flex-1 ${isRTL ? 'text-right' : 'text-left'}`}
+              className={`bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-10 ${isRTL ? 'text-right' : 'text-left'}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-2">
+              {/* Decorative Background Blur */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-2 relative z-10">
                 {stat.value}
               </h2>
-              <div className="h-2 bg-brand mb-6 w-12" />
-              <h3 className="font-extrabold text-sm text-white uppercase tracking-widest mb-2">{stat.label}</h3>
-              <p className="text-[10px] text-white/40 uppercase font-black tracking-widest">
+              <div className="h-2 bg-brand mb-6 w-12 relative z-10" />
+              <h3 className="font-extrabold text-sm text-white uppercase tracking-widest mb-2 relative z-10">{stat.label}</h3>
+              <p className="text-[10px] text-white/40 uppercase font-black tracking-widest relative z-10">
                 {idx === 2 ? (statDescMap[language] || statDescMap.en).year : (statDescMap[language] || statDescMap.en).default}
               </p>
             </motion.div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 };
