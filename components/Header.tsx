@@ -320,13 +320,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
               </AnimatePresence>
             </div>
 
-            <button className={`hidden sm:flex items-center gap-2 text-[13px] font-bold uppercase tracking-widest transition-all hover:opacity-70 ${
-              isSolid 
-                ? 'text-ink' 
-                : 'text-white border-b border-white/30 pb-0.5 hover:border-white'
-            }`}>
-              {t.nav.getQuote} ↗
-            </button>
+
             
             {/* Mobile Menu Toggle */}
             <button 
@@ -413,7 +407,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                                 currentView === sub ? 'text-brand' : 'text-gray-500 hover:text-black'
                               } ${isRTL ? 'text-right' : 'text-left'}`}
                             >
-                              {t.nav[sub as keyof typeof t.nav]}
+                              {t.nav[sub as keyof typeof t.nav] as string}
                             </button>
                           ))}
                         </div>
@@ -440,7 +434,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                                 currentView === sub ? 'text-brand' : 'text-gray-500 hover:text-black'
                               } ${isRTL ? 'text-right' : 'text-left'}`}
                             >
-                              {t.nav[sub as keyof typeof t.nav]}
+                              {t.nav[sub as keyof typeof t.nav] as string}
                             </button>
                           ))}
                         </div>
@@ -450,11 +444,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                 </div>
               ))}
               
-              <div className="pt-4 px-2 pb-2">
-                <button className="w-full bg-black text-white font-medium uppercase tracking-widest py-3.5 text-[12px] rounded-xl hover:bg-gray-800 transition-colors">
-                  {t.nav.getQuote}
-                </button>
-              </div>
+
             </div>
           </motion.div>
         )}

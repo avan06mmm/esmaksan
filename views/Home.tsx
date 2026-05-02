@@ -107,23 +107,7 @@ const Home: React.FC = () => {
           </motion.div>
         </motion.div>
 
-         {/* Book a Call CTA */}
-         <motion.button 
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ delay: 1 }}
-           whileHover={{ scale: 1.05 }}
-           whileTap={{ scale: 0.97 }}
-           className={`absolute bottom-8 right-8 ${isRTL ? 'left-8 right-auto' : 'right-8'} z-20 flex items-center gap-4 bg-white text-black px-6 py-3 rounded-full shadow-xl hover:shadow-2xl transition-shadow ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
-         >
-           <span className="text-[14px] font-bold h-full flex items-center">{t.nav.getQuote}</span>
-           <div className={`w-8 h-8 rounded-full bg-[#0a64d9] flex items-center justify-center text-white ${isRTL ? 'rotate-180' : ''}`}>
-             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-               <path d="M5 12h14"></path>
-               <path d="m12 5 7 7-7 7"></path>
-             </svg>
-           </div>
-         </motion.button>
+
       </section>
 
       {/* Services / Who We Are Section */}
