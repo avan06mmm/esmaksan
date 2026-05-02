@@ -130,7 +130,7 @@ const About: React.FC = () => {
       />
 
       {/* Main Company Story Section */}
-      <section className="py-24 industrial-grid overflow-hidden">
+      <section className="py-12 md:py-16 industrial-grid overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="flex flex-col lg:flex-row gap-20 items-start">
             <motion.div 
@@ -172,7 +172,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Global Strength Section */}
-      <section className="py-32 bg-ink text-white overflow-hidden relative">
+      <section className="py-12 md:py-16 bg-ink text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 -skew-x-12 translate-x-32" />
         <div className="max-w-[1600px] mx-auto px-6 md:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row gap-20 items-center">
@@ -213,7 +213,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Defense Industry Vision */}
-      <section className="py-32 industrial-grid">
+      <section className="py-12 md:py-16 industrial-grid">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[40px] p-12 md:p-24 shadow-2xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
@@ -235,7 +235,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Legacy Vision/Mission Section */}
-      <section className="py-32 bg-[#050505] relative overflow-hidden border-y border-white/5">
+      <section className="py-12 md:py-16 bg-[#050505] relative overflow-hidden border-y border-white/5">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className={`flex flex-col ${isRTL ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-24 items-center`}>
             <motion.div 
@@ -293,7 +293,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-32 bg-[#050505] relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-[#050505] relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="text-center mb-24">
             <h2 className="text-5xl font-black text-white uppercase tracking-tighter">{t.about.journey.title}</h2>
@@ -321,7 +321,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Stats Footer Section - Moved to bottom */}
-      <section className="py-24 relative z-10 px-6 md:px-8 max-w-[1600px] mx-auto">
+      <section className="py-12 md:py-16 relative z-10 px-6 md:px-8 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {t.about.stats.map((stat: any, idx: number) => (
             <motion.div 
