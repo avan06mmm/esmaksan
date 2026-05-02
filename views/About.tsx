@@ -272,11 +272,17 @@ const About: React.FC = () => {
               </div>
 
               <div className="pt-8 grid grid-cols-2 gap-8">
-                <div className="p-8 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-8">
+              {/* Decorative Background Blur */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+
                   <p className="text-brand font-black text-xl mb-2">ISO 9001:2015</p>
                   <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{t.about.quality.subtitle}</p>
                 </div>
-                <div className="p-8 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-8">
+              {/* Decorative Background Blur */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+
                   <p className="text-brand font-black text-xl mb-2">{t.about.quality.ceCertified}</p>
                   <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{t.about.quality.europeanStandards}</p>
                 </div>

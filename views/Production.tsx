@@ -198,7 +198,7 @@ const Production: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative bg-white/[0.02] backdrop-blur-xl border border-white/8 rounded-2xl p-10 md:p-14 overflow-hidden flex flex-col justify-between min-h-[220px] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+              className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-10 md:p-14 min-h-[220px]"
             >
               <div className="absolute top-0 right-0 w-48 h-48 bg-brand/5 blur-[60px] rounded-full pointer-events-none group-hover:bg-brand/10 transition-all duration-700" />
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand mb-4">{L.facilityCapacity}</p>

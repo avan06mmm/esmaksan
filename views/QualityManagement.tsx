@@ -296,8 +296,11 @@ const QualityManagement: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white/[0.02] backdrop-blur-sm border border-white/8 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-8"
               >
+              {/* Decorative Background Blur */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+
                 <div className="flex items-start gap-4 mb-6">
                   <span className="text-5xl font-black text-brand/30 leading-none select-none">
                     {section.roman}

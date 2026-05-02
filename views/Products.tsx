@@ -178,8 +178,11 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                   transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
-                  className="group flex flex-col bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-[2rem] p-5 shadow-sm hover:shadow-2xl transition-all duration-500 border border-white/5"
+                  className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-5"
                 >
+              {/* Decorative Background Blur */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+
                   {/* Category Label (Black text) - slightly above image */}
                   <div className={`mb-2 flex ${isRTL ? 'justify-end' : 'justify-start'}`}>
                     <span className="bg-[#f0f2f5] px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-white">

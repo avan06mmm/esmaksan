@@ -164,7 +164,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative flex flex-col bg-white/[0.02] backdrop-blur-xl border shadow-sm hover:shadow-2xl transition-all duration-700 h-full rounded-2xl overflow-hidden ${
+                className={`bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col h-full ${
                   initialMachine === item.title ? 'border-brand ring-2 ring-brand/20' : 'border-white/5'
                 }`}
               >
@@ -228,7 +228,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="lg:col-span-2 md:col-span-1 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:shadow-2xl transition-all duration-700 rounded-2xl overflow-hidden flex flex-col min-h-[500px]"
+              className="lg:col-span-2 md:col-span-1 bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col min-h-[500px]"
             >
               <div className={`bg-brand p-6 md:p-8 flex items-center justify-between shrink-0 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                 <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter">
