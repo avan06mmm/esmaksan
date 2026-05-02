@@ -178,43 +178,50 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                   transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
-                  className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group flex flex-col p-5"
+                  className="relative rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:-translate-y-2 transition-all duration-500 group flex flex-col p-[2px] overflow-hidden"
                 >
-              {/* Decorative Background Blur */}
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+                  {/* Spinning Yellow Line on Hover */}
+                  <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_270deg,#FACC15_360deg)] animate-[spin_2s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  {/* Category Label (Black text) - slightly above image */}
-                  <div className={`mb-2 flex ${isRTL ? 'justify-end' : 'justify-start'}`}>
-                    <span className="bg-white/5 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-white">
-                      {t.nav.categories.find((c:any) => c.value === item.category)?.label || item.category}
-                    </span>
-                  </div>
+                  {/* Inner Card without white borders */}
+                  <div className="bg-[#050505]/90 backdrop-blur-xl rounded-[calc(2rem-2px)] flex flex-col p-5 h-full w-full relative z-10 overflow-hidden">
+                    
+                    {/* Decorative Background Blur */}
+                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
 
-                  {/* Image Area - Shorter height */}
-                  <div 
-                    className="w-full h-48 md:h-52 bg-transparent relative cursor-pointer flex items-center justify-center"
-                    onClick={() => setSelectedImage(item.image)}
-                  >
-                     <img 
-                       src={item.image} 
-                       alt={item.name} 
-                       className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-105 drop-shadow-md mix-blend-multiply"
-                     />
-                     <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
-                        <div className="w-14 h-14 bg-white/95 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow-xl border border-white/5">
-                          <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                          </svg>
-                        </div>
-                     </div>
-                  </div>
+                    {/* Category Label (Black text) - slightly above image */}
+                    <div className={`mb-2 flex ${isRTL ? 'justify-end' : 'justify-start'} relative z-20`}>
+                      <span className="bg-white/5 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-white">
+                        {t.nav.categories.find((c:any) => c.value === item.category)?.label || item.category}
+                      </span>
+                    </div>
 
-                  {/* Text Area (Yellow text) - slightly below image */}
-                  <div className={`mt-3 mb-1 flex items-center ${isRTL ? 'justify-end' : 'justify-start'}`}>
-                    <h3 className="text-lg lg:text-xl font-black text-brand tracking-tight">
-                      {item.name}
-                    </h3>
+                    {/* Image Area - Shorter height */}
+                    <div 
+                      className="w-full h-48 md:h-52 bg-transparent relative cursor-pointer flex items-center justify-center z-20"
+                      onClick={() => setSelectedImage(item.image)}
+                    >
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-105 drop-shadow-md mix-blend-screen"
+                      />
+                      <div className="absolute inset-0 z-30 pointer-events-none flex items-center justify-center">
+                          <div className="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow-xl border border-white/5">
+                            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="12" y1="5" x2="12" y2="19"></line>
+                              <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                          </div>
+                      </div>
+                    </div>
+
+                    {/* Text Area (Yellow text) - slightly below image */}
+                    <div className={`mt-3 mb-1 flex items-center ${isRTL ? 'justify-end' : 'justify-start'} relative z-20`}>
+                      <h3 className="text-lg lg:text-xl font-black text-brand tracking-tight">
+                        {item.name}
+                      </h3>
+                    </div>
                   </div>
                 </motion.div>
               ))}
