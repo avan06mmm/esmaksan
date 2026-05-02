@@ -15,7 +15,7 @@ const Home: React.FC = () => {
   return (
     <div className="relative font-sans bg-[#f3f4f6]">
       {/* Hero Section — Video Background */}
-      <section className="relative w-full flex items-center justify-center overflow-hidden" style={{ height: '100dvh' }}>
+      <section className="relative w-full flex items-center justify-center overflow-hidden h-[60dvh] md:h-[100dvh]">
         
         {/* Video Background */}
         <div className="absolute inset-0 bg-black">
@@ -156,7 +156,7 @@ const Home: React.FC = () => {
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
                 
                 {/* Top Row: Number & Icon */}
-                <div className={`flex justify-between items-start relative z-10 ${isRTL ? 'flex-row-reverse' : 'flex-row'} mb-6`}>
+                <div className={`hidden md:flex justify-between items-start relative z-10 ${isRTL ? 'flex-row-reverse' : 'flex-row'} mb-6`}>
                   <span className="text-[15px] font-bold text-white/30 font-mono tracking-widest group-hover:text-white/60 transition-colors duration-500">
                     /{card.id}
                   </span>
