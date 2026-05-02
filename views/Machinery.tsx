@@ -344,31 +344,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
         )}
       </AnimatePresence>
 
-      {/* Technical Support Banner */}
-      <section className="py-20 bg-ink relative overflow-hidden">
-        <div className="absolute inset-0 industrial-grid-dark opacity-10" />
-        <div className="max-w-[1600px] mx-auto px-6 md:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-block p-12 md:p-20 border border-white/10 bg-white/5 backdrop-blur-3xl rounded-[3rem]"
-          >
-            <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-8 max-w-2xl mx-auto leading-[1.1]" dangerouslySetInnerHTML={{ __html: ctaLoc.title }}></h2>
-            <div className="h-px bg-brand/30 w-24 mx-auto mb-10" />
-            <p className="text-white/50 text-base md:text-lg font-medium max-w-xl mx-auto mb-12 uppercase tracking-widest leading-loose">
-              {ctaLoc.desc}
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-brand text-white font-black uppercase tracking-[0.2em] text-xs py-5 px-10 rounded-full shadow-[0_20px_40px_-5px_rgba(253,187,17,0.3)] hover:shadow-[0_25px_50px_-5px_rgba(253,187,17,0.4)] transition-all"
-            >
-              {ctaLoc.button}
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
+
     </div>
   );
 };
