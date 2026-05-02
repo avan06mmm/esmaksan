@@ -150,24 +150,24 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] p-8 lg:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between min-h-[360px] relative overflow-hidden group cursor-default"
+                className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between min-h-[260px] relative overflow-hidden group cursor-default"
               >
                 {/* Ambient Glow on Hover */}
                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
                 
                 {/* Top Row: Number & Icon */}
-                <div className={`flex justify-between items-start relative z-10 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className={`flex justify-between items-start relative z-10 ${isRTL ? 'flex-row-reverse' : 'flex-row'} mb-6`}>
                   <span className="text-[15px] font-bold text-white/30 font-mono tracking-widest group-hover:text-white/60 transition-colors duration-500">
                     /{card.id}
                   </span>
                   
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white/50 group-hover:bg-[#FACC15] group-hover:text-black transition-all duration-500 shadow-sm group-hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] group-hover:-rotate-6 group-hover:scale-110 border border-white/5 group-hover:border-transparent">
-                    <div className="w-6 h-6">
-                      {/* Sleek Abstract SVG Icons */}
-                      {i === 0 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>}
-                      {i === 1 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>}
-                      {i === 2 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12h5v-5h10v5h5v5h-5v5h-10v-5h-5z"/></svg>}
-                      {i === 3 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>}
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white/50 group-hover:bg-[#FACC15] group-hover:text-black transition-all duration-500 shadow-sm group-hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] group-hover:-rotate-6 group-hover:scale-110 border border-white/5 group-hover:border-transparent">
+                    <div className="w-5 h-5">
+                      {/* Topic-Related SVG Icons */}
+                      {i === 0 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg>}
+                      {i === 1 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>}
+                      {i === 2 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="16" height="13" x="2" y="5" rx="2"/><path d="M18 13v-3l-3-3h-3"/><path d="M2 13h2"/><path d="M20 13h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>}
+                      {i === 3 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>}
                     </div>
                   </div>
                 </div>
