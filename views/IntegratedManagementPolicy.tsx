@@ -13,8 +13,8 @@ const pageLocal: Record<string, any> = {
     viewFullScreen: 'TAM EKRAN GÖRÜNTÜLE',
     approvalLabel: 'Onay',
     managementLabel: 'ESMAKSAN Yönetimi',
-    intro1: '<strong className="text-ink">ESMAKSAN Makine Yedek Parça ve Savunma</strong> olarak; savunma sanayii, makine yedek parça ve talaşlı imalat alanlarında faaliyet gösterirken, ulusal güvenliğe katkı sağlama bilinciyle hareket ederiz. Bu plan, Entegre Yönetim Politikası doğrultusunda belirlenen kalite, çevre ve İSG hedeflerinin gerçekleştirilmesi amacıyla hazırlanmıştır.',
-    intro2: 'Entegre Yönetim Sistemimizin temelinde; <strong className="text-ink">kalite, çevre ve iş sağlığı ve güvenliği performansını</strong> birlikte yönetmek ve sürekli iyileştirmek yer alır.',
+    intro1: '<strong className="text-white">ESMAKSAN Makine Yedek Parça ve Savunma</strong> olarak; savunma sanayii, makine yedek parça ve talaşlı imalat alanlarında faaliyet gösterirken, ulusal güvenliğe katkı sağlama bilinciyle hareket ederiz. Bu plan, Entegre Yönetim Politikası doğrultusunda belirlenen kalite, çevre ve İSG hedeflerinin gerçekleştirilmesi amacıyla hazırlanmıştır.',
+    intro2: 'Entegre Yönetim Sistemimizin temelinde; <strong className="text-white">kalite, çevre ve iş sağlığı ve güvenliği performansını</strong> birlikte yönetmek ve sürekli iyileştirmek yer alır.',
     intro3: 'Kuruluşumuz; ISO 9001 Kalite Yönetim Sistemi, ISO 14001 Çevre Yönetim Sistemi ve ISO 45001 İş Sağlığı ve Güvenliği Yönetim Sistemi standartlarının şartlarına uygun olarak Entegre Yönetim Sistemini kurmuş, uygulamakta ve sürekli iyileştirmektedir.',
     intro4: 'Bu kapsamda aşağıdaki taahhütleri yerine getirmeyi taahhüt ederiz:',
     sections: [
@@ -66,7 +66,7 @@ const pageLocal: Record<string, any> = {
         ],
       },
     ],
-    closing1: 'Bu politika doğrultusunda kalite, çevre ve İSG hedefleri belirlenir, izlenir ve <strong className="text-ink">Yönetimin Gözden Geçirmesi toplantılarında</strong> değerlendirilir.',
+    closing1: 'Bu politika doğrultusunda kalite, çevre ve İSG hedefleri belirlenir, izlenir ve <strong className="text-white">Yönetimin Gözden Geçirmesi toplantılarında</strong> değerlendirilir.',
     closing2: 'Entegre Yönetim Politikası; tüm çalışanlara duyurulmuş olup anlaşılması sağlanır ve ilgili tarafların erişimine açıktır.',
     closing3: 'ESMAKSAN Yönetimi olarak, bu politikanın uygulanmasını, sürdürülmesini ve sürekli iyileştirilmesini taahhüt ederiz.'
   },
@@ -79,8 +79,8 @@ const pageLocal: Record<string, any> = {
     viewFullScreen: 'VIEW FULL SCREEN',
     approvalLabel: 'Approval',
     managementLabel: 'ESMAKSAN Management',
-    intro1: 'As <strong className="text-ink">ESMAKSAN Machinery Spare Parts and Defense</strong>, we act with the awareness of contributing to national security while operating in the fields of the defense industry, machinery spare parts, and machining. This plan has been prepared to achieve the quality, environment, and OHS goals determined in line with the Integrated Management Policy.',
-    intro2: 'At the core of our Integrated Management System is the goal to jointly manage and continuously improve <strong className="text-ink">quality, environment, and occupational health and safety performance</strong>.',
+    intro1: 'As <strong className="text-white">ESMAKSAN Machinery Spare Parts and Defense</strong>, we act with the awareness of contributing to national security while operating in the fields of the defense industry, machinery spare parts, and machining. This plan has been prepared to achieve the quality, environment, and OHS goals determined in line with the Integrated Management Policy.',
+    intro2: 'At the core of our Integrated Management System is the goal to jointly manage and continuously improve <strong className="text-white">quality, environment, and occupational health and safety performance</strong>.',
     intro3: 'Our organization has established, implements, and continuously improves the Integrated Management System in accordance with the requirements of ISO 9001 Quality Management System, ISO 14001 Environmental Management System, and ISO 45001 Occupational Health and Safety Management System standards.',
     intro4: 'In this context, we commit to fulfilling the following commitments:',
     sections: [
@@ -132,7 +132,7 @@ const pageLocal: Record<string, any> = {
         ],
       },
     ],
-    closing1: 'In line with this policy, quality, environment, and OHS targets are determined, monitored, and evaluated in <strong className="text-ink">Management Review meetings</strong>.',
+    closing1: 'In line with this policy, quality, environment, and OHS targets are determined, monitored, and evaluated in <strong className="text-white">Management Review meetings</strong>.',
     closing2: 'The Integrated Management Policy has been announced to all employees to ensure understanding and is accessible to relevant parties.',
     closing3: 'As ESMAKSAN Management, we commit to the implementation, maintenance, and continuous improvement of this policy.'
   },
@@ -145,8 +145,8 @@ const pageLocal: Record<string, any> = {
     viewFullScreen: 'ПОЛНОЭКРАННЫЙ РЕЖИМ',
     approvalLabel: 'Утверждение',
     managementLabel: 'Руководство ESMAKSAN',
-    intro1: 'Как <strong className="text-ink">ESMAKSAN Machinery Spare Parts and Defense</strong>, мы действуем с осознанием своего вклада в национальную безопасность, работая в сфере оборонной промышленности, производства запасных частей для машин и механообработки. Этот план был подготовлен для достижения целей в области качества, экологии и охраны труда, определенных в соответствии с Политикой интегрированного управления.',
-    intro2: 'В основе нашей Интегрированной системы управления лежит совместное управление и постоянное улучшение <strong className="text-ink">показателей качества, экологии, а также охраны здоровья и безопасности труда</strong>.',
+    intro1: 'Как <strong className="text-white">ESMAKSAN Machinery Spare Parts and Defense</strong>, мы действуем с осознанием своего вклада в национальную безопасность, работая в сфере оборонной промышленности, производства запасных частей для машин и механообработки. Этот план был подготовлен для достижения целей в области качества, экологии и охраны труда, определенных в соответствии с Политикой интегрированного управления.',
+    intro2: 'В основе нашей Интегрированной системы управления лежит совместное управление и постоянное улучшение <strong className="text-white">показателей качества, экологии, а также охраны здоровья и безопасности труда</strong>.',
     intro3: 'Наша организация создала, внедряет и постоянно совершенствует Интегрированную систему управления в соответствии с требованиями стандартов Системы менеджмента качества ISO 9001, Системы экологического менеджмента ISO 14001 и Системы менеджмента охраны труда и техники безопасности ISO 45001.',
     intro4: 'В этом контексте мы обязуемся выполнять следующие обязательства:',
     sections: [
@@ -198,7 +198,7 @@ const pageLocal: Record<string, any> = {
         ],
       },
     ],
-    closing1: 'В соответствии с этой политикой определяются, контролируются и оцениваются на <strong className="text-ink">собраниях руководства</strong> цели в области качества, экологии и ОТ и ТБ.',
+    closing1: 'В соответствии с этой политикой определяются, контролируются и оцениваются на <strong className="text-white">собраниях руководства</strong> цели в области качества, экологии и ОТ и ТБ.',
     closing2: 'Политика интегрированного управления была доведена до сведения всех сотрудников для обеспечения ее понимания и доступна для заинтересованных сторон.',
     closing3: 'Руководство ESMAKSAN обязуется внедрять, поддерживать и постоянно совершенствовать эту политику.'
   },
@@ -211,8 +211,8 @@ const pageLocal: Record<string, any> = {
     viewFullScreen: 'عرض بملء الشاشة',
     approvalLabel: 'موافقة',
     managementLabel: 'إدارة ESMAKSAN',
-    intro1: 'بصفتنا <strong className="text-ink">ESMAKSAN لقطع غيار الآلات والدفاع</strong>، فإننا نتصرف بوعي للمساهمة في الأمن القومي أثناء العمل في مجالات الصناعة الدفاعية وقطع غيار الآلات والتشغيل الآلي. تم إعداد هذه الخطة لتمكين أهداف الجودة والبيئة والصحة والسلامة المهنية المحددة بما يتماشى مع سياسة الإدارة المتكاملة.',
-    intro2: 'يكمن أساس نظام الإدارة المتكاملة لدينا في الإدارة المشتركة والتحسين المستمر لـ <strong className="text-ink">أداء الجودة والبيئة والصحة والسلامة المهنية</strong>.',
+    intro1: 'بصفتنا <strong className="text-white">ESMAKSAN لقطع غيار الآلات والدفاع</strong>، فإننا نتصرف بوعي للمساهمة في الأمن القومي أثناء العمل في مجالات الصناعة الدفاعية وقطع غيار الآلات والتشغيل الآلي. تم إعداد هذه الخطة لتمكين أهداف الجودة والبيئة والصحة والسلامة المهنية المحددة بما يتماشى مع سياسة الإدارة المتكاملة.',
+    intro2: 'يكمن أساس نظام الإدارة المتكاملة لدينا في الإدارة المشتركة والتحسين المستمر لـ <strong className="text-white">أداء الجودة والبيئة والصحة والسلامة المهنية</strong>.',
     intro3: 'أنشأت منظمتنا وتنفذ وتحسن باستمرار نظام الإدارة المتكاملة وفقًا لمتطلبات معايير نظام إدارة الجودة ISO 9001، ونظام الإدارة البيئية ISO 14001، ونظام إدارة الصحة والسلامة المهنية ISO 45001.',
     intro4: 'في هذا السياق، نلتزم بالوفاء بالالتزامات التالية:',
     sections: [
@@ -264,7 +264,7 @@ const pageLocal: Record<string, any> = {
         ],
       },
     ],
-    closing1: 'تماشيًا مع هذه السياسة، يتم تحديد ومراقبة وتقييم أهداف الجودة والبيئة والصحة والسلامة المهنية في <strong className="text-ink">اجتماعات مراجعة الإدارة</strong>.',
+    closing1: 'تماشيًا مع هذه السياسة، يتم تحديد ومراقبة وتقييم أهداف الجودة والبيئة والصحة والسلامة المهنية في <strong className="text-white">اجتماعات مراجعة الإدارة</strong>.',
     closing2: 'تم الإعلان عن سياسة الإدارة المتكاملة لجميع الموظفين لضمان فهمها وهي متاحة للأطراف ذات الصلة.',
     closing3: 'تلتزم إدارة ESMAKSAN بتنفيذ هذه السياسة والحفاظ عليها وتحسينها باستمرار.'
   },
@@ -278,7 +278,7 @@ const IntegratedManagementPolicy: React.FC = () => {
   const sections = P.sections;
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[#050505] relative overflow-hidden">
       <PageHero
         tag={P.tag}
         title={P.title}
@@ -287,6 +287,10 @@ const IntegratedManagementPolicy: React.FC = () => {
         statIcon={
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
+
           </svg>
         }
       />
@@ -303,10 +307,10 @@ const IntegratedManagementPolicy: React.FC = () => {
             className="flex-1"
           >
             <div className="border-l-4 border-brand pl-8 space-y-6 max-w-4xl">
-              <p className="text-ink/70 text-lg leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: P.intro1 }}></p>
-              <p className="text-ink/70 text-lg leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: P.intro2 }}></p>
-              <p className="text-ink/70 text-lg leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: P.intro3 }}></p>
-              <p className="text-ink/80 text-base leading-relaxed font-semibold" dangerouslySetInnerHTML={{ __html: P.intro4 }}></p>
+              <p className="text-white/70 text-lg leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: P.intro1 }}></p>
+              <p className="text-white/70 text-lg leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: P.intro2 }}></p>
+              <p className="text-white/70 text-lg leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: P.intro3 }}></p>
+              <p className="text-white/80 text-base leading-relaxed font-semibold" dangerouslySetInnerHTML={{ __html: P.intro4 }}></p>
             </div>
           </motion.div>
 
@@ -318,19 +322,19 @@ const IntegratedManagementPolicy: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="w-full lg:w-[320px] shrink-0 pt-4"
           >
-            <div className="bg-white rounded-xl border border-ink/10 overflow-hidden shadow-xl shadow-ink/5 group">
-              <div className="aspect-[1/1.3] relative bg-ink/[0.02]">
+            <div className="bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded- overflow-hidden shadow-xl shadow-ink/5 group">
+              <div className="aspect-[1/1.3] relative bg-white/[]">
                 <iframe 
                   src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`}
                   className="w-full h-full pointer-events-none"
                   title="Policy PDF Preview"
                 />
-                <div className="absolute inset-0 bg-ink/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
                    <a 
                     href={pdfUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="bg-white text-ink px-4 py-2 rounded-full text-xs font-bold shadow-lg transform scale-90 group-hover:scale-100 transition-all"
+                    className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold shadow-lg transform scale-90 group-hover:scale-100 transition-all"
                   >
                     {P.viewFullScreen}
                   </a>
@@ -364,22 +368,22 @@ const IntegratedManagementPolicy: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white/60 backdrop-blur-sm border border-ink/8 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                className="bg-white/[0.02] backdrop-blur-sm border border-white/8 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-4 mb-6">
                   <span className="text-5xl font-black text-brand/30 leading-none select-none">
                     {section.roman}
                   </span>
-                  <h3 className="text-xl font-black text-ink uppercase tracking-tight mt-2">
+                  <h3 className="text-xl font-black text-white uppercase tracking-tight mt-2">
                     {section.title}
                   </h3>
                 </div>
-                <div className="h-px bg-ink/10 mb-6" />
+                <div className="h-px bg-white/10 mb-6" />
                 <ul className="space-y-3">
                   {section.items.map((item: string, iIdx: number) => (
                     <li key={iIdx} className="flex items-start gap-3">
                       <span className="mt-1.5 w-2 h-2 flex-shrink-0 rounded-full bg-brand" />
-                      <span className="text-ink/70 text-sm font-medium leading-relaxed">{item}</span>
+                      <span className="text-white/70 text-sm font-medium leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -392,22 +396,22 @@ const IntegratedManagementPolicy: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white/60 backdrop-blur-sm border border-ink/8 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+              className="bg-white/[0.02] backdrop-blur-sm border border-white/8 rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
             >
               <div className="flex items-start gap-4 mb-6">
                 <span className="text-5xl font-black text-brand/30 leading-none select-none">
                   {sections[4].roman}
                 </span>
-                <h3 className="text-xl font-black text-ink uppercase tracking-tight mt-2">
+                <h3 className="text-xl font-black text-white uppercase tracking-tight mt-2">
                   {sections[4].title}
                 </h3>
               </div>
-              <div className="h-px bg-ink/10 mb-6" />
+              <div className="h-px bg-white/10 mb-6" />
               <ul className="space-y-3">
                 {sections[4].items.map((item: string, iIdx: number) => (
                   <li key={iIdx} className="flex items-start gap-3">
                     <span className="mt-1.5 w-2 h-2 flex-shrink-0 rounded-full bg-brand" />
-                    <span className="text-ink/70 text-sm font-medium leading-relaxed">{item}</span>
+                    <span className="text-white/70 text-sm font-medium leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -421,20 +425,20 @@ const IntegratedManagementPolicy: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="border border-brand/20 rounded-2xl p-8 bg-brand/[0.03] backdrop-blur-sm flex flex-col justify-between"
             >
-              <div className="space-y-4 text-ink/70 text-sm leading-relaxed font-medium">
+              <div className="space-y-4 text-white/70 text-sm leading-relaxed font-medium">
                 <p dangerouslySetInnerHTML={{ __html: P.closing1 }}></p>
                 <p dangerouslySetInnerHTML={{ __html: P.closing2 }}></p>
-                <p className="text-ink font-bold" dangerouslySetInnerHTML={{ __html: P.closing3 }}></p>
+                <p className="text-white font-bold" dangerouslySetInnerHTML={{ __html: P.closing3 }}></p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-ink/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                  <p className="text-[10px] text-ink/40 uppercase tracking-widest font-bold mb-1">{P.approvalLabel}</p>
-                  <p className="text-xl font-black text-ink tracking-tight">16.10.2025</p>
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold mb-1">{P.approvalLabel}</p>
+                  <p className="text-xl font-black text-white tracking-tight">16.10.2025</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-0.5 bg-brand" />
-                  <p className="text-xs font-extrabold text-ink uppercase tracking-widest">{P.managementLabel}</p>
+                  <p className="text-xs font-extrabold text-white uppercase tracking-widest">{P.managementLabel}</p>
                 </div>
               </div>
             </motion.div>

@@ -113,7 +113,7 @@ const About: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[#050505] relative overflow-hidden">
       
       <PageHero 
         tag={t.about.hero.tag}
@@ -121,7 +121,11 @@ const About: React.FC = () => {
         highlight={t.about.hero.highlight}
         statValue={statValues[language] || "Hakkımızda"}
         statIcon={
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
+</svg>
         }
       />
 
@@ -137,7 +141,7 @@ const About: React.FC = () => {
               className="lg:w-1/3 shrink-0"
             >
               <h2 className="text-sm font-black text-brand tracking-[0.3em] uppercase mb-6 drop-shadow-sm">1977 - 2025</h2>
-              <h1 className="text-4xl md:text-5xl font-black text-ink leading-[1.1] uppercase tracking-tighter">
+              <h1 className="text-4xl md:text-5xl font-black text-white leading-[1.1] uppercase tracking-tighter">
                 ESMAKSAN <br/>
                 <span className="text-brand">MAKİNE SANAYİ</span> <br/>
                 TİCARET LTD. ŞTİ.
@@ -152,11 +156,11 @@ const About: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex-1 space-y-10"
             >
-              <p className="text-xl md:text-2xl text-ink font-bold leading-tight tracking-tight border-l-4 border-brand/20 pl-8">
+              <p className="text-xl md:text-2xl text-white font-bold leading-tight tracking-tight border-l-4 border-brand/20 pl-8">
                 {PAGE.story.p1}
               </p>
               
-              <div className="columns-1 md:columns-2 gap-12 text-ink/70 text-base leading-relaxed font-medium space-y-6">
+              <div className="columns-1 md:columns-2 gap-12 text-white/70 text-base leading-relaxed font-medium space-y-6">
                 <p>{PAGE.story.p2}</p>
                 <p>{PAGE.story.p3}</p>
                 <p>{PAGE.story.p4}</p>
@@ -184,7 +188,7 @@ const About: React.FC = () => {
               </p>
               <div className={`flex flex-wrap gap-x-6 gap-y-3 pt-4 ${isRTL ? 'justify-end' : 'justify-start'}`}>
                 {PAGE.global.countries.map((country: string) => (
-                  <span key={country} className="text-[10px] md:text-xs font-black text-white/30 hover:text-brand transition-colors cursor-default tracking-widest">
+                  <span key={country} className="text-[10px] md:text-xs font-black text-white/30 hover:text-[#FACC15] transition-colors cursor-default tracking-widest">
                     {country}
                   </span>
                 ))}
@@ -211,18 +215,18 @@ const About: React.FC = () => {
       {/* Defense Industry Vision */}
       <section className="py-32 industrial-grid">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
-          <div className="bg-white border border-ink/10 rounded-[40px] p-12 md:p-24 shadow-2xl relative overflow-hidden group">
+          <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[40px] p-12 md:p-24 shadow-2xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
             
             <div className="relative z-10 max-w-4xl mx-auto text-center">
               <span className="inline-block py-2 px-6 bg-ink text-white text-[10px] font-black tracking-[0.4em] uppercase mb-10 rounded-full">
                 {PAGE.defense.tag}
               </span>
-              <h2 className="text-4xl md:text-6xl font-black text-ink uppercase tracking-tighter leading-tight mb-12" dangerouslySetInnerHTML={{ __html: PAGE.defense.title }}></h2>
+              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-tight mb-12" dangerouslySetInnerHTML={{ __html: PAGE.defense.title }}></h2>
               <div className="h-px w-32 bg-brand/30 mx-auto mb-12" />
-              <div className="space-y-8 text-ink/70 text-lg leading-relaxed font-medium">
+              <div className="space-y-8 text-white/70 text-lg leading-relaxed font-medium">
                 <p>{PAGE.defense.p1}</p>
-                <p className="text-ink font-bold">{PAGE.defense.p2}</p>
+                <p className="text-white font-bold">{PAGE.defense.p2}</p>
                 <p>{PAGE.defense.p3}</p>
               </div>
             </div>
@@ -231,7 +235,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Legacy Vision/Mission Section */}
-      <section className="py-32 bg-paper-dark border-y border-ink/5">
+      <section className="py-32 bg-[#050505] relative overflow-hidden border-y border-white/5">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className={`flex flex-col ${isRTL ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-24 items-center`}>
             <motion.div 
@@ -240,7 +244,7 @@ const About: React.FC = () => {
               viewport={{ once: true }}
               className="relative flex-1 min-w-0"
             >
-              <div className={`aspect-square bg-ink-light overflow-hidden ${isRTL ? 'border-r-8' : 'border-l-8'} border-brand shadow-2xl`}>
+              <div className={`aspect-square bg-[#050505] overflow-hidden ${isRTL ? 'border-r-8' : 'border-l-8'} border-brand shadow-2xl`}>
                 <img 
                   src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200" 
                   alt="Factory" 
@@ -248,33 +252,33 @@ const About: React.FC = () => {
                 />
               </div>
               <div className={`absolute -bottom-12 ${isRTL ? '-left-12' : '-right-12'} w-64 h-64 bg-brand p-12 hidden md:flex flex-col justify-end shadow-xl`}>
-                 <p className="text-ink font-black text-4xl leading-none tracking-tighter uppercase">{t.about.quality.title.split(' ')[0]} <br/> {t.about.quality.title.split(' ')[1]}</p>
+                 <p className="text-white font-black text-4xl leading-none tracking-tighter uppercase">{t.about.quality.title.split(' ')[0]} <br/> {t.about.quality.title.split(' ')[1]}</p>
               </div>
             </motion.div>
 
             <div className={`flex-1 min-w-0 space-y-12 ${isRTL ? 'text-right' : 'text-left'}`}>
               <div className="space-y-6">
-                <h2 className="text-4xl font-black text-ink uppercase tracking-tighter">{t.about.vision.title}</h2>
-                <p className="text-ink/60 text-lg leading-relaxed font-medium">
+                <h2 className="text-4xl font-black text-white uppercase tracking-tighter">{t.about.vision.title}</h2>
+                <p className="text-white/60 text-lg leading-relaxed font-medium">
                   {t.about.vision.desc}
                 </p>
               </div>
               
               <div className="space-y-6">
-                <h2 className="text-4xl font-black text-ink uppercase tracking-tighter">{t.about.mission.title}</h2>
-                <p className="text-ink/60 text-lg leading-relaxed font-medium">
+                <h2 className="text-4xl font-black text-white uppercase tracking-tighter">{t.about.mission.title}</h2>
+                <p className="text-white/60 text-lg leading-relaxed font-medium">
                   {t.about.mission.desc}
                 </p>
               </div>
 
               <div className="pt-8 grid grid-cols-2 gap-8">
-                <div className="p-8 border border-ink/5 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div className="p-8 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-brand font-black text-xl mb-2">ISO 9001:2015</p>
-                  <p className="text-[10px] font-bold text-ink/40 uppercase tracking-widest">{t.about.quality.subtitle}</p>
+                  <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{t.about.quality.subtitle}</p>
                 </div>
-                <div className="p-8 border border-ink/5 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <div className="p-8 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-brand font-black text-xl mb-2">{t.about.quality.ceCertified}</p>
-                  <p className="text-[10px] font-bold text-ink/40 uppercase tracking-widest">{t.about.quality.europeanStandards}</p>
+                  <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{t.about.quality.europeanStandards}</p>
                 </div>
               </div>
             </div>
@@ -283,10 +287,10 @@ const About: React.FC = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-32 bg-ink-light relative overflow-hidden">
+      <section className="py-32 bg-[#050505] relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="text-center mb-24">
-            <h2 className="text-5xl font-black text-ink uppercase tracking-tighter">{t.about.journey.title}</h2>
+            <h2 className="text-5xl font-black text-white uppercase tracking-tighter">{t.about.journey.title}</h2>
             <div className="h-1 w-24 bg-brand mx-auto mt-6" />
           </div>
 
@@ -298,12 +302,12 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}
-                className="relative p-12 bg-paper border-t-4 border-brand shadow-xl"
+                className="relative p-12 bg-[#050505] relative overflow-hidden border-t-4 border-brand shadow-xl"
               >
-                <span className={`text-6xl font-black text-ink/5 absolute top-4 ${isRTL ? 'left-8' : 'right-8'}`}>{item.year}</span>
+                <span className={`text-6xl font-black text-white/5 absolute top-4 ${isRTL ? 'left-8' : 'right-8'}`}>{item.year}</span>
                 <p className="text-brand font-black text-2xl mb-4 relative z-10">{item.year}</p>
-                <h3 className="text-xl font-black text-ink uppercase mb-4 relative z-10">{item.title}</h3>
-                <p className="text-ink/60 font-medium text-sm leading-relaxed relative z-10">{item.desc}</p>
+                <h3 className="text-xl font-black text-white uppercase mb-4 relative z-10">{item.title}</h3>
+                <p className="text-white/60 font-medium text-sm leading-relaxed relative z-10">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -322,12 +326,12 @@ const About: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-ink mb-2">
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-2">
                 {stat.value}
               </h2>
               <div className="h-2 bg-brand mb-6 w-12" />
-              <h3 className="font-extrabold text-sm text-ink uppercase tracking-widest mb-2">{stat.label}</h3>
-              <p className="text-[10px] text-ink/40 uppercase font-black tracking-widest">
+              <h3 className="font-extrabold text-sm text-white uppercase tracking-widest mb-2">{stat.label}</h3>
+              <p className="text-[10px] text-white/40 uppercase font-black tracking-widest">
                 {idx === 2 ? (statDescMap[language] || statDescMap.en).year : (statDescMap[language] || statDescMap.en).default}
               </p>
             </motion.div>

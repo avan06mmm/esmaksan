@@ -45,7 +45,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pb-24 font-sans text-ink selection:bg-brand selection:text-ink">
+    <div className="min-h-screen bg-[#F8F9FA] pb-24 font-sans text-white selection:bg-brand selection:text-white">
       
       {/* 1. HERO SECTION */}
       <PageHero 
@@ -56,17 +56,21 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
         statLabel={t.products.hero.totalLabel}
       />
 
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
+
+
       {/* 2. APP-LIKE LAYOUT: FLOATING SIDEBAR + GRID */}
       <div className={`max-w-[1600px] mx-auto px-6 md:px-8 mt-16 flex flex-col lg:flex-row gap-10 ${isRTL ? 'lg:flex-row-reverse' : ''}`}>
         
         {/* SLEEK SIDEBAR */}
         <aside className="w-full lg:w-[320px] flex-shrink-0 relative">
-          <div className="lg:sticky lg:top-[120px] flex flex-col bg-white rounded-[2.5rem] p-6 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.05)] border border-ink/5">
+          <div className="lg:sticky lg:top-[120px] flex flex-col bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-[2.5rem] p-6 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.05)] border border-white/5">
             <div className={`flex items-center justify-between mb-8 px-4 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-               <h3 className="text-[12px] font-black uppercase tracking-[0.3em] text-ink/40">
+               <h3 className="text-[12px] font-black uppercase tracking-[0.3em] text-white/40">
                  {t.footer.categoriesTitle}
                </h3>
-               <div className="w-8 h-px bg-ink/10" />
+               <div className="w-8 h-px bg-white/10" />
             </div>
             
             <div className="relative space-y-2">
@@ -79,7 +83,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                     <button
                       onClick={() => handleFilterChange(cat.value)}
                       className={`relative w-full flex items-center justify-between px-6 py-4 rounded-[1.5rem] transition-all duration-300 z-10 ${
-                        isActive ? 'text-ink' : 'text-ink/60 hover:text-ink hover:bg-ink/5'
+                        isActive ? 'text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
                       }`}
                     >
                       {isActive && (
@@ -113,7 +117,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                                   key={sub.value}
                                   onClick={() => setActiveSubFilter(sub.value)}
                                   className={`block w-full px-4 py-2.5 text-[14px] font-bold rounded-[1rem] transition-all ${
-                                    isSubActive ? 'bg-ink text-white shadow-md scale-[1.02]' : 'text-ink/60 hover:text-ink hover:bg-ink/5'
+                                    isSubActive ? 'bg-ink text-white shadow-md scale-[1.02]' : 'text-white/60 hover:text-white hover:bg-white/5'
                                   }`}
                                 >
                                   {sub.label}
@@ -139,7 +143,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                 <motion.h2 
                    key={activeFilter + (activeSubFilter || '')}
                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                   className="text-4xl md:text-6xl font-black text-ink tracking-tighter"
+                   className="text-4xl md:text-6xl font-black text-white tracking-tighter"
                 >
                   {categories.find((c: any) => c.value === activeFilter)?.label} 
                 </motion.h2>
@@ -151,7 +155,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                      >
                         <span className="text-xl">↳</span>
                         <span className="bg-brand/10 px-4 py-1.5 rounded-lg border border-brand/20">{activeSubFilter}</span>
-                        <button onClick={() => setActiveSubFilter(null)} className="ml-4 px-3 py-1.5 rounded-lg text-ink/40 hover:text-white hover:bg-red-500 transition-colors">
+                        <button onClick={() => setActiveSubFilter(null)} className="ml-4 px-3 py-1.5 rounded-lg text-white/40 hover:text-white hover:bg-red-500 transition-colors">
                           ✕ {language === 'tr' ? 'Temizle' : language === 'en' ? 'Clear' : language === 'ru' ? 'Очистить' : 'مسح'}
                         </button>
                      </motion.div>
@@ -159,8 +163,8 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                 </AnimatePresence>
              </div>
              
-             <div className={`md:flex items-center hidden bg-white rounded-full px-5 py-2 shadow-sm border border-ink/5`}>
-               <span className="text-[12px] font-black uppercase tracking-widest text-ink/40">{filteredItems.length} {t.products.hero.totalLabel}</span>
+             <div className={`md:flex items-center hidden bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-full px-5 py-2 shadow-sm border border-white/5`}>
+               <span className="text-[12px] font-black uppercase tracking-widest text-white/40">{filteredItems.length} {t.products.hero.totalLabel}</span>
              </div>
           </div>
 
@@ -174,11 +178,11 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                   transition={{ duration: 0.4, delay: idx * 0.05, ease: "easeOut" }}
-                  className="group flex flex-col bg-white rounded-[2rem] p-5 shadow-sm hover:shadow-2xl transition-all duration-500 border border-ink/5"
+                  className="group flex flex-col bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-[2rem] p-5 shadow-sm hover:shadow-2xl transition-all duration-500 border border-white/5"
                 >
                   {/* Category Label (Black text) - slightly above image */}
                   <div className={`mb-2 flex ${isRTL ? 'justify-end' : 'justify-start'}`}>
-                    <span className="bg-[#f0f2f5] px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-ink">
+                    <span className="bg-[#f0f2f5] px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-white">
                       {t.nav.categories.find((c:any) => c.value === item.category)?.label || item.category}
                     </span>
                   </div>
@@ -194,8 +198,8 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                        className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-105 drop-shadow-md mix-blend-multiply"
                      />
                      <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
-                        <div className="w-14 h-14 bg-white/95 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow-xl border border-ink/5">
-                          <svg className="w-6 h-6 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <div className="w-14 h-14 bg-white/95 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow-xl border border-white/5">
+                          <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                           </svg>
@@ -217,12 +221,12 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
           {filteredItems.length === 0 && (
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="py-40 mt-8 text-center bg-white rounded-[3rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-ink/5"
+              className="py-40 mt-8 text-center bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-[3rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-white/5"
             >
                <div className="w-24 h-24 mx-auto mb-6 bg-[#f4f5f7] rounded-full flex items-center justify-center text-4xl">
                  🔍
                </div>
-               <p className="text-2xl font-black text-ink/40 uppercase tracking-widest">{t.products.noProducts}</p>
+               <p className="text-2xl font-black text-white/40 uppercase tracking-widest">{t.products.noProducts}</p>
             </motion.div>
           )}
 
@@ -276,7 +280,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
               {t.products.cta.desc}
             </p>
             <div className={`flex flex-col sm:flex-row justify-center items-center gap-6 w-full sm:w-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-              <button className="w-full sm:w-auto bg-brand text-ink font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(250,204,21,0.5)]">
+              <button className="w-full sm:w-auto bg-brand text-white font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(250,204,21,0.5)]">
                 {t.products.cta.button}
               </button>
               <button className="w-full sm:w-auto bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300">

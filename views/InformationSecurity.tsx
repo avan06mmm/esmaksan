@@ -67,7 +67,7 @@ const InformationSecurity: React.FC = () => {
   const P = pageLocal[language] || pageLocal.tr;
   
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[#050505] relative overflow-hidden">
       <PageHero
         tag={P.tag}
         title={P.title}
@@ -76,6 +76,10 @@ const InformationSecurity: React.FC = () => {
         statIcon={
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
+
           </svg>
         }
       />
@@ -84,13 +88,13 @@ const InformationSecurity: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-ink/5"
+          className="bg-white/[0.02] backdrop-blur-xl border border-white/5 p-8 md:p-12 rounded-3xl shadow-xl border border-white/5"
         >
           <div className={`flex flex-col md:flex-row gap-12 ${isRTL ? 'text-right md:flex-row-reverse' : 'text-left'}`}>
             <div className="flex-1 space-y-6">
-              <h2 className="text-3xl font-black uppercase tracking-tight text-ink">{P.heading}</h2>
+              <h2 className="text-3xl font-black uppercase tracking-tight text-white">{P.heading}</h2>
               <div className={`w-20 h-1.5 bg-brand rounded-full ${isRTL ? 'ml-auto' : ''}`}></div>
-              <p className="text-ink/70 text-lg leading-relaxed font-medium">
+              <p className="text-white/70 text-lg leading-relaxed font-medium">
                 {P.desc}
               </p>
               <div className="space-y-4 pt-4">
@@ -101,20 +105,20 @@ const InformationSecurity: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <p className="text-ink/80 font-semibold">{item}</p>
+                    <p className="text-white/80 font-semibold">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
             
             <div className="md:w-1/3 flex flex-col justify-center">
-              <div className="bg-ink/5 rounded-2xl p-8 border border-ink/10 text-center relative overflow-hidden">
+              <div className="bg-white/5 rounded-2xl p-8 border border-white/10 text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
                 <svg className="w-16 h-16 mx-auto mb-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
                 <h3 className="text-xl font-bold uppercase tracking-wider mb-2">ISO 27001</h3>
-                <p className="text-ink/60 text-sm font-medium">{P.certText}</p>
+                <p className="text-white/60 text-sm font-medium">{P.certText}</p>
               </div>
             </div>
           </div>

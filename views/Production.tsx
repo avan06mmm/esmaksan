@@ -44,7 +44,7 @@ const Production: React.FC = () => {
   const L = local[language] || local.tr;
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[#050505] relative overflow-hidden">
       
       <PageHero 
         tag={t.production.hero.tag}
@@ -52,7 +52,11 @@ const Production: React.FC = () => {
         highlight={t.production.hero.highlight}
         statValue={L.manufacturing}
         statIcon={
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
+</svg>
         }
       />
 
@@ -67,12 +71,12 @@ const Production: React.FC = () => {
             { value: "2K m²", label: L.storageArea, desc: L.storageAreaDesc },
           ].map((stat, idx) => (
             <div key={idx} className="flex-1">
-              <h2 className="text-5xl md:text-7xl font-medium tracking-tighter text-ink mb-2">
+              <h2 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-2">
                 {stat.value}
               </h2>
-              <div className="h-px bg-ink/20 mb-4 w-full" />
-              <h3 className="font-bold text-sm text-ink mb-2">{stat.label}</h3>
-              <p className="text-xs text-ink/50 font-medium">
+              <div className="h-px bg-white/20 mb-4 w-full" />
+              <h3 className="font-bold text-sm text-white mb-2">{stat.label}</h3>
+              <p className="text-xs text-white/50 font-medium">
                 {stat.desc}
               </p>
             </div>
@@ -128,19 +132,19 @@ const Production: React.FC = () => {
               viewport={{ once: true }}
               className="flex-1 min-w-0 space-y-8"
             >
-              <h2 className="text-4xl font-black text-ink uppercase tracking-tighter">
+              <h2 className="text-4xl font-black text-white uppercase tracking-tighter">
                 {t.production.capabilities.title}
               </h2>
-              <p className="text-ink/60 text-lg leading-relaxed font-medium">
+              <p className="text-white/60 text-lg leading-relaxed font-medium">
                 {t.production.capabilities.desc}
               </p>
               <div className="grid grid-cols-1 gap-6">
                 {t.production.capabilities.items.map((item, idx) => (
-                  <div key={idx} className={`flex items-start space-x-4 p-6 bg-white border border-ink/5 shadow-sm hover:border-brand/30 transition-colors ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
+                  <div key={idx} className={`flex items-start space-x-4 p-6 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:border-brand/30 transition-colors ${isRTL ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
                     <div className="w-10 h-10 bg-brand/10 flex items-center justify-center flex-shrink-0">
                       <span className="text-brand font-black text-xs">0{idx + 1}</span>
                     </div>
-                    <span className="text-ink font-bold uppercase text-sm tracking-widest leading-relaxed">{item}</span>
+                    <span className="text-white font-bold uppercase text-sm tracking-widest leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
@@ -152,7 +156,7 @@ const Production: React.FC = () => {
               viewport={{ once: true }}
               className="relative flex-1 min-w-0"
             >
-              <div className={`aspect-video bg-ink-light overflow-hidden ${isRTL ? 'border-r-8' : 'border-l-8'} border-brand shadow-2xl`}>
+              <div className={`aspect-video bg-[#050505] overflow-hidden ${isRTL ? 'border-r-8' : 'border-l-8'} border-brand shadow-2xl`}>
                 <img 
                   src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=2070" 
                   alt="Advanced Technology" 
@@ -166,7 +170,7 @@ const Production: React.FC = () => {
       </section>
 
       {/* Facility Area Banner */}
-      <section className="py-20 bg-paper border-y border-ink/8">
+      <section className="py-20 bg-[#050505] relative overflow-hidden border-y border-white/8">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div
@@ -194,17 +198,17 @@ const Production: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative bg-white border border-ink/8 rounded-2xl p-10 md:p-14 overflow-hidden flex flex-col justify-between min-h-[220px] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+              className="group relative bg-white/[0.02] backdrop-blur-xl border border-white/8 rounded-2xl p-10 md:p-14 overflow-hidden flex flex-col justify-between min-h-[220px] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
             >
               <div className="absolute top-0 right-0 w-48 h-48 bg-brand/5 blur-[60px] rounded-full pointer-events-none group-hover:bg-brand/10 transition-all duration-700" />
               <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand mb-4">{L.facilityCapacity}</p>
               <div>
                 <div className="flex items-end gap-3 mb-3">
-                  <span className="text-6xl md:text-8xl font-black text-ink tracking-tighter leading-none">2.000</span>
-                  <span className="text-3xl font-bold text-ink/30 mb-2">m²</span>
+                  <span className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">2.000</span>
+                  <span className="text-3xl font-bold text-white/30 mb-2">m²</span>
                 </div>
-                <div className="h-px bg-ink/10 mb-4" />
-                <p className="text-sm font-semibold text-ink/40 uppercase tracking-widest">{L.storageArea}</p>
+                <div className="h-px bg-white/10 mb-4" />
+                <p className="text-sm font-semibold text-white/40 uppercase tracking-widest">{L.storageArea}</p>
               </div>
             </motion.div>
           </div>
@@ -212,14 +216,14 @@ const Production: React.FC = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-32 bg-paper border-t border-ink/5">
+      <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
         <div className="max-w-[1600px] mx-auto px-6 md:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl font-black text-ink uppercase tracking-tighter"
+              className="text-4xl font-black text-white uppercase tracking-tighter"
             >
               {t.production.team.title}
             </motion.h2>
@@ -228,7 +232,7 @@ const Production: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-ink/60 text-lg leading-relaxed font-medium"
+              className="text-white/60 text-lg leading-relaxed font-medium"
             >
               {t.production.team.desc}
             </motion.p>

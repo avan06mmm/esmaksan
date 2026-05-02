@@ -127,7 +127,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
   }, []);
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-[#050505] relative overflow-hidden">
       
       <PageHero 
         tag={t.machinery.hero.tag}
@@ -135,14 +135,18 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
         highlight={t.machinery.hero.highlight}
         statValue={t.nav.production}
         statIcon={
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+
+      {/* Subtle background ambient glow */}
+      <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
+</svg>
         }
       />
 
       {/* Description Section */}
       <div className="pt-4 md:pt-8 px-6 md:px-8 max-w-[1600px] mx-auto mb-16">
         <div className="max-w-4xl">
-          <p className={`text-xl md:text-2xl text-ink/60 font-medium leading-relaxed ${isRTL ? 'text-right' : 'text-left'}`}>
+          <p className={`text-xl md:text-2xl text-white/60 font-medium leading-relaxed ${isRTL ? 'text-right' : 'text-left'}`}>
             {t.machinery.hero.desc}
           </p>
         </div>
@@ -160,13 +164,13 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative flex flex-col bg-white border shadow-sm hover:shadow-2xl transition-all duration-700 h-full rounded-2xl overflow-hidden ${
-                  initialMachine === item.title ? 'border-brand ring-2 ring-brand/20' : 'border-ink/5'
+                className={`group relative flex flex-col bg-white/[0.02] backdrop-blur-xl border shadow-sm hover:shadow-2xl transition-all duration-700 h-full rounded-2xl overflow-hidden ${
+                  initialMachine === item.title ? 'border-brand ring-2 ring-brand/20' : 'border-white/5'
                 }`}
               >
                 {/* Image Section */}
                 <div className="aspect-[4/3] overflow-hidden relative">
-                  <div className="absolute inset-0 bg-ink/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
                   <img 
                     src={item.image} 
                     alt={item.title} 
@@ -176,7 +180,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
                     }}
                   />
                   <div className={`absolute top-6 ${isRTL ? 'right-6' : 'left-6'} z-20`}>
-                    <div className="bg-brand text-ink font-black text-[10px] py-1.5 px-3 uppercase tracking-widest shadow-lg">
+                    <div className="bg-brand text-white font-black text-[10px] py-1.5 px-3 uppercase tracking-widest shadow-lg">
                       {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                     </div>
                   </div>
@@ -184,11 +188,11 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
 
                 {/* Content Section */}
                 <div className={`p-8 md:p-10 flex flex-col flex-grow bg-white relative z-20 ${isRTL ? 'text-right' : 'text-left'}`}>
-                  <h3 className="text-2xl font-black text-ink uppercase tracking-tighter mb-4 group-hover:text-brand transition-colors duration-500">
+                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-4 group-hover:text-[#FACC15] transition-colors duration-500">
                     {item.title}
                   </h3>
-                  <div className={`h-px bg-ink/5 w-full mb-6 group-hover:bg-brand/20 transition-colors duration-500 ${isRTL ? 'mr-auto' : 'ml-auto'}`} />
-                  <p className="text-ink/60 text-sm leading-relaxed font-medium mb-8 flex-grow">
+                  <div className={`h-px bg-white/5 w-full mb-6 group-hover:bg-brand/20 transition-colors duration-500 ${isRTL ? 'mr-auto' : 'ml-auto'}`} />
+                  <p className="text-white/60 text-sm leading-relaxed font-medium mb-8 flex-grow">
                     {item.desc}
                   </p>
                   
@@ -198,7 +202,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
                       {item.specs.slice(0, 2).map((spec, sidx) => (
                         <span 
                           key={sidx} 
-                          className="text-[9px] font-bold uppercase tracking-widest bg-ink/5 text-ink/70 px-2.5 py-1 rounded-full border border-transparent group-hover:border-brand/30 group-hover:bg-brand/5 group-hover:text-ink transition-all duration-500"
+                          className="text-[9px] font-bold uppercase tracking-widest bg-white/5 text-white/70 px-2.5 py-1 rounded-full border border-transparent group-hover:border-brand/30 group-hover:bg-brand/5 group-hover:text-white transition-all duration-500"
                         >
                           {spec}
                         </span>
@@ -208,7 +212,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
                     {item.details && (
                       <button
                         onClick={() => setSelectedDetailItem(item)}
-                        className="text-[10px] font-black uppercase tracking-[0.2em] text-brand hover:text-ink transition-colors px-4 py-2 border border-brand/20 rounded-full hover:bg-brand"
+                        className="text-[10px] font-black uppercase tracking-[0.2em] text-brand hover:text-white transition-colors px-4 py-2 border border-brand/20 rounded-full hover:bg-brand"
                       >
                         {t.machinery.ui.viewDetails}
                       </button>
@@ -224,26 +228,26 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="lg:col-span-2 md:col-span-1 bg-white border border-ink/5 shadow-sm hover:shadow-2xl transition-all duration-700 rounded-2xl overflow-hidden flex flex-col min-h-[500px]"
+              className="lg:col-span-2 md:col-span-1 bg-white/[0.02] backdrop-blur-xl border border-white/5 shadow-sm hover:shadow-2xl transition-all duration-700 rounded-2xl overflow-hidden flex flex-col min-h-[500px]"
             >
               <div className={`bg-brand p-6 md:p-8 flex items-center justify-between shrink-0 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                <h3 className="text-xl md:text-2xl font-black text-ink uppercase tracking-tighter">
+                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter">
                   {loc.title}
                 </h3>
               </div>
-              <div className="flex-grow p-0 overflow-y-auto custom-scrollbar bg-paper/50 max-h-[800px]">
+              <div className="flex-grow p-0 overflow-y-auto custom-scrollbar bg-[#050505] relative overflow-hidden/50 max-h-[800px]">
                 <table className={`w-full border-collapse ${isRTL ? 'text-right' : 'text-left'}`}>
-                  <thead className="bg-white sticky top-0 z-10 before:absolute before:inset-0 before:bg-ink/5 before:-z-10 shadow-sm border-b border-ink/10">
+                  <thead className="bg-white sticky top-0 z-10 before:absolute before:inset-0 before:bg-white/5 before:-z-10 shadow-sm border-b border-white/10">
                     <tr className={isRTL ? 'flex-row-reverse' : 'flex-row'}>
-                      <th className={`py-4 px-6 md:px-8 text-xs font-black text-ink/50 uppercase tracking-widest ${isRTL ? 'text-right' : 'text-left'}`}>{loc.machines}</th>
-                      <th className="py-4 px-6 md:px-8 text-xs font-black text-ink/50 uppercase tracking-widest w-24 text-center">{loc.qty}</th>
+                      <th className={`py-4 px-6 md:px-8 text-xs font-black text-white/50 uppercase tracking-widest ${isRTL ? 'text-right' : 'text-left'}`}>{loc.machines}</th>
+                      <th className="py-4 px-6 md:px-8 text-xs font-black text-white/50 uppercase tracking-widest w-24 text-center">{loc.qty}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {inventoryList.map((inv, idx) => (
-                      <tr key={idx} className={`border-b border-ink/5 hover:bg-white transition-colors group ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <td className="py-4 px-6 md:px-8 text-sm font-bold text-ink/80 group-hover:text-brand transition-colors">{inv.name}</td>
-                        <td className="py-4 px-6 md:px-8 text-sm font-black text-ink/60 group-hover:text-brand text-center transition-colors">{inv.count}</td>
+                      <tr key={idx} className={`border-b border-white/5 hover:bg-white transition-colors group ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                        <td className="py-4 px-6 md:px-8 text-sm font-bold text-white/80 group-hover:text-[#FACC15] transition-colors">{inv.name}</td>
+                        <td className="py-4 px-6 md:px-8 text-sm font-black text-white/60 group-hover:text-[#FACC15] text-center transition-colors">{inv.count}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -263,19 +267,19 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedDetailItem(null)}
-              className="absolute inset-0 bg-ink/60 backdrop-blur-md"
+              className="absolute inset-0 bg-white/[0.02] backdrop-blur-md"
             />
             
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className={`relative w-full max-w-6xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] ${isRTL ? 'md:flex-row-reverse' : ''}`}
+              className={`relative w-full max-w-6xl bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] ${isRTL ? 'md:flex-row-reverse' : ''}`}
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedDetailItem(null)}
-                className={`absolute top-6 ${isRTL ? 'left-6' : 'right-6'} z-50 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full text-white md:text-ink transition-all border border-white/20 md:border-ink/10`}
+                className={`absolute top-6 ${isRTL ? 'left-6' : 'right-6'} z-50 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full text-white md:text-white transition-all border border-white/20 md:border-white/10`}
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
@@ -300,26 +304,26 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
               <div className={`w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar ${isRTL ? 'text-right' : 'text-left'}`}>
                 <div className="hidden md:block mb-10">
                   <div className="text-brand font-black text-[10px] uppercase tracking-[0.3em] mb-4">{t.machinery.ui.techSpecs}</div>
-                  <h2 className="text-5xl font-black text-ink uppercase tracking-tighter">{selectedDetailItem.title}</h2>
+                  <h2 className="text-5xl font-black text-white uppercase tracking-tighter">{selectedDetailItem.title}</h2>
                   <div className={`h-px bg-brand/30 w-16 mt-6 ${isRTL ? 'mr-auto' : 'ml-auto'}`} />
                 </div>
 
-                <p className="text-ink/60 font-medium leading-relaxed mb-12 md:text-lg">
+                <p className="text-white/60 font-medium leading-relaxed mb-12 md:text-lg">
                   {selectedDetailItem.desc}
                 </p>
 
                 <div className="space-y-12">
                   {selectedDetailItem.details?.map((group, gidx) => (
                     <div key={gidx}>
-                      <h4 className={`text-[11px] font-black text-ink/40 uppercase tracking-[0.3em] mb-6 flex items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                      <h4 className={`text-[11px] font-black text-white/40 uppercase tracking-[0.3em] mb-6 flex items-center ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                         <span className={`w-8 h-px bg-brand/40 ${isRTL ? 'ml-4' : 'mr-4'}`} />
                         {group.group}
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
                         {group.items.map((spec, sidx) => (
-                          <div key={sidx} className={`flex justify-between items-center py-3 border-b border-ink/5 group/row ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                            <span className="text-[12px] font-bold text-ink/50 uppercase tracking-wider">{spec.label}</span>
-                            <span className="text-[13px] font-black text-ink uppercase group-hover/row:text-brand transition-colors">{spec.value}</span>
+                          <div key={sidx} className={`flex justify-between items-center py-3 border-b border-white/5 group/row ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                            <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">{spec.label}</span>
+                            <span className="text-[13px] font-black text-white uppercase group-hover/row:text-brand transition-colors">{spec.value}</span>
                           </div>
                         ))}
                       </div>
@@ -350,7 +354,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-brand text-ink font-black uppercase tracking-[0.2em] text-xs py-5 px-10 rounded-full shadow-[0_20px_40px_-5px_rgba(253,187,17,0.3)] hover:shadow-[0_25px_50px_-5px_rgba(253,187,17,0.4)] transition-all"
+              className="bg-brand text-white font-black uppercase tracking-[0.2em] text-xs py-5 px-10 rounded-full shadow-[0_20px_40px_-5px_rgba(253,187,17,0.3)] hover:shadow-[0_25px_50px_-5px_rgba(253,187,17,0.4)] transition-all"
             >
               {ctaLoc.button}
             </motion.button>
