@@ -111,67 +111,85 @@ const Home: React.FC = () => {
       </section>
 
       {/* Services / Who We Are Section */}
-      <section className="py-24 px-6 md:px-8 max-w-[1600px] mx-auto bg-[#f3f4f6]">
-        {/* Header content of the section */}
-        <div className={`flex flex-col gap-10 mb-16 ${isRTL ? 'items-end text-right' : 'items-start text-left'}`}>
-          
+      <section className="py-24 w-full bg-[#050505] relative overflow-hidden">
+        {/* Subtle background ambient glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
 
-          
-          {/* Modern Editorial Statement */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative max-w-4xl"
-          >
-            <div className={`absolute top-0 ${isRTL ? '-right-4 md:-right-8' : '-left-4 md:-left-8'} text-[80px] md:text-[120px] text-[#0a64d9]/10 font-serif leading-none`} style={{ transform: 'translateY(-20%)' }}>
-              &ldquo;
-            </div>
-            <p className="relative text-xl md:text-2xl lg:text-3xl font-light tracking-tight leading-relaxed text-gray-800" style={{ letterSpacing: '-0.015em' }}>
-              {t.about.vision.desc}
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { id: '01', title: t.specs.items[0]?.title, desc: t.specs.items[0]?.desc, icon: 'abstract-1' },
-            { id: '02', title: t.specs.items[1]?.title, desc: t.specs.items[1]?.desc, icon: 'abstract-2' },
-            { id: '03', title: t.specs.items[2]?.title, desc: t.specs.items[2]?.desc, icon: 'abstract-3' },
-            { id: '04', title: t.about.quality.ceCertified, desc: t.about.quality.europeanStandards, icon: 'abstract-4' }
-          ].map((card, i) => (
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8 relative z-10">
+          {/* Header content of the section */}
+          <div className={`flex flex-col gap-6 mb-16 ${isRTL ? 'items-end text-right' : 'items-start text-left'}`}>
+            {/* Modern Editorial Statement */}
             <motion.div 
-              key={card.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="bg-white rounded-3xl p-8 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_50px_-20px_rgba(0,0,0,0.1)] transition-shadow duration-300 flex flex-col justify-between min-h-[320px] relative overflow-hidden group"
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative max-w-4xl"
             >
-              {/* Top Row: Number & Icon */}
-              <div className={`flex justify-between items-start ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
-                <span className="text-[12px] font-bold text-gray-400">/{card.id}</span>
-                <div className="w-10 h-10 text-[#0a64d9] group-hover:scale-110 transition-transform duration-500">
-                  {/* Abstract SVG Icons mimicking the Schwartz estates design */}
-                  {i === 0 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>}
-                  {i === 1 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>}
-                  {i === 2 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12h5v-5h10v5h5v5h-5v5h-10v-5h-5z"/></svg>}
-                  {i === 3 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 8h6l-5 4 2 6-6-4-6 4 2-6-5-4h6z"/></svg>}
-                </div>
+              <div className="flex items-center gap-4 mb-4">
+                <div className={`w-8 h-[2px] bg-[#FACC15] ${isRTL ? 'order-last' : ''}`} />
+                <span className="text-[11px] font-bold tracking-widest uppercase text-white/50 font-mono">Esmaksan</span>
               </div>
-
-              {/* Bottom Row: Title & Text */}
-              <div className={`mt-24 ${isRTL ? 'text-right' : 'text-left'}`}>
-                <h3 className="text-xl font-bold tracking-tight mb-4 text-black">{card.title}</h3>
-                <div className={`w-full h-px bg-gray-100 mb-4`} />
-                <p className="text-[13px] text-gray-500 font-medium leading-relaxed">
-                  {card.desc}
-                </p>
-              </div>
+              <p className="text-[14px] md:text-[15px] font-medium tracking-wide leading-relaxed text-white/80">
+                {t.about.vision.desc}
+              </p>
             </motion.div>
-          ))}
+          </div>
+
+          {/* Feature Cards Grid - Modernized Dark Mode */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { id: '01', title: t.specs.items[0]?.title, desc: t.specs.items[0]?.desc, icon: 'abstract-1' },
+              { id: '02', title: t.specs.items[1]?.title, desc: t.specs.items[1]?.desc, icon: 'abstract-2' },
+              { id: '03', title: t.specs.items[2]?.title, desc: t.specs.items[2]?.desc, icon: 'abstract-3' },
+              { id: '04', title: t.about.quality.ceCertified, desc: t.about.quality.europeanStandards, icon: 'abstract-4' }
+            ].map((card, i) => (
+              <motion.div 
+                key={card.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-white/[0.02] backdrop-blur-xl rounded-[2rem] p-8 lg:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between min-h-[360px] relative overflow-hidden group cursor-default"
+              >
+                {/* Ambient Glow on Hover */}
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#FACC15]/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 ease-out pointer-events-none" />
+                
+                {/* Top Row: Number & Icon */}
+                <div className={`flex justify-between items-start relative z-10 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <span className="text-[15px] font-bold text-white/30 font-mono tracking-widest group-hover:text-white/60 transition-colors duration-500">
+                    /{card.id}
+                  </span>
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white/50 group-hover:bg-[#FACC15] group-hover:text-black transition-all duration-500 shadow-sm group-hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] group-hover:-rotate-6 group-hover:scale-110 border border-white/5 group-hover:border-transparent">
+                    <div className="w-6 h-6">
+                      {/* Sleek Abstract SVG Icons */}
+                      {i === 0 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>}
+                      {i === 1 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>}
+                      {i === 2 && <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12h5v-5h10v5h5v5h-5v5h-10v-5h-5z"/></svg>}
+                      {i === 3 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Row: Title & Text */}
+                <div className={`mt-auto relative z-10 ${isRTL ? 'text-right' : 'text-left'}`}>
+                  <h3 className="text-[20px] font-bold tracking-tight mb-4 text-white group-hover:text-[#FACC15] transition-colors duration-300 leading-tight">
+                    {card.title}
+                  </h3>
+                  
+                  {/* Animated Expanding Line */}
+                  <div className="relative h-[2px] w-full bg-white/10 mb-5 overflow-hidden rounded-full">
+                    <div className={`absolute top-0 bottom-0 ${isRTL ? 'right-0' : 'left-0'} w-12 bg-[#FACC15] rounded-full group-hover:w-full transition-all duration-700 ease-[0.22,1,0.36,1]`} />
+                  </div>
+
+                  <p className="text-[14px] text-white/50 font-medium leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                    {card.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
