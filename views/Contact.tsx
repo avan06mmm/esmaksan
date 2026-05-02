@@ -63,27 +63,7 @@ const Contact: React.FC = () => {
       {/* Subtle background ambient glow */}
       <div className="absolute top-[30vh] left-1/2 -translate-x-1/2 w-full h-full max-w-[1200px] bg-[#FACC15]/5 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Design Header Section */}
-      <div className="pt-4 md:pt-8 px-6 md:px-8 max-w-[1600px] mx-auto mb-16 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-8">
-          {[
-            { value: "7/24", label: L.contact, desc: L.contactDesc },
-            { value: "TR", label: L.location, desc: L.locationDesc },
-            { value: "%100", label: L.satisfaction, desc: L.satisfactionDesc }
-          ].map((stat, idx) => (
-            <div key={idx} className="flex-1">
-              <h2 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-2">
-                {stat.value}
-              </h2>
-              <div className="h-px bg-white/10 mb-4 w-full" />
-              <h3 className="font-bold text-sm text-white mb-2">{stat.label}</h3>
-              <p className="text-xs text-white/50 font-medium">
-                {stat.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+
 
       {/* Main Content */}
       <section className="py-24 relative z-10">
