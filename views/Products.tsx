@@ -45,7 +45,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pb-24 font-sans text-white selection:bg-brand selection:text-white">
+    <div className="min-h-screen bg-[#050505] pb-24 font-sans text-white selection:bg-brand selection:text-white">
       
       {/* 1. HERO SECTION */}
       <PageHero 
@@ -185,7 +185,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
 
                   {/* Category Label (Black text) - slightly above image */}
                   <div className={`mb-2 flex ${isRTL ? 'justify-end' : 'justify-start'}`}>
-                    <span className="bg-[#f0f2f5] px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-white">
+                    <span className="bg-white/5 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] text-white">
                       {t.nav.categories.find((c:any) => c.value === item.category)?.label || item.category}
                     </span>
                   </div>
@@ -226,7 +226,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               className="py-40 mt-8 text-center bg-white/[0.02] backdrop-blur-xl border border-white/5 rounded-[3rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-white/5"
             >
-               <div className="w-24 h-24 mx-auto mb-6 bg-[#f4f5f7] rounded-full flex items-center justify-center text-4xl">
+               <div className="w-24 h-24 mx-auto mb-6 bg-white/5 rounded-full flex items-center justify-center text-4xl">
                  🔍
                </div>
                <p className="text-2xl font-black text-white/40 uppercase tracking-widest">{t.products.noProducts}</p>
