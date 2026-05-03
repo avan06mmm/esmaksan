@@ -3,6 +3,51 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
 
+// Brand SVG path data for marquee (inline, no external dependencies)
+const BRAND_LOGOS = [
+  {
+    name: 'Caterpillar',
+    viewBox: '0 0 300 80',
+    path: 'M12 16h12v48H12zM30 16h44c10 0 16 6 16 16s-6 16-16 16H42v16H30V16zm12 22h20c4 0 6-2 6-6s-2-6-6-6H42v12zM100 16h12v38h32v10h-44zM150 16h12v48h-12zM170 16h44c10 0 16 6 16 16s-6 16-16 16h-32v16h-12V16zm12 22h20c4 0 6-2 6-6s-2-6-6-6h-20v12z',
+  },
+  {
+    name: 'Komatsu',
+    viewBox: '0 0 300 80',
+    path: 'M10 16h12v20l20-20h16L34 42l26 22H44L22 44v20H10zM66 40c0-14 10-24 26-24s26 10 26 24-10 24-26 24-26-10-26-24zm12 0c0 8 6 14 14 14s14-6 14-14-6-14-14-14-14 6-14 14zM126 16h14l14 32 14-32h14v48h-12V36l-12 28h-8l-12-28v28h-12zM198 16h12v28c0 8 4 12 10 12s10-4 10-12V16h12v28c0 14-8 22-22 22s-22-8-22-22zM250 16h40v10h-14v38h-12V26h-14z',
+  },
+  {
+    name: 'Volvo',
+    viewBox: '0 0 260 80',
+    path: 'M10 16h12l18 34 18-34h12L44 64H32zM76 40c0-14 10-24 26-24s26 10 26 24-10 24-26 24-26-10-26-24zm12 0c0 8 6 14 14 14s14-6 14-14-6-14-14-14-14 6-14 14zM136 16h12v38h32v10h-44zM184 16h12l18 34 18-34h12L208 64h-8z',
+  },
+  {
+    name: 'Kawasaki',
+    viewBox: '0 0 300 80',
+    path: 'M10 16h12v20l20-20h16L34 42l26 22H44L22 44v20H10zM66 16h14l10 14 10-14h14L100 40l18 24h-14l-12-18-12 18H66L84 40zM130 16h12l8 48h-12l-2-12H118l-2 12h-12zm4 26l-6-18-6 18h12zM152 16h12v38h32v10h-44zM196 16h12l18 34 18-34h12L220 64h-8zM244 42c0-10 8-16 18-16h24v10h-22c-4 0-6 2-6 6s2 6 6 6h14c8 0 16 4 16 14s-8 14-18 14h-26V66h24c4 0 8-2 8-4s-4-4-8-4h-14c-10 0-16-6-16-16z',
+  },
+  {
+    name: 'ZF',
+    viewBox: '0 0 120 80',
+    path: 'M10 16h48v10L22 54h36v10H10V54l36-28H10zM66 16h40v10H78v10h24v10H78v18H66z',
+  },
+  {
+    name: 'Allison',
+    viewBox: '0 0 260 80',
+    path: 'M10 16h12l8 48H18l-2-12H6L4 64H-8zm4 26l-6-18-6 18h12zM30 16h12v38h28v10H30zM74 16h12v38h28v10H74zM110 16h12v48h-12zM126 16h12v48h-12zM150 40c0-14 10-24 26-24s26 10 26 24-10 24-26 24-26-10-26-24zm12 0c0 8 6 14 14 14s14-6 14-14-6-14-14-14-14 6-14 14zM208 42c0-10 8-16 18-16h24v10h-22c-4 0-6 2-6 6s2 6 6 6h14c8 0 16 4 16 14s-8 14-18 14h-26V66h24c4 0 8-2 8-4s-4-4-8-4h-14c-10 0-16-6-16-16z',
+  },
+  {
+    name: 'Clark',
+    viewBox: '0 0 200 80',
+    path: 'M44 18C28 18 16 30 16 40s12 22 28 22c10 0 18-4 24-10l-8-8c-4 4-10 6-16 6-8 0-16-6-16-10s8-10 16-10c6 0 12 2 16 6l8-8c-6-6-14-10-24-10zM76 16h12v48H76zM98 16h12v20l20-20h16L122 42l26 22h-16l-22-20v20H98zM154 16h12l8 48h-12l-2-12h-18l-2 12h-12zm4 26l-6-18-6 18h12z',
+  },
+  {
+    name: 'Furukawa',
+    viewBox: '0 0 310 80',
+    path: 'M10 16h40v10H22v10h24v10H22v18H10zM56 16h12v28c0 8 4 12 10 12s10-4 10-12V16h12v28c0 14-8 22-22 22s-22-8-22-22zM110 16h26c10 0 18 6 18 16 0 8-4 12-10 14l12 18h-14l-10-16H122v16h-12zm12 10v14h12c4 0 8-2 8-6s-4-8-8-8h-12zM164 16h12l8 48h-12l-2-12h-18l-2 12h-12zm4 26l-6-18-6 18h12zM190 16h14l10 16 10-16h14l-16 24 18 24h-14l-12-18-12 18h-14l18-24zM246 16h12v38h32v10h-44zM286 16h12v28c0 8 4 12 10 12s10-4 10-12V16h12v28c0 14-8 22-22 22s-22-8-22-22z',
+  },
+];
+
+
 const Home: React.FC = () => {
   const { t, isRTL, language } = useLanguage();
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -198,47 +243,25 @@ const Home: React.FC = () => {
             </h3>
             
             <div 
-              className="relative w-full overflow-hidden h-24"
+              className="relative w-full overflow-hidden"
               style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
             >
               <motion.div 
-                className="flex items-center gap-16 md:gap-32 w-max h-full"
+                className="flex items-center gap-10 md:gap-20 w-max"
                 animate={{ x: ['0%', '-50%'] }}
-                transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+                transition={{ ease: "linear", duration: 35, repeat: Infinity }}
               >
-                {[
-                  { name: "Caterpillar", domain: "caterpillar.com" },
-                  { name: "Komatsu", domain: "komatsu.com" },
-                  { name: "Volvo", domain: "volvo.com" },
-                  { name: "Kawasaki", domain: "kawasaki.com" },
-                  { name: "ZF", domain: "zf.com" },
-                  { name: "Allison", domain: "allisontransmission.com" },
-                  { name: "Clark", domain: "clarkmhc.com" },
-                  { name: "Furukawa", domain: "furukawa.co.jp" },
-                  { name: "Caterpillar", domain: "caterpillar.com" },
-                  { name: "Komatsu", domain: "komatsu.com" },
-                  { name: "Volvo", domain: "volvo.com" },
-                  { name: "Kawasaki", domain: "kawasaki.com" },
-                  { name: "ZF", domain: "zf.com" },
-                  { name: "Allison", domain: "allisontransmission.com" },
-                  { name: "Clark", domain: "clarkmhc.com" },
-                  { name: "Furukawa", domain: "furukawa.co.jp" }
-                ].map((brand, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-center gap-4 md:gap-6 flex-shrink-0 text-white/60 hover:text-[#FACC15] transition-all duration-300 font-black text-4xl md:text-6xl uppercase tracking-widest select-none cursor-default font-sans group"
+                {[...BRAND_LOGOS, ...BRAND_LOGOS].map((brand, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 flex-shrink-0 group cursor-default select-none px-6 py-4"
                   >
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden p-2 group-hover:scale-110 group-hover:bg-white group-hover:border-transparent transition-all duration-300">
-                      <img 
-                        src={`https://logo.clearbit.com/${brand.domain}`} 
-                        alt={brand.name} 
-                        className="w-full h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
-                        onError={(e) => {
-                           e.currentTarget.style.display = 'none';
-                        }}
-                      />
+                    <div className="flex items-center justify-center h-8 text-white/40 group-hover:text-[#FACC15] transition-colors duration-300">
+                      <svg viewBox={brand.viewBox} fill="currentColor" className="h-full w-auto max-w-[160px]">
+                        <path d={brand.path} />
+                      </svg>
                     </div>
-                    {brand.name}
+                    <div className="w-px h-5 bg-white/10 ml-6" />
                   </div>
                 ))}
               </motion.div>
