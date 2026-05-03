@@ -83,7 +83,7 @@ const Home: React.FC = () => {
            transition={{ delay: 0.5, duration: 1 }}
            className={`absolute top-[55%] left-6 md:left-12 z-10 ${isRTL ? 'text-right right-6 md:right-12 left-auto' : 'text-left'}`}
         >
-          <h1 className="text-[7vw] md:text-[5vw] tracking-tighter leading-none font-medium text-white mb-2" style={{ fontFamily: 'var(--font-sans)', letterSpacing: '-0.03em' }}>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none font-medium text-white mb-2" style={{ fontFamily: 'var(--font-sans)', letterSpacing: '-0.03em' }}>
             esmaksan <span className="italic font-serif font-normal">{language === 'tr' ? 'makine' : language === 'en' ? 'machinery' : language === 'ru' ? 'машины' : 'آلات'}</span>
           </h1>
           <p className="text-sm md:text-base font-bold tracking-widest uppercase text-white/80 leading-relaxed max-w-[250px] md:max-w-md">
@@ -190,7 +190,64 @@ const Home: React.FC = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Brands Marquee */}
+          <div className="mt-20 mb-4 pt-16 border-t border-white/10 relative flex flex-col w-full">
+            <h3 className="text-center text-xs md:text-[11px] font-black uppercase tracking-[0.3em] text-white/50 mb-12">
+              {language === 'tr' ? 'Uyumlu Yedek Parça Markaları' : language === 'en' ? 'Compatible Spare Part Brands' : language === 'ru' ? 'Совместимые бренды запчастей' : 'العلامات التجارية لقطع الغيار المتوافقة'}
+            </h3>
+            
+            <div 
+              className="relative w-full overflow-hidden h-24"
+              style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+            >
+              <motion.div 
+                className="flex items-center gap-16 md:gap-32 w-max h-full"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+              >
+                {[
+                  { name: "Caterpillar", domain: "caterpillar.com" },
+                  { name: "Komatsu", domain: "komatsu.com" },
+                  { name: "Volvo", domain: "volvo.com" },
+                  { name: "Kawasaki", domain: "kawasaki.com" },
+                  { name: "ZF", domain: "zf.com" },
+                  { name: "Allison", domain: "allisontransmission.com" },
+                  { name: "Clark", domain: "clarkmhc.com" },
+                  { name: "Furukawa", domain: "furukawa.co.jp" },
+                  { name: "Caterpillar", domain: "caterpillar.com" },
+                  { name: "Komatsu", domain: "komatsu.com" },
+                  { name: "Volvo", domain: "volvo.com" },
+                  { name: "Kawasaki", domain: "kawasaki.com" },
+                  { name: "ZF", domain: "zf.com" },
+                  { name: "Allison", domain: "allisontransmission.com" },
+                  { name: "Clark", domain: "clarkmhc.com" },
+                  { name: "Furukawa", domain: "furukawa.co.jp" }
+                ].map((brand, idx) => (
+                  <div 
+                    key={idx} 
+                    className="flex items-center gap-4 md:gap-6 flex-shrink-0 text-white/60 hover:text-[#FACC15] transition-all duration-300 font-black text-4xl md:text-6xl uppercase tracking-widest select-none cursor-default font-sans group"
+                  >
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden p-2 group-hover:scale-110 group-hover:bg-white group-hover:border-transparent transition-all duration-300">
+                      <img 
+                        src={`https://logo.clearbit.com/${brand.domain}`} 
+                        alt={brand.name} 
+                        className="w-full h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                        onError={(e) => {
+                           e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    {brand.name}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+          
         </div>
+        {/* The requested thin yellow line at the bottom of the section */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#FACC15]/20" />
       </section>
 
 
