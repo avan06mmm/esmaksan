@@ -34,11 +34,11 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
     { label: t.nav.contact, value: 'contact' },
   ];
 
-  const languages: { code: Language; label: string; flag: string }[] = [
-    { code: 'tr', label: 'Türkçe', flag: '🇹🇷' },
-    { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'ru', label: 'Русский', flag: '🇷🇺' },
-    { code: 'ar', label: 'العربية', flag: '🇸🇦' },
+  const languages: { code: Language; label: string; flagUrl: string }[] = [
+    { code: 'tr', label: 'Türkçe', flagUrl: 'https://flagcdn.com/w40/tr.png' },
+    { code: 'en', label: 'English', flagUrl: 'https://flagcdn.com/w40/us.png' },
+    { code: 'ru', label: 'Русский', flagUrl: 'https://flagcdn.com/w40/ru.png' },
+    { code: 'ar', label: 'العربية', flagUrl: 'https://flagcdn.com/w40/sa.png' },
   ];
 
   return (
@@ -285,7 +285,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                     : 'border-white/20 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
                 }`}
               >
-                <span className="text-sm">{languages.find(l => l.code === language)?.flag}</span>
+                <img src={languages.find(l => l.code === language)?.flagUrl} alt={language} className="w-5 rounded-[2px]" />
                 <span className="text-[13px] font-bold uppercase tracking-wider hidden md:block">
                   {language}
                 </span>
@@ -311,7 +311,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                           language === lang.code ? 'bg-brand/10 text-ink font-bold' : 'text-ink/70 hover:bg-ink/5'
                         }`}
                       >
-                        <span className="text-xl">{lang.flag}</span>
+                        <img src={lang.flagUrl} alt={lang.code} className="w-6 rounded-[2px]" />
                         <span className="text-[14px] font-bold uppercase tracking-wider">{lang.label}</span>
                       </button>
                     ))}
