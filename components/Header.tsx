@@ -31,6 +31,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
     { label: t.nav.products, value: 'products' },
     { label: t.nav.services, value: 'services' },
     { label: t.nav.catalog, value: 'catalog' },
+    { label: t.nav.news, value: 'news' },
     { label: t.nav.contact, value: 'contact' },
   ];
 

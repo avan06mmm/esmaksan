@@ -18,6 +18,7 @@ import Contact from './views/Contact';
 import InformationSecurity from './views/InformationSecurity';
 import Services from './views/Services';
 import Catalog from './views/Catalog';
+import News from './views/News';
 import { useLanguage } from './LanguageContext';
 
 const App: React.FC = () => {
@@ -64,6 +65,7 @@ const App: React.FC = () => {
       case 'informationSecurity': return <InformationSecurity />;
       case 'services': return <Services />;
       case 'catalog': return <Catalog />;
+      case 'news': return <News />;
       case 'contact': return <Contact />;
       default: return <Home />;
     }

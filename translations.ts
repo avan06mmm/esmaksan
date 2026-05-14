@@ -20,6 +20,7 @@ export interface Translation {
     environmentalManagement: string;
     ohsManagement: string;
     contact: string;
+    news: string;
     getQuote: string;
     partsProduction: string;
     machinery: string;
@@ -228,6 +229,7 @@ export const translations: Record<Language, Translation> = {
       environmentalManagement: 'Çevre Yönetim Sistemi',
       ohsManagement: 'İSG Yönetim Sistemi',
       contact: 'İletişim',
+      news: 'Haberler',
       getQuote: 'TEKLİF ALIN',
       partsProduction: 'YEDEK PARÇA ÜRETİMİ',
       machinery: 'Makine Parkuru',
@@ -1447,6 +1449,7 @@ export const translations: Record<Language, Translation> = {
       environmentalManagement: 'Environmental Management System',
       ohsManagement: 'OHS Management System',
       contact: 'Contact',
+      news: 'News',
       getQuote: 'GET A QUOTE',
       partsProduction: 'PARTS PRODUCTION',
       machinery: 'Machine Park',
@@ -2681,6 +2684,7 @@ export const translations: Record<Language, Translation> = {
       environmentalManagement: 'Система экологического менеджмента',
       ohsManagement: 'Система менеджмента ОТ и ТБ',
       contact: 'Контакты',
+      news: 'Новости',
       getQuote: 'ПОЛУЧИТЬ ПРЕДЛОЖЕНИЕ',
       partsProduction: 'ПРОИЗВОДСТВО ЗАПЧАСТЕЙ',
       machinery: 'Станочный парк',
@@ -3915,6 +3919,7 @@ export const translations: Record<Language, Translation> = {
       environmentalManagement: 'نظام الإدارة البيئية',
       ohsManagement: 'نظام إدارة الصحة والسلامة المهنية',
       contact: 'اتصل بنا',
+      news: 'الأخبار',
       getQuote: 'احصل على عرض سعر',
       partsProduction: 'إنتاج قطع الغيار',
       machinery: 'أسطول الماكينات',
