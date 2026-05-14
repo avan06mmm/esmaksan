@@ -290,7 +290,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
               {t.products.cta.desc}
             </p>
             <div className={`flex flex-col sm:flex-row justify-center items-center gap-6 w-full sm:w-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-              <button className="w-full sm:w-auto bg-brand text-white font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(250,204,21,0.5)]">
+              <button className="w-full sm:w-auto bg-brand text-ink font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(250,204,21,0.5)]">
                 {t.products.cta.button}
               </button>
               <button className="w-full sm:w-auto bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300">

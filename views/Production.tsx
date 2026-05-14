@@ -71,7 +71,7 @@ const Production: React.FC = () => {
             { value: "2K m²", label: L.storageArea, desc: L.storageAreaDesc },
           ].map((stat, idx) => (
             <div key={idx} className="flex-1">
-              <h2 className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-2">
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-2">
                 {stat.value}
               </h2>
               <div className="h-px bg-white/20 mb-4 w-full" />

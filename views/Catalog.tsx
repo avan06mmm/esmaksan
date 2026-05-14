@@ -83,7 +83,7 @@ const Catalog: React.FC = () => {
             <p className="text-white/70 text-lg font-medium leading-relaxed mb-10">
               {P.desc}
             </p>
-            <button className="bg-ink text-white font-black uppercase tracking-wider px-8 py-4 rounded-full shadow-lg hover:bg-brand hover:text-white transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto mx-auto group">
+            <button className="bg-ink text-white font-black uppercase tracking-wider px-8 py-4 rounded-full shadow-lg hover:bg-brand hover:text-ink transition-all duration-300 flex items-center justify-center gap-3 w-full sm:w-auto mx-auto group">
               <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>

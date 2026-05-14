@@ -185,7 +185,7 @@ const Machinery: React.FC<{ initialMachine?: string | null }> = ({ initialMachin
                     }}
                   />
                   <div className={`absolute top-6 ${isRTL ? 'right-6' : 'left-6'} z-20`}>
-                    <div className="bg-brand text-white font-black text-[10px] py-1.5 px-3 uppercase tracking-widest shadow-lg">
+                    <div className="bg-brand text-ink font-black text-[10px] py-1.5 px-3 uppercase tracking-widest shadow-lg">
                       {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                     </div>
                   </div>

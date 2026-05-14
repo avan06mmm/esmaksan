@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
       fax: 'Faks',
       globalNetwork: 'Küresel Ağımız',
       repsTitle: 'Bölgesel Satış', repsTitleSub: 'Temsilcilerimiz',
-      regions: ['Avrupa · Amerika · Rusya · Orta Asya', 'Batı Asya / Orta Doğu', 'Türkiye / Genel'],
+      regions: ['Avrupa · Amerika · Rusya · Orta Asya', 'Batı Asya / Orta Doğu / Afrika', 'Türkiye / Genel'],
     },
     en: {
       contact: 'Contact', contactDesc: 'Fast support line',
@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
       fax: 'Fax',
       globalNetwork: 'Our Global Network',
       repsTitle: 'Regional Sales', repsTitleSub: 'Representatives',
-      regions: ['Europe · Americas · Russia · Central Asia', 'West Asia / Middle East', 'Turkey / General'],
+      regions: ['Europe · Americas · Russia · Central Asia', 'West Asia / Middle East / Africa', 'Turkey / General'],
     },
     ru: {
       contact: 'Контакт', contactDesc: 'Быстрая линия поддержки',
@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
       fax: 'Факс',
       globalNetwork: 'Наша глобальная сеть',
       repsTitle: 'Региональные', repsTitleSub: 'представители',
-      regions: ['Европа · Америка · Россия · Центр. Азия', 'Зап. Азия / Ближний Восток', 'Турция / Общий'],
+      regions: ['Европа · Америка · Россия · Центр. Азия', 'Зап. Азия / Ближний Восток / Африка', 'Турция / Общий'],
     },
     ar: {
       contact: 'اتصال', contactDesc: 'خط دعم سريع',
@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
       fax: 'فاكس',
       globalNetwork: 'شبكتنا العالمية',
       repsTitle: 'ممثلونا', repsTitleSub: 'الإقليميون',
-      regions: ['أوروبا · أمريكا · روسيا · آسيا الوسطى', 'غرب آسيا / الشرق الأوسط', 'تركيا / عام'],
+      regions: ['أوروبا · أمريكا · روسيا · آسيا الوسطى', 'غرب آسيا / الشرق الأوسط / أفريقيا', 'تركيا / عام'],
     },
   };
   const L = local[language] || local.tr;
@@ -75,9 +75,8 @@ const Contact: React.FC = () => {
               <div className="space-y-8">
                 {[
                   { label: t.contact.info.addressLabel, value: "1247 Sk. (Eski 44) No:10-12\n06370 Ostim-Ankara/Türkiye" },
-                  { label: t.contact.info.phoneLabel, value: "+90 312 354 08 45\n+90 312 354 42 76" },
-                  { label: L.fax, value: "+90 312 354 58 71" },
-                  { label: t.contact.info.emailLabel, value: "esmaksan@esmaksan.com.tr" },
+                  { label: t.contact.info.phoneLabel, value: "+90 312 354 08 45\n+90 312 354 42 76", ltr: true },
+                  { label: t.contact.info.emailLabel, value: "esmaksan@esmaksan.com.tr", ltr: true },
                 ].map((item, idx) => (
                   <motion.div 
                     key={idx}
@@ -88,7 +87,10 @@ const Contact: React.FC = () => {
                     className={`pb-8 border-b border-white/10 last:border-0 group ${isRTL ? 'text-right' : 'text-left'}`}
                   >
                     <p className="text-[12px] font-medium tracking-widest text-white/50 uppercase mb-3 group-hover:text-[#FACC15] transition-colors">{item.label}</p>
-                    <p className="text-xl sm:text-2xl font-medium text-white leading-relaxed whitespace-pre-line transition-transform duration-300">
+                    <p
+                      dir={(item as any).ltr ? 'ltr' : undefined}
+                      className={`text-xl sm:text-2xl font-medium text-white leading-relaxed whitespace-pre-line transition-transform duration-300${(item as any).ltr && isRTL ? ' text-left' : ''}`}
+                    >
                       {item.value}
                     </p>
                   </motion.div>
@@ -201,7 +203,7 @@ const Contact: React.FC = () => {
                 name: 'Eyad Alhussain',
                 email: 'eyad@esmaksan.com.tr',
                 phone: '+90 506 474 14 45',
-                flag: '🌏',
+                flag: '🌍',
                 delay: 0.1,
               },
               {
@@ -209,7 +211,7 @@ const Contact: React.FC = () => {
                 name: 'Fatmanur Boz',
                 email: 'fatmanur@esmaksan.com.tr',
                 phone: '+90 555 996 87 18',
-                flag: '🇹🇷',
+                flag: '🌍',
                 delay: 0.2,
               },
             ].map((rep, idx) => (
@@ -250,21 +252,24 @@ const Contact: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <span className="text-sm font-medium text-white/60 group-hover/link:text-white transition-colors duration-200 truncate">
+                    <span dir="ltr" className="text-sm font-medium text-white/60 group-hover/link:text-white transition-colors duration-200 truncate">
                       {rep.email}
                     </span>
                   </a>
 
                   <a
-                    href={`tel:${rep.phone.replace(/\s/g, '')}`}
+                    href={`https://wa.me/${rep.phone.replace(/[\s+]/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-3 group/link"
                   >
-                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 group-hover/link:bg-[#FACC15] transition-colors duration-200">
-                      <svg className="w-3.5 h-3.5 text-white/50 group-hover/link:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <div className="w-8 h-8 rounded-full bg-[#25D366]/10 flex items-center justify-center flex-shrink-0 group-hover/link:bg-[#25D366] transition-colors duration-200">
+                      <svg className="w-4 h-4 text-[#25D366] group-hover/link:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.853L.057 23.571a.75.75 0 00.92.921l5.803-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.73-.518-5.27-1.418l-.374-.222-3.878.995.983-3.793-.237-.389A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
                       </svg>
                     </div>
-                    <span className="text-sm font-medium text-white/60 group-hover/link:text-white transition-colors duration-200">
+                    <span dir="ltr" className="text-sm font-medium text-white/60 group-hover/link:text-white transition-colors duration-200">
                       {rep.phone}
                     </span>
                   </a>
