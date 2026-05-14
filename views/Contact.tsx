@@ -1,16 +1,52 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
 import PageHero from '../components/PageHero';
 
+const WEB3FORMS_KEY = '73bcd7a5-db48-4d55-b76c-994bba2b00af';
+
 const Contact: React.FC = () => {
   const { t, isRTL, language } = useLanguage();
+
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Esmaksan Web Formu',
+          message: formData.message,
+        }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
 
   const local = {
     tr: {
       contact: 'İletişim', contactDesc: 'Hızlı destek hattı',
-      location: 'Lokasyon', locationDesc: 'Ankara Ostim Merkez',
+      location: 'Lokasyon', locationDesc: 'Kahramankazan / Ankara Merkez',
       satisfaction: 'Müşteri Memnuniyeti', satisfactionDesc: 'Sorunsuz ve güvenilir operasyonlar.',
       fax: 'Faks',
       globalNetwork: 'Küresel Ağımız',
@@ -19,7 +55,7 @@ const Contact: React.FC = () => {
     },
     en: {
       contact: 'Contact', contactDesc: 'Fast support line',
-      location: 'Location', locationDesc: 'Ankara Ostim HQ',
+      location: 'Location', locationDesc: 'Kahramankazan / Ankara HQ',
       satisfaction: 'Customer Satisfaction', satisfactionDesc: 'Seamless and reliable operations.',
       fax: 'Fax',
       globalNetwork: 'Our Global Network',
@@ -28,7 +64,7 @@ const Contact: React.FC = () => {
     },
     ru: {
       contact: 'Контакт', contactDesc: 'Быстрая линия поддержки',
-      location: 'Локация', locationDesc: 'Центр Анкара Ostim',
+      location: 'Локация', locationDesc: 'Кахраманказан / Анкара',
       satisfaction: 'Удовлетворённость', satisfactionDesc: 'Надёжные операции.',
       fax: 'Факс',
       globalNetwork: 'Наша глобальная сеть',
@@ -37,7 +73,7 @@ const Contact: React.FC = () => {
     },
     ar: {
       contact: 'اتصال', contactDesc: 'خط دعم سريع',
-      location: 'الموقع', locationDesc: 'مركز أنقرة أوستيم',
+      location: 'الموقع', locationDesc: 'كهرمان قازان / أنقرة',
       satisfaction: 'رضا العملاء', satisfactionDesc: 'عمليات سلسة وموثوقة.',
       fax: 'فاكس',
       globalNetwork: 'شبكتنا العالمية',
@@ -74,7 +110,8 @@ const Contact: React.FC = () => {
             <div className="lg:col-span-5 space-y-8 flex flex-col justify-center">
               <div className="space-y-8">
                 {[
-                  { label: t.contact.info.addressLabel, value: "1247 Sk. (Eski 44) No:10-12\n06370 Ostim-Ankara/Türkiye" },
+                  { label: language === 'ar' ? 'المركز' : language === 'ru' ? 'ЦЕНТР' : language === 'en' ? 'HEAD OFFICE' : 'MERKEZ', value: "Saray Mahallesi, Adnan Menderes Bulvarı\nNo:64/1A, 06980 Kahramankazan/Ankara, Türkiye" },
+                  { label: language === 'ar' ? 'المكتب' : language === 'ru' ? 'ОФИС' : language === 'en' ? 'OFFICE' : 'OFİS', value: "1247 Sk. (Eski 44) No:10-12\n06370 Ostim-Ankara/Türkiye" },
                   { label: t.contact.info.phoneLabel, value: "+90 312 354 08 45\n+90 312 354 42 76", ltr: true },
                   { label: t.contact.info.emailLabel, value: "esmaksan@esmaksan.com.tr", ltr: true },
                 ].map((item, idx) => (
@@ -127,19 +164,35 @@ const Contact: React.FC = () => {
                   {t.contact.form.title.charAt(0) + t.contact.form.title.slice(1).toLowerCase()}
                 </h2>
                 
-                <form className="space-y-8 relative z-10">
+                <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
                       <label className={`text-xs font-medium text-white/60 block ${isRTL ? 'text-right' : 'text-left'}`}>
                         {t.contact.form.name.charAt(0) + t.contact.form.name.slice(1).toLowerCase()}
                       </label>
-                      <input type="text" className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium ${isRTL ? 'text-right' : 'text-left'}`} placeholder={t.contact.form.name} />
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                        placeholder={t.contact.form.name}
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className={`text-xs font-medium text-white/60 block ${isRTL ? 'text-right' : 'text-left'}`}>
                         {t.contact.form.email.charAt(0) + t.contact.form.email.slice(1).toLowerCase()}
                       </label>
-                      <input type="email" className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium ${isRTL ? 'text-right' : 'text-left'}`} placeholder={t.contact.form.email} />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium ${isRTL ? 'text-right' : 'text-left'}`}
+                        placeholder={t.contact.form.email}
+                      />
                     </div>
                   </div>
 
@@ -147,9 +200,15 @@ const Contact: React.FC = () => {
                     <label className={`text-xs font-medium text-white/60 block ${isRTL ? 'text-right' : 'text-left'}`}>
                       {t.contact.form.subject.charAt(0) + t.contact.form.subject.slice(1).toLowerCase()}
                     </label>
-                    <select className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium appearance-none ${isRTL ? 'text-right' : 'text-left'}`}>
+                    <select
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium appearance-none ${isRTL ? 'text-right' : 'text-left'}`}
+                    >
+                      <option value="" className="bg-[#050505] text-white">—</option>
                       {t.contact.form.subjects.map((subject: string) => (
-                        <option key={subject} className="bg-[#050505] text-white">{subject}</option>
+                        <option key={subject} value={subject} className="bg-[#050505] text-white">{subject}</option>
                       ))}
                     </select>
                   </div>
@@ -158,11 +217,55 @@ const Contact: React.FC = () => {
                     <label className={`text-xs font-medium text-white/60 block ${isRTL ? 'text-right' : 'text-left'}`}>
                       {t.contact.form.message.charAt(0) + t.contact.form.message.slice(1).toLowerCase()}
                     </label>
-                    <textarea rows={5} className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium resize-none ${isRTL ? 'text-right' : 'text-left'}`} placeholder={t.contact.form.message}></textarea>
+                    <textarea
+                      name="message"
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className={`w-full bg-white/5 text-white rounded-xl px-5 py-4 focus:ring-2 focus:ring-[#FACC15]/50 border border-white/10 focus:border-[#FACC15] outline-none transition-all font-medium resize-none ${isRTL ? 'text-right' : 'text-left'}`}
+                      placeholder={t.contact.form.message}
+                    />
                   </div>
 
-                  <button className="w-full bg-[#FACC15] hover:scale-[1.02] active:scale-[0.98] text-black font-bold rounded-xl py-5 transition-all shadow-[0_0_20px_rgba(250,204,21,0.2)]">
-                    {t.contact.form.submit.charAt(0) + t.contact.form.submit.slice(1).toLowerCase()}
+                  {/* Success / Error feedback */}
+                  {status === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-3 bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl px-5 py-4 text-sm font-medium"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                      {language === 'tr' ? 'Mesajınız başarıyla gönderildi!' : language === 'ru' ? 'Сообщение отправлено!' : language === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message was sent successfully!'}
+                    </motion.div>
+                  )}
+                  {status === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-5 py-4 text-sm font-medium"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                      {language === 'tr' ? 'Bir hata oluştu. Lütfen tekrar deneyin.' : language === 'ru' ? 'Произошла ошибка. Попробуйте снова.' : language === 'ar' ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.'}
+                    </motion.div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="w-full bg-[#FACC15] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 text-black font-bold rounded-xl py-5 transition-all shadow-[0_0_20px_rgba(250,204,21,0.2)] flex items-center justify-center gap-3"
+                  >
+                    {status === 'loading' ? (
+                      <>
+                        <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                        </svg>
+                        {language === 'tr' ? 'Gönderiliyor...' : language === 'ru' ? 'Отправка...' : language === 'ar' ? 'جارٍ الإرسال...' : 'Sending...'}
+                      </>
+                    ) : (
+                      t.contact.form.submit.charAt(0) + t.contact.form.submit.slice(1).toLowerCase()
+                    )}
                   </button>
                 </form>
               </motion.div>
@@ -283,7 +386,7 @@ const Contact: React.FC = () => {
       {/* Map Section */}
       <section className="h-[500px] bg-[#050505] relative grayscale-[0.8] hover:grayscale-0 transition-all duration-1000 z-10">
         <iframe 
-          src="https://maps.google.com/maps?q=1247.%20Sokak%20(Eski%2044)%20No:10-12%2006370%20Ostim%20Ankara%20Turkey&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          src="https://maps.google.com/maps?q=Saray+Mahallesi+Adnan+Menderes+Bulvari+No:64+1A+06980+Kahramankazan+Ankara+Turkiye&t=&z=15&ie=UTF8&iwloc=&output=embed" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
