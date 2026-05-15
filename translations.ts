@@ -2670,7 +2670,7 @@ export const translations: Record<Language, Translation> = {
       home: 'الرئيسية',
       corporate: 'مؤسسي',
       services: 'الخدمات',
-      catalog: 'كتالوج',
+      catalog: 'الكتالوج',
       certificates: 'الشهادات',
       watermark: 'الخبرة، الاستقرار، الإنتاج المستمر',
       informationSecurity: 'أمن المعلومات',
