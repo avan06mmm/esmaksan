@@ -160,19 +160,6 @@ const Footer: React.FC<{ onNavigate: (v: View) => void }> = ({ onNavigate }) => 
               </ul>
             </div>
 
-            <div className="pt-8 border-t border-white/5">
-               <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-white/30 mb-6">{t.footer.newsletterTitle}</h4>
-               <div className="relative group">
-                 <input 
-                   type="email" 
-                   placeholder={t.footer.emailPlaceholder} 
-                   className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-5 py-4 text-xs outline-none focus:border-brand/50 transition-all"
-                 />
-                 <button className="absolute right-2 top-2 bottom-2 bg-brand text-ink px-4 rounded-lg font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all">
-                   {t.footer.subscribeButton}
-                 </button>
-               </div>
-            </div>
           </div>
         </div>
 
