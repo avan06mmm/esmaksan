@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
 import PageHero from '../components/PageHero';
+import GlobalMap from '../components/GlobalMap';
 
 const pageLocal: Record<string, any> = {
   tr: {
@@ -176,14 +177,13 @@ const About: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="lg:w-[500px] aspect-square relative border border-white/10 p-4"
+              className="lg:w-[500px] aspect-square relative p-4 flex items-center justify-center"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800" 
-                alt="Global Shipping" 
-                className="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
-              />
-              <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-brand -translate-x-2 -translate-y-2" />
+              <div className="absolute inset-0 bg-brand/5 rounded-full blur-3xl opacity-50" />
+              <div className="w-full h-full relative z-10">
+                <GlobalMap />
+              </div>
+              <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-brand -translate-x-2 -translate-y-2 opacity-30" />
             </motion.div>
           </div>
         </div>
