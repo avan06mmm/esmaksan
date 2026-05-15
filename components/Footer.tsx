@@ -167,8 +167,6 @@ const Footer: React.FC<{ onNavigate: (v: View) => void }> = ({ onNavigate }) => 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className={`flex flex-wrap items-center gap-x-8 gap-y-4 text-[11px] font-bold uppercase tracking-[0.15em] text-white/20 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
             <p>© 2026 {t.hero.brand} {t.footer.brandSuffix}</p>
-            <a href="#" className="hover:text-brand transition-colors">{t.footer.privacyPolicy}</a>
-            <a href="#" className="hover:text-brand transition-colors">{t.footer.kvkk}</a>
           </div>
           
           <div className={`flex items-center gap-6 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
