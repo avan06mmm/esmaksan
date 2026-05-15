@@ -283,7 +283,7 @@ export const translations: Record<Language, Translation> = {
       ],
     },
     hero: {
-      brand: 'ESMAKSAN MÜHENDİSLİK',
+      brand: 'ESMAKSAN',
       slides: [
         {
           title: "Ağır İş Makinaları İçin",
@@ -1503,7 +1503,7 @@ export const translations: Record<Language, Translation> = {
       ],
     },
     hero: {
-      brand: 'ESMAKSAN ENGINEERING',
+      brand: 'ESMAKSAN',
       slides: [
         {
           title: "Precision Solutions for",
@@ -2738,7 +2738,7 @@ export const translations: Record<Language, Translation> = {
       ],
     },
     hero: {
-      brand: 'إسماكسان للهندسة',
+      brand: 'إسماكسان',
       slides: [
         {
           title: "حلول دقيقة لـ",
