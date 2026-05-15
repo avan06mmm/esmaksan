@@ -1543,7 +1543,7 @@ export const translations: Record<Language, Translation> = {
         tag: 'CORPORATE PROFILE',
         title: 'NEARLY HALF A CENTURY OF',
         highlight: 'EXPERIENCE, UNINTERRUPTED POWER: ESMAKSAN',
-        desc: 'Founded in 1977, ESMAKSAN Makine Sanayi Ticaret LTD. ŞTİ. continues to be the symbol of trust and quality in the construction machinery spare parts sector. In our high-tech facility in Ankara, we produce solutions that perfectly fit giant brands (Caterpillar, Komatsu, Volvo, Hitachi and more) which are the lifeblood of the construction, mining, highway and infrastructure sectors.',
+        desc: 'Established in 1977, ESMAKSAN Machinery Industry and Trade Ltd. Co. remains a symbol of trust and quality in the heavy machinery spare parts industry. At our high-tech facility in Ankara, we manufacture precision solutions fully compatible with leading global brands such as Caterpillar, Komatsu, Volvo, and Hitachi—the lifeblood of the construction, mining, road building, and infrastructure sectors.',
       },
       stats: [
         { label: 'Product Range', value: '2500+', unit: 'Parts' },
@@ -1553,11 +1553,11 @@ export const translations: Record<Language, Translation> = {
       ],
       vision: {
         title: 'OUR VISION',
-        desc: 'With nearly half a century of industry experience and our expert team, we adopt an end-to-end, uninterrupted service approach from production to marketing, and from sales to after-sales technical support. We offer over 2,500 highly qualified spare parts, meticulously processed on our production lines equipped with the latest technology, not only domestically but to our solution partners worldwide with the same high quality standards. By putting innovation and durability at the center, we masterfully produce every part at the heart of heavy machinery, empowering the global industry.',
+        desc: 'Backed by nearly half a century of industry expertise, our team delivers an end-to-end service experience—from production and marketing to sales and after-sales technical support. We proudly offer over 2,500 premium spare parts, meticulously manufactured on our state-of-the-art production lines. Driven by a commitment to innovation and durability, we supply our global partners with precision-engineered components that empower the heart of heavy machinery worldwide.',
       },
       mission: {
         title: 'OUR MISSION',
-        desc: 'For us, every part is a promise of uninterrupted operation for our customers. Our core mission is to ensure the uninterrupted continuation of business processes by providing spare part solutions with the highest durability and precision.',
+        desc: 'We believe that every part we produce represents a promise of uninterrupted operation. Our primary mission is to ensure seamless business continuity for our clients by delivering spare part solutions engineered for maximum durability and precision.',
       },
       quality: {
         title: 'QUALITY FOCUSED',
@@ -2750,7 +2750,7 @@ export const translations: Record<Language, Translation> = {
           title: "من تركيا إلى",
           highlight: "العالم",
           desc: "نصدر قطع الغيار المصنعة في منشآتنا الحديثة في أنقرة بأمان إلى أكثر من 20 دولة.",
-          stats: { val: "20+", label: "دولة تصدير" }
+          stats: { val: "20+", label: "دول التصدير" }
         },
         {
           title: "متانة ممتازة",
@@ -2782,9 +2782,9 @@ export const translations: Record<Language, Translation> = {
       },
       stats: [
         { label: 'مجموعة المنتجات', value: '2500+', unit: 'قطعة' },
-        { label: 'دولة تصدير', value: '20+', unit: 'دولة' },
+        { label: 'دول التصدير', value: '20+', unit: 'دولة' },
         { label: 'سنة التأسيس', value: '1977', unit: 'سنة' },
-        { label: 'رضا العملاء', value: '99%', unit: 'معدل' },
+        { label: 'رضا العملاء', value: '%99', unit: 'نسبة' },
       ],
       vision: {
         title: 'رؤيتنا',
