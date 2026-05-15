@@ -8,46 +8,47 @@ export const GlobalMap: React.FC = () => {
     let phi = 0;
     if (!canvasRef.current) return;
 
+    // Create the globe on the canvas element
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 1000,
-      height: 1000,
+      width: 1000,  // Canvas actual resolution width
+      height: 1000, // Canvas actual resolution height
       phi: 0,
       theta: 0.3,
-      dark: 1,
+      dark: 1, // Dark mode
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
       baseColor: [0.1, 0.1, 0.1],
-      markerColor: [0.98, 0.8, 0.08], // Brand yellow/gold #FACC15 equivalent
-      glowColor: [0.1, 0.1, 0.1],
+      markerColor: [0.98, 0.8, 0.08], // Brand yellow/gold
+      glowColor: [1, 1, 1], // VERY IMPORTANT: If this is dark, the globe disappears into the background!
       markers: [
-        { location: [37.0902, -95.7129], size: 0.04 }, // USA
-        { location: [51.1657, 10.4515], size: 0.04 },  // Germany
-        { location: [41.8719, 12.5674], size: 0.04 },  // Italy
-        { location: [40.4637, -3.7492], size: 0.04 },  // Spain
-        { location: [26.8206, 30.8025], size: 0.04 },  // Egypt
-        { location: [23.8859, 45.0792], size: 0.04 },  // Saudi Arabia
-        { location: [23.4241, 53.8478], size: 0.04 },  // UAE
-        { location: [28.0339, 1.6596], size: 0.04 },   // Algeria
-        { location: [31.7917, -7.0926], size: 0.04 },  // Morocco
-        { location: [32.4279, 53.6880], size: 0.04 },  // Iran
-        { location: [61.5240, 105.3188], size: 0.04 }, // Russia
-        { location: [20.5937, 78.9629], size: 0.04 },  // India
-        { location: [50.5039, 4.4699], size: 0.04 },   // Belgium
-        { location: [48.0196, 66.9237], size: 0.04 },  // Kazakhstan
-        { location: [-35.6751, -71.5430], size: 0.04 },// Chile
-        { location: [-14.2350, -51.9253], size: 0.04 },// Brazil
-        { location: [33.2232, 43.6793], size: 0.04 },  // Iraq
-        { location: [14.0583, 108.2772], size: 0.04 }, // Vietnam
-        { location: [34.8021, 38.9968], size: 0.04 },  // Syria
-        { location: [43.9159, 17.6791], size: 0.04 },  // Bosnia and Herzegovina
-        { location: [15.5527, 48.5164], size: 0.04 },  // Yemen
-        { location: [38.9637, 35.2433], size: 0.08 },  // Turkey (HQ - slightly larger)
+        { location: [37.0902, -95.7129], size: 0.05 }, // USA
+        { location: [51.1657, 10.4515], size: 0.05 },  // Germany
+        { location: [41.8719, 12.5674], size: 0.05 },  // Italy
+        { location: [40.4637, -3.7492], size: 0.05 },  // Spain
+        { location: [26.8206, 30.8025], size: 0.05 },  // Egypt
+        { location: [23.8859, 45.0792], size: 0.05 },  // Saudi Arabia
+        { location: [23.4241, 53.8478], size: 0.05 },  // UAE
+        { location: [28.0339, 1.6596], size: 0.05 },   // Algeria
+        { location: [31.7917, -7.0926], size: 0.05 },  // Morocco
+        { location: [32.4279, 53.6880], size: 0.05 },  // Iran
+        { location: [61.5240, 105.3188], size: 0.05 }, // Russia
+        { location: [20.5937, 78.9629], size: 0.05 },  // India
+        { location: [50.5039, 4.4699], size: 0.05 },   // Belgium
+        { location: [48.0196, 66.9237], size: 0.05 },  // Kazakhstan
+        { location: [-35.6751, -71.5430], size: 0.05 },// Chile
+        { location: [-14.2350, -51.9253], size: 0.05 },// Brazil
+        { location: [33.2232, 43.6793], size: 0.05 },  // Iraq
+        { location: [14.0583, 108.2772], size: 0.05 }, // Vietnam
+        { location: [34.8021, 38.9968], size: 0.05 },  // Syria
+        { location: [43.9159, 17.6791], size: 0.05 },  // Bosnia and Herzegovina
+        { location: [15.5527, 48.5164], size: 0.05 },  // Yemen
+        { location: [38.9637, 35.2433], size: 0.1 },   // Turkey (HQ)
       ],
       onRender: (state) => {
         state.phi = phi;
-        phi += 0.003; // Rotation speed
+        phi += 0.005; 
       },
     });
 
@@ -57,15 +58,25 @@ export const GlobalMap: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center relative cursor-grab active:cursor-grabbing overflow-hidden">
+    <div 
+      style={{ 
+        width: '100%', 
+        maxWidth: '500px', 
+        aspectRatio: '1/1', 
+        margin: '0 auto',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
       <canvas
         ref={canvasRef}
         style={{
           width: '100%',
           height: '100%',
           contain: 'layout paint size',
-          opacity: 1,
-          transition: 'opacity 1s ease',
+          cursor: 'grab'
         }}
       />
     </div>
