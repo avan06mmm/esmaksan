@@ -16,7 +16,7 @@ const pageLocal: Record<string, any> = {
       title: 'KÜRESEL <br/> GÜCÜMÜZ',
       desc1: 'ESMAKSAN olarak sadece Türkiye pazarında değil, Avrupa, Orta Doğu, Afrika, Asya ve Güney Amerika başta olmak üzere dünyanın birçok bölgesinde tercih edilen bir markayız.',
       desc2: '30’dan fazla ülkeye ihracat ulaştırıyoruz.',
-      countries: ['ABD', 'ALMANYA', 'İTALYA', 'İSPANYA', 'MISIR', 'SUUDİ ARABİSTAN', 'BAE', 'CEZAYİR', 'FAS', 'İRAN', 'RUSYA', 'HİNDİSTAN', 'BELÇİKA', 'KAZAKİSTAN', 'ŞİLİ', 'BREZİLYA']
+      countries: ['ABD', 'ALMANYA', 'İTALYA', 'İSPANYA', 'MISIR', 'SUUDİ ARABİSTAN', 'BAE', 'CEZAYİR', 'FAS', 'İRAN', 'RUSYA', 'HİNDİSTAN', 'BELÇİKA', 'KAZAKİSTAN', 'ŞİLİ', 'BREZİLYA', 'IRAK', 'VİETNAM', 'SURİYE', 'BOSNA-HERSEK', 'YEMEN']
     },
     defense: {
       tag: 'Stratejik Vizyon',
@@ -38,7 +38,7 @@ const pageLocal: Record<string, any> = {
       title: 'OUR GLOBAL <br/> POWER',
       desc1: 'As ESMAKSAN, we are a preferred brand not only in the Turkish market but also in many regions of the world, especially in Europe, the Middle East, Africa, Asia, and South America.',
       desc2: 'We export to more than 30 countries.',
-      countries: ['USA', 'GERMANY', 'ITALY', 'SPAIN', 'EGYPT', 'SAUDI ARABIA', 'UAE', 'ALGERIA', 'MOROCCO', 'IRAN', 'RUSSIA', 'INDIA', 'BELGIUM', 'KAZAKHSTAN', 'CHILE', 'BRAZIL']
+      countries: ['USA', 'GERMANY', 'ITALY', 'SPAIN', 'EGYPT', 'SAUDI ARABIA', 'UAE', 'ALGERIA', 'MOROCCO', 'IRAN', 'RUSSIA', 'INDIA', 'BELGIUM', 'KAZAKHSTAN', 'CHILE', 'BRAZIL', 'IRAQ', 'VIETNAM', 'SYRIA', 'BOSNIA AND HERZEGOVINA', 'YEMEN']
     },
     defense: {
       tag: 'Strategic Vision',
@@ -48,28 +48,7 @@ const pageLocal: Record<string, any> = {
       p3: 'We are increasing our investments to transfer our half-century of experience in spare parts production to areas such as military vehicles, armored systems, logistical support equipment, and critical component production.'
     }
   },
-  ru: {
-    story: {
-      p1: 'Основанная в 1977 году компания ESMAKSAN Machinery стала символом доверия, качества и инженерного успеха в секторе тяжелой строительной техники благодаря почти полувековому опыту.',
-      p2: 'Обладая знаниями, накопленными с момента основания, компания производит и продает высококачественные запасные части для оборудования, используемого в гражданском строительстве, горнодобывающей промышленности, дорожном строительстве и инфраструктурных проектах.',
-      p3: 'Запасные части, подходящие для всемирно известных брендов, таких как Caterpillar, Komatsu, Kawasaki, Volvo, Clark, Hitachi, Sumitomo, Allison, Furukawa и ZF, тщательно производятся на наших современных и высокотехнологичных производственных площадках в Анкаре в соответствии с международными стандартами качества.',
-      p4: 'Сегодня наше обширное портфолио, включающее более 2500 видов продукции, в сочетании с мощной инженерной инфраструктурой, самым современным парком оборудования и квалифицированным персоналом, обеспечивает долговечность, доверие и долгосрочную производительность для наших деловых партнеров как на внутреннем, так и на мировом рынках.',
-      p5: 'Благодаря клиентоориентированному подходу к обслуживанию мы не только поставляем запасные части, но и создаем реальную ценность для наших деловых партнеров, предлагая техническую поддержку, послепродажное обслуживание и индивидуальные инженерные решения.'
-    },
-    global: {
-      title: 'НАША ГЛОБАЛЬНАЯ <br/> СИЛА',
-      desc1: 'Как ESMAKSAN, мы являемся предпочтительным брендом не только на турецком рынке, но и во многих регионах мира, особенно в Европе, на Ближнем Востоке, в Африке, Азии и Южной Америке.',
-      desc2: 'Мы экспортируем в более чем 30 стран.',
-      countries: ['США', 'ГЕРМАНИЯ', 'ИТАЛИЯ', 'ИСПАНИЯ', 'ЕГИПЕТ', 'САУДОВСКАЯ АРАВИЯ', 'ОАЭ', 'АЛЖИР', 'МАРОККО', 'ИРАН', 'РОССИЯ', 'ИНДИЯ', 'БЕЛЬГИЯ', 'КАЗАХСТАН', 'ЧИЛИ', 'БРАЗИЛИЯ']
-    },
-    defense: {
-      tag: 'Стратегическое видение',
-      title: 'НАЦИОНАЛЬНАЯ ИНЖЕНЕРИЯ <br/> И ПРОИЗВОДСТВО В <span className="text-brand">ОБОРОННОЙ ПРОМЫШЛЕННОСТИ</span>',
-      p1: 'Обладая высокими инженерными возможностями, производственными мощностями и ориентированным на качество подходом, мы направляем нашу работу на то, чтобы стать стратегическим партнером по решениям для турецкой оборонной промышленности.',
-      p2: 'Для ESMAKSAN участие в оборонной промышленности - это не просто коммерческая цель; это миссия по внесению вклада в технологическую независимость нашей страны.',
-      p3: 'Мы увеличиваем наши инвестиции, чтобы перенести наш полувековой опыт производства запасных частей на такие сферы, как военная техника, бронированные системы, оборудование для логистической поддержки и производство критически важных компонентов.'
-    }
-  },
+
   ar: {
     story: {
       p1: 'منذ تأسيسها في عام 1977، أصبحت ESMAKSAN Machinery رمزًا للثقة والجودة والنجاح الهندسي في قطاع آلات البناء الثقيلة بخبرة تقارب نصف قرن.',
@@ -82,7 +61,7 @@ const pageLocal: Record<string, any> = {
       title: 'قوتنا <br/> العالمية',
       desc1: 'بصفتنا ESMAKSAN، نحن علامة تجارية مفضلة ليس فقط في السوق التركية ولكن أيضًا في العديد من مناطق العالم، وخاصة في أوروبا والشرق الأوسط وأفريقيا وآسيا وأمريكا الجنوبية.',
       desc2: 'نقوم بالتصدير إلى أكثر من 30 دولة.',
-      countries: ['الولايات المتحدة', 'ألمانيا', 'إيطاليا', 'إسبانيا', 'مصر', 'المملكة العربية السعودية', 'الإمارات العربية المتحدة', 'الجزائر', 'المغرب', 'إيران', 'روسيا', 'الهند', 'بلجيكا', 'كازاخستان', 'تشيلي', 'البرازيل']
+      countries: ['الولايات المتحدة', 'ألمانيا', 'إيطاليا', 'إسبانيا', 'مصر', 'المملكة العربية السعودية', 'الإمارات العربية المتحدة', 'الجزائر', 'المغرب', 'إيران', 'روسيا', 'الهند', 'بلجيكا', 'كازاخستان', 'تشيلي', 'البرازيل', 'العراق', 'فيتنام', 'سوريا', 'البوسنة والهرسك', 'اليمن']
     },
     defense: {
       tag: 'رؤية استراتيجية',
@@ -101,14 +80,12 @@ const About: React.FC = () => {
   const statValues: Record<string, string> = {
     tr: "Hakkımızda",
     en: "About Us",
-    ru: "О нас",
     ar: "من نحن"
   };
 
   const statDescMap: Record<string, { year: string, default: string }> = {
     tr: { year: 'Endüstriyel tecrübe ve güven', default: 'Hassas ve kaliteli üretim' },
     en: { year: 'Industrial experience and trust', default: 'Precision and quality production' },
-    ru: { year: 'Промышленный опыт и доверие', default: 'Точное и качественное производство' },
     ar: { year: 'الخبرة الصناعية والثقة', default: 'إنتاج دقيق وعالي الجودة' }
   };
 
