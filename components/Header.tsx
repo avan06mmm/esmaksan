@@ -38,7 +38,6 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
   const languages: { code: Language; label: string; flagUrl: string }[] = [
     { code: 'tr', label: 'Türkçe', flagUrl: 'https://flagcdn.com/w40/tr.png' },
     { code: 'en', label: 'English', flagUrl: 'https://flagcdn.com/w40/us.png' },
-    { code: 'ru', label: 'Русский', flagUrl: 'https://flagcdn.com/w40/ru.png' },
     { code: 'ar', label: 'العربية', flagUrl: 'https://flagcdn.com/w40/sa.png' },
   ];
 
