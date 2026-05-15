@@ -177,7 +177,7 @@ const About: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="lg:w-[500px] aspect-square relative p-4 flex items-center justify-center"
+              className="lg:w-[700px] xl:w-[800px] aspect-square relative p-4 flex items-center justify-center"
             >
               <div className="absolute inset-0 bg-brand/5 rounded-full blur-3xl opacity-50" />
               <div className="w-full h-full relative z-10">

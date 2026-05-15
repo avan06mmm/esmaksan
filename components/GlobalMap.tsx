@@ -24,7 +24,7 @@ const rawMarkers = [
   { lat: 34.8021, lng: 38.9968, keys: { tr: 'Suriye', en: 'Syria', ar: 'سوريا' } },
   { lat: 43.9159, lng: 17.6791, keys: { tr: 'Bosna-Hersek', en: 'Bosnia and Herzegovina', ar: 'البوسنة والهرسك' } },
   { lat: 15.5527, lng: 48.5164, keys: { tr: 'Yemen', en: 'Yemen', ar: 'اليمن' } },
-  { lat: 38.9637, lng: 35.2433, keys: { tr: 'Türkiye (Merkez)', en: 'Turkey (HQ)', ar: 'تركيا (المركز)' }, size: 1.5 }
+  { lat: 38.9637, lng: 35.2433, keys: { tr: 'Türkiye (Merkez)', en: 'Turkey (HQ)', ar: 'تركيا (المركز)' }, size: 2.5 }
 ];
 
 export const GlobalMap: React.FC = () => {
@@ -63,12 +63,12 @@ export const GlobalMap: React.FC = () => {
     lat: m.lat,
     lng: m.lng,
     name: m.keys[language as keyof typeof m.keys] || m.keys.en,
-    size: m.size || 0.6,
+    size: m.size || 1.0,
     color: '#FACC15'
   }));
 
   return (
-    <div ref={containerRef} className="w-full flex items-center justify-center relative cursor-grab active:cursor-grabbing" style={{ aspectRatio: '1', maxWidth: '500px', margin: '0 auto' }}>
+    <div ref={containerRef} className="w-full flex items-center justify-center relative cursor-grab active:cursor-grabbing" style={{ aspectRatio: '1', maxWidth: '100%', margin: '0 auto' }}>
       <Globe
         ref={globeEl}
         width={containerWidth}
@@ -79,7 +79,7 @@ export const GlobalMap: React.FC = () => {
         pointLat="lat"
         pointLng="lng"
         pointColor="color"
-        pointAltitude={0.01}
+        pointAltitude={0.03}
         pointRadius="size"
         pointsMerge={false}
         pointLabel={(d: any) => `
