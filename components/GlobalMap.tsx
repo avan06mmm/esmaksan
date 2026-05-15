@@ -6,22 +6,23 @@ export const GlobalMap: React.FC = () => {
 
   useEffect(() => {
     let phi = 0;
+    
     if (!canvasRef.current) return;
 
-    // Create the globe on the canvas element
-    const globe = createGlobe(canvasRef.current, {
+    // We use "any" to bypass TypeScript errors for "onRender"
+    const options: any = {
       devicePixelRatio: 2,
-      width: 1000,  // Canvas actual resolution width
-      height: 1000, // Canvas actual resolution height
+      width: 1000,  
+      height: 1000, 
       phi: 0,
       theta: 0.3,
-      dark: 1, // Dark mode
+      dark: 1, 
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.1, 0.1, 0.1],
-      markerColor: [0.98, 0.8, 0.08], // Brand yellow/gold
-      glowColor: [1, 1, 1], // VERY IMPORTANT: If this is dark, the globe disappears into the background!
+      baseColor: [0.2, 0.2, 0.2], // Lighter dark to ensure visibility
+      markerColor: [0.98, 0.8, 0.08], 
+      glowColor: [1, 1, 1], 
       markers: [
         { location: [37.0902, -95.7129], size: 0.05 }, // USA
         { location: [51.1657, 10.4515], size: 0.05 },  // Germany
@@ -46,11 +47,13 @@ export const GlobalMap: React.FC = () => {
         { location: [15.5527, 48.5164], size: 0.05 },  // Yemen
         { location: [38.9637, 35.2433], size: 0.1 },   // Turkey (HQ)
       ],
-      onRender: (state) => {
+      onRender: (state: any) => {
         state.phi = phi;
-        phi += 0.005; 
+        phi += 0.005; // Continously rotate the globe
       },
-    });
+    };
+
+    const globe = createGlobe(canvasRef.current, options);
 
     return () => {
       globe.destroy();
@@ -59,15 +62,11 @@ export const GlobalMap: React.FC = () => {
 
   return (
     <div 
+      className="w-full flex items-center justify-center relative"
       style={{ 
-        width: '100%', 
         maxWidth: '500px', 
-        aspectRatio: '1/1', 
+        aspectRatio: '1', 
         margin: '0 auto',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
       }}
     >
       <canvas
@@ -75,6 +74,8 @@ export const GlobalMap: React.FC = () => {
         style={{
           width: '100%',
           height: '100%',
+          maxWidth: '500px',
+          maxHeight: '500px',
           contain: 'layout paint size',
           cursor: 'grab'
         }}
