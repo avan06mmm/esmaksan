@@ -294,8 +294,8 @@ export const translations: Record<Language, Translation> = {
         {
           title: "Türkiye'den Dünyaya",
           highlight: "Global İhracat",
-          desc: "Ankara'daki modern tesislerimizde ürettiğimiz yedek parçaları 32'den fazla ülkeye güvenle ihraç ediyoruz.",
-          stats: { val: "32+", label: "İhracat Ülkesi" }
+          desc: "Ankara'daki modern tesislerimizde ürettiğimiz yedek parçaları 20'den fazla ülkeye güvenle ihraç ediyoruz.",
+          stats: { val: "20+", label: "İhracat Ülkesi" }
         },
         {
           title: "Mükemmel Dayanıklılık",
@@ -327,7 +327,7 @@ export const translations: Record<Language, Translation> = {
       },
       stats: [
         { label: 'Ürün Çeşidi', value: '2500+', unit: 'Parça' },
-        { label: 'İhracat Ülkesi', value: '32+', unit: 'Ülke' },
+        { label: 'İhracat Ülkesi', value: '20+', unit: 'Ülke' },
         { label: 'Kuruluş Yılı', value: '1977', unit: 'Yıl' },
         { label: 'Müşteri Memnuniyeti', value: '%99', unit: 'Oran' },
       ],
@@ -1514,8 +1514,8 @@ export const translations: Record<Language, Translation> = {
         {
           title: "From Turkey to the",
           highlight: "World",
-          desc: "We safely export the spare parts produced in our modern facilities in Ankara to more than 32 countries.",
-          stats: { val: "32+", label: "Export Countries" }
+          desc: "We safely export the spare parts produced in our modern facilities in Ankara to more than 20 countries.",
+          stats: { val: "20+", label: "Export Countries" }
         },
         {
           title: "Excellent Durability",
@@ -1547,7 +1547,7 @@ export const translations: Record<Language, Translation> = {
       },
       stats: [
         { label: 'Product Range', value: '2500+', unit: 'Parts' },
-        { label: 'Export Countries', value: '32+', unit: 'Countries' },
+        { label: 'Export Countries', value: '20+', unit: 'Countries' },
         { label: 'Founded', value: '1977', unit: 'Year' },
         { label: 'Customer Satisfaction', value: '99%', unit: 'Rate' },
       ],
@@ -2749,8 +2749,8 @@ export const translations: Record<Language, Translation> = {
         {
           title: "من تركيا إلى",
           highlight: "العالم",
-          desc: "نصدر قطع الغيار المصنعة في منشآتنا الحديثة في أنقرة بأمان إلى أكثر من 32 دولة.",
-          stats: { val: "32+", label: "دولة تصدير" }
+          desc: "نصدر قطع الغيار المصنعة في منشآتنا الحديثة في أنقرة بأمان إلى أكثر من 20 دولة.",
+          stats: { val: "20+", label: "دولة تصدير" }
         },
         {
           title: "متانة ممتازة",
@@ -2782,7 +2782,7 @@ export const translations: Record<Language, Translation> = {
       },
       stats: [
         { label: 'مجموعة المنتجات', value: '2500+', unit: 'قطعة' },
-        { label: 'دولة تصدير', value: '32+', unit: 'دولة' },
+        { label: 'دولة تصدير', value: '20+', unit: 'دولة' },
         { label: 'سنة التأسيس', value: '1977', unit: 'سنة' },
         { label: 'رضا العملاء', value: '99%', unit: 'معدل' },
       ],

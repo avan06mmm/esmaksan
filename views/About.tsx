@@ -16,7 +16,7 @@ const pageLocal: Record<string, any> = {
     global: {
       title: 'KÜRESEL <br/> GÜCÜMÜZ',
       desc1: 'ESMAKSAN olarak sadece Türkiye pazarında değil, Avrupa, Orta Doğu, Afrika, Asya ve Güney Amerika başta olmak üzere dünyanın birçok bölgesinde tercih edilen bir markayız.',
-      desc2: '30’dan fazla ülkeye ihracat ulaştırıyoruz.',
+      desc2: '20’den fazla ülkeye ihracat yapıyoruz.',
       countries: ['ABD', 'ALMANYA', 'İTALYA', 'İSPANYA', 'MISIR', 'SUUDİ ARABİSTAN', 'BAE', 'CEZAYİR', 'FAS', 'İRAN', 'RUSYA', 'HİNDİSTAN', 'BELÇİKA', 'KAZAKİSTAN', 'ŞİLİ', 'BREZİLYA', 'IRAK', 'VİETNAM', 'SURİYE', 'BOSNA-HERSEK', 'YEMEN']
     },
     defense: {
@@ -38,7 +38,7 @@ const pageLocal: Record<string, any> = {
     global: {
       title: 'OUR GLOBAL <br/> POWER',
       desc1: 'As ESMAKSAN, we are a preferred brand not only in the Turkish market but also in many regions of the world, especially in Europe, the Middle East, Africa, Asia, and South America.',
-      desc2: 'We export to more than 30 countries.',
+      desc2: 'We export to more than 20 countries.',
       countries: ['USA', 'GERMANY', 'ITALY', 'SPAIN', 'EGYPT', 'SAUDI ARABIA', 'UAE', 'ALGERIA', 'MOROCCO', 'IRAN', 'RUSSIA', 'INDIA', 'BELGIUM', 'KAZAKHSTAN', 'CHILE', 'BRAZIL', 'IRAQ', 'VIETNAM', 'SYRIA', 'BOSNIA AND HERZEGOVINA', 'YEMEN']
     },
     defense: {
@@ -61,7 +61,7 @@ const pageLocal: Record<string, any> = {
     global: {
       title: 'قوتنا <br/> العالمية',
       desc1: 'بصفتنا ESMAKSAN، نحن علامة تجارية مفضلة ليس فقط في السوق التركية ولكن أيضًا في العديد من مناطق العالم، وخاصة في أوروبا والشرق الأوسط وأفريقيا وآسيا وأمريكا الجنوبية.',
-      desc2: 'نقوم بالتصدير إلى أكثر من 30 دولة.',
+      desc2: 'نقوم بالتصدير إلى أكثر من 20 دولة.',
       countries: ['الولايات المتحدة', 'ألمانيا', 'إيطاليا', 'إسبانيا', 'مصر', 'المملكة العربية السعودية', 'الإمارات العربية المتحدة', 'الجزائر', 'المغرب', 'إيران', 'روسيا', 'الهند', 'بلجيكا', 'كازاخستان', 'تشيلي', 'البرازيل', 'العراق', 'فيتنام', 'سوريا', 'البوسنة والهرسك', 'اليمن']
     },
     defense: {
