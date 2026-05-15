@@ -36,8 +36,8 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
   ];
 
   const languages: { code: Language; label: string; flagUrl: string }[] = [
-    { code: 'tr', label: 'Türkçe', flagUrl: 'https://flagcdn.com/w40/tr.png' },
-    { code: 'en', label: 'English', flagUrl: 'https://flagcdn.com/w40/us.png' },
+    { code: 'tr', label: 'TÜRKÇE', flagUrl: 'https://flagcdn.com/w40/tr.png' },
+    { code: 'en', label: 'ENGLISH', flagUrl: 'https://flagcdn.com/w40/us.png' },
     { code: 'ar', label: 'العربية', flagUrl: 'https://flagcdn.com/w40/sa.png' },
   ];
 
@@ -286,8 +286,8 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                 }`}
               >
                 <img src={languages.find(l => l.code === language)?.flagUrl} alt={language} className="w-5 rounded-[2px]" />
-                <span className="text-[13px] font-bold uppercase tracking-wider hidden md:block">
-                  {language}
+                <span className="text-[13px] font-bold tracking-wider hidden md:block">
+                  {language.toUpperCase()}
                 </span>
               </button>
 
@@ -312,7 +312,7 @@ const Header: React.FC<{ currentView: View; onNavigate: (v: View, category?: str
                         }`}
                       >
                         <img src={lang.flagUrl} alt={lang.code} className="w-6 rounded-[2px]" />
-                        <span className="text-[14px] font-bold uppercase tracking-wider">{lang.label}</span>
+                        <span className="text-[14px] font-bold tracking-wider">{lang.label}</span>
                       </button>
                     ))}
                   </motion.div>
