@@ -1,84 +1,92 @@
-import React, { useEffect, useRef } from 'react';
-import createGlobe from 'cobe';
+import React, { useEffect, useRef, useState } from 'react';
+import Globe from 'react-globe.gl';
+import { useLanguage } from '../LanguageContext';
+
+const rawMarkers = [
+  { lat: 37.0902, lng: -95.7129, keys: { tr: 'ABD', en: 'USA', ar: 'الولايات المتحدة' } },
+  { lat: 51.1657, lng: 10.4515, keys: { tr: 'Almanya', en: 'Germany', ar: 'ألمانيا' } },
+  { lat: 41.8719, lng: 12.5674, keys: { tr: 'İtalya', en: 'Italy', ar: 'إيطاليا' } },
+  { lat: 40.4637, lng: -3.7492, keys: { tr: 'İspanya', en: 'Spain', ar: 'إسبانيا' } },
+  { lat: 26.8206, lng: 30.8025, keys: { tr: 'Mısır', en: 'Egypt', ar: 'مصر' } },
+  { lat: 23.8859, lng: 45.0792, keys: { tr: 'Suudi Arabistan', en: 'Saudi Arabia', ar: 'المملكة العربية السعودية' } },
+  { lat: 23.4241, lng: 53.8478, keys: { tr: 'BAE', en: 'UAE', ar: 'الإمارات العربية المتحدة' } },
+  { lat: 28.0339, lng: 1.6596, keys: { tr: 'Cezayir', en: 'Algeria', ar: 'الجزائر' } },
+  { lat: 31.7917, lng: -7.0926, keys: { tr: 'Fas', en: 'Morocco', ar: 'المغرب' } },
+  { lat: 32.4279, lng: 53.6880, keys: { tr: 'İran', en: 'Iran', ar: 'إيران' } },
+  { lat: 61.5240, lng: 105.3188, keys: { tr: 'Rusya', en: 'Russia', ar: 'روسيا' } },
+  { lat: 20.5937, lng: 78.9629, keys: { tr: 'Hindistan', en: 'India', ar: 'الهند' } },
+  { lat: 50.5039, lng: 4.4699, keys: { tr: 'Belçika', en: 'Belgium', ar: 'بلجيكا' } },
+  { lat: 48.0196, lng: 66.9237, keys: { tr: 'Kazakistan', en: 'Kazakhstan', ar: 'كازاخستان' } },
+  { lat: -35.6751, lng: -71.5430, keys: { tr: 'Şili', en: 'Chile', ar: 'تشيلي' } },
+  { lat: -14.2350, lng: -51.9253, keys: { tr: 'Brezilya', en: 'Brazil', ar: 'البرازيل' } },
+  { lat: 33.2232, lng: 43.6793, keys: { tr: 'Irak', en: 'Iraq', ar: 'العراق' } },
+  { lat: 14.0583, lng: 108.2772, keys: { tr: 'Vietnam', en: 'Vietnam', ar: 'فيتنام' } },
+  { lat: 34.8021, lng: 38.9968, keys: { tr: 'Suriye', en: 'Syria', ar: 'سوريا' } },
+  { lat: 43.9159, lng: 17.6791, keys: { tr: 'Bosna-Hersek', en: 'Bosnia and Herzegovina', ar: 'البوسنة والهرسك' } },
+  { lat: 15.5527, lng: 48.5164, keys: { tr: 'Yemen', en: 'Yemen', ar: 'اليمن' } },
+  { lat: 38.9637, lng: 35.2433, keys: { tr: 'Türkiye (Merkez)', en: 'Turkey (HQ)', ar: 'تركيا (المركز)' }, size: 1.5 }
+];
 
 export const GlobalMap: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const globeEl = useRef<any>(null);
+  const [containerWidth, setContainerWidth] = useState(500);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   useEffect(() => {
-    let phi = 0;
-    
-    if (!canvasRef.current) return;
-
-    // We use "any" to bypass TypeScript errors for "onRender"
-    const options: any = {
-      devicePixelRatio: 2,
-      width: 1000,  
-      height: 1000, 
-      phi: 0,
-      theta: 0.3,
-      dark: 1, 
-      diffuse: 1.2,
-      mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.2, 0.2, 0.2], // Lighter dark to ensure visibility
-      markerColor: [0.98, 0.8, 0.08], 
-      glowColor: [1, 1, 1], 
-      markers: [
-        { location: [37.0902, -95.7129], size: 0.05 }, // USA
-        { location: [51.1657, 10.4515], size: 0.05 },  // Germany
-        { location: [41.8719, 12.5674], size: 0.05 },  // Italy
-        { location: [40.4637, -3.7492], size: 0.05 },  // Spain
-        { location: [26.8206, 30.8025], size: 0.05 },  // Egypt
-        { location: [23.8859, 45.0792], size: 0.05 },  // Saudi Arabia
-        { location: [23.4241, 53.8478], size: 0.05 },  // UAE
-        { location: [28.0339, 1.6596], size: 0.05 },   // Algeria
-        { location: [31.7917, -7.0926], size: 0.05 },  // Morocco
-        { location: [32.4279, 53.6880], size: 0.05 },  // Iran
-        { location: [61.5240, 105.3188], size: 0.05 }, // Russia
-        { location: [20.5937, 78.9629], size: 0.05 },  // India
-        { location: [50.5039, 4.4699], size: 0.05 },   // Belgium
-        { location: [48.0196, 66.9237], size: 0.05 },  // Kazakhstan
-        { location: [-35.6751, -71.5430], size: 0.05 },// Chile
-        { location: [-14.2350, -51.9253], size: 0.05 },// Brazil
-        { location: [33.2232, 43.6793], size: 0.05 },  // Iraq
-        { location: [14.0583, 108.2772], size: 0.05 }, // Vietnam
-        { location: [34.8021, 38.9968], size: 0.05 },  // Syria
-        { location: [43.9159, 17.6791], size: 0.05 },  // Bosnia and Herzegovina
-        { location: [15.5527, 48.5164], size: 0.05 },  // Yemen
-        { location: [38.9637, 35.2433], size: 0.1 },   // Turkey (HQ)
-      ],
-      onRender: (state: any) => {
-        state.phi = phi;
-        phi += 0.005; // Continously rotate the globe
-      },
-    };
-
-    const globe = createGlobe(canvasRef.current, options);
-
-    return () => {
-      globe.destroy();
-    };
+    // Otomatik donme
+    if (globeEl.current) {
+      globeEl.current.controls().autoRotate = true;
+      globeEl.current.controls().autoRotateSpeed = 1.2;
+      globeEl.current.controls().enableZoom = false; 
+    }
   }, []);
 
+  useEffect(() => {
+    // Responsive cizim
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        if (entry.contentRect.width > 0) {
+          setContainerWidth(entry.contentRect.width);
+        }
+      }
+    });
+
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+    
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  const markers = rawMarkers.map((m) => ({
+    lat: m.lat,
+    lng: m.lng,
+    name: m.keys[language as keyof typeof m.keys] || m.keys.en,
+    size: m.size || 0.6,
+    color: '#FACC15'
+  }));
+
   return (
-    <div 
-      className="w-full flex items-center justify-center relative"
-      style={{ 
-        maxWidth: '500px', 
-        aspectRatio: '1', 
-        margin: '0 auto',
-      }}
-    >
-      <canvas
-        ref={canvasRef}
-        style={{
-          width: '100%',
-          height: '100%',
-          maxWidth: '500px',
-          maxHeight: '500px',
-          contain: 'layout paint size',
-          cursor: 'grab'
-        }}
+    <div ref={containerRef} className="w-full flex items-center justify-center relative cursor-grab active:cursor-grabbing" style={{ aspectRatio: '1', maxWidth: '500px', margin: '0 auto' }}>
+      <Globe
+        ref={globeEl}
+        width={containerWidth}
+        height={containerWidth}
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+        backgroundColor="rgba(0,0,0,0)"
+        pointsData={markers}
+        pointLat="lat"
+        pointLng="lng"
+        pointColor="color"
+        pointAltitude={0.01}
+        pointRadius="size"
+        pointsMerge={false}
+        pointLabel={(d: any) => `
+          <div style="background: rgba(10,10,10,0.9); border: 1px solid #FACC15; padding: 6px 12px; border-radius: 8px; font-weight: 800; color: white; font-size: 14px; box-shadow: 0 0 15px rgba(250,204,21,0.4); text-transform: uppercase; font-family: system-ui, -apple-system, sans-serif; letter-spacing: 1px;">
+            ${d.name}
+          </div>
+        `}
       />
     </div>
   );

@@ -11,11 +11,12 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.0",
-    "cobe": "^2.0.1",
     "motion": "^12.38.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwindcss": "^4.2.0"
+    "react-globe.gl": "^2.37.1",
+    "tailwindcss": "^4.2.0",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
