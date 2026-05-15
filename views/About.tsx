@@ -165,7 +165,7 @@ const About: React.FC = () => {
               </p>
               <div className={`flex flex-wrap gap-x-6 gap-y-3 pt-4 ${isRTL ? 'justify-end' : 'justify-start'}`}>
                 {PAGE.global.countries.map((country: string) => (
-                  <span key={country} className="text-[10px] md:text-xs font-black text-white/30 hover:text-[#FACC15] transition-colors cursor-default tracking-widest">
+                  <span key={country} className="text-xs md:text-sm font-black text-white/80 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] hover:text-[#FACC15] hover:drop-shadow-[0_0_12px_rgba(250,204,21,0.6)] transition-all cursor-default tracking-widest">
                     {country}
                   </span>
                 ))}
