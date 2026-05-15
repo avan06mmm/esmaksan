@@ -156,7 +156,7 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
                         <span className="text-xl">↳</span>
                         <span className="bg-brand/10 px-4 py-1.5 rounded-lg border border-brand/20">{activeSubFilter}</span>
                         <button onClick={() => setActiveSubFilter(null)} className="ml-4 px-3 py-1.5 rounded-lg text-white/40 hover:text-white hover:bg-red-500 transition-colors">
-                          ✕ {language === 'tr' ? 'Temizle' : language === 'en' ? 'Clear' : language === 'ru' ? 'Очистить' : 'مسح'}
+                          ✕ {language === 'tr' ? 'Temizle' : language === 'en' ? 'Clear' : 'مسح'}
                         </button>
                      </motion.div>
                   )}

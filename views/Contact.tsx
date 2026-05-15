@@ -110,8 +110,8 @@ const Contact: React.FC = () => {
             <div className="lg:col-span-5 space-y-8 flex flex-col justify-center">
               <div className="space-y-8">
                 {[
-                  { label: language === 'ar' ? 'المركز' : language === 'ru' ? 'ЦЕНТР' : language === 'en' ? 'HEAD OFFICE' : 'MERKEZ', value: "Saray Mahallesi, Adnan Menderes Bulvarı\nNo:64/1A, 06980 Kahramankazan/Ankara, Türkiye" },
-                  { label: language === 'ar' ? 'المكتب' : language === 'ru' ? 'ОФИС' : language === 'en' ? 'OFFICE' : 'OFİS', value: "1247 Sk. (Eski 44) No:10-12\n06370 Ostim-Ankara/Türkiye" },
+                  { label: language === 'ar' ? 'المركز' : language === 'en' ? 'HEAD OFFICE' : 'MERKEZ', value: "Saray Mahallesi, Adnan Menderes Bulvarı\nNo:64/1A, 06980 Kahramankazan/Ankara, Türkiye" },
+                  { label: language === 'ar' ? 'المكتب' : language === 'en' ? 'OFFICE' : 'OFİS', value: "1247 Sk. (Eski 44) No:10-12\n06370 Ostim-Ankara/Türkiye" },
                   { label: t.contact.info.phoneLabel, value: "+90 312 354 08 45\n+90 312 354 42 76", ltr: true },
                   { label: t.contact.info.emailLabel, value: "esmaksan@esmaksan.com.tr", ltr: true },
                 ].map((item, idx) => (
@@ -236,7 +236,7 @@ const Contact: React.FC = () => {
                       className="flex items-center gap-3 bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl px-5 py-4 text-sm font-medium"
                     >
                       <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                      {language === 'tr' ? 'Mesajınız başarıyla gönderildi!' : language === 'ru' ? 'Сообщение отправлено!' : language === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message was sent successfully!'}
+                      {language === 'tr' ? 'Mesajınız başarıyla gönderildi!' : language === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message was sent successfully!'}
                     </motion.div>
                   )}
                   {status === 'error' && (
@@ -246,7 +246,7 @@ const Contact: React.FC = () => {
                       className="flex items-center gap-3 bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-5 py-4 text-sm font-medium"
                     >
                       <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                      {language === 'tr' ? 'Bir hata oluştu. Lütfen tekrar deneyin.' : language === 'ru' ? 'Произошла ошибка. Попробуйте снова.' : language === 'ar' ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.'}
+                      {language === 'tr' ? 'Bir hata oluştu. Lütfen tekrar deneyin.' : language === 'ar' ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.'}
                     </motion.div>
                   )}
 
@@ -261,7 +261,7 @@ const Contact: React.FC = () => {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                         </svg>
-                        {language === 'tr' ? 'Gönderiliyor...' : language === 'ru' ? 'Отправка...' : language === 'ar' ? 'جارٍ الإرسال...' : 'Sending...'}
+                        {language === 'tr' ? 'Gönderiliyor...' : language === 'ar' ? 'جارٍ الإرسال...' : 'Sending...'}
                       </>
                     ) : (
                       t.contact.form.submit.charAt(0) + t.contact.form.submit.slice(1).toLowerCase()

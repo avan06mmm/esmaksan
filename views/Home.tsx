@@ -129,7 +129,7 @@ const Home: React.FC = () => {
            className={`absolute top-[55%] left-6 md:left-12 z-10 ${isRTL ? 'text-right right-6 md:right-12 left-auto' : 'text-left'}`}
         >
           <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none font-medium text-white mb-2" style={{ fontFamily: 'var(--font-sans)', letterSpacing: '-0.03em' }}>
-            esmaksan <span className="italic font-serif font-normal">{language === 'tr' ? 'makine' : language === 'en' ? 'machinery' : language === 'ru' ? 'машины' : 'آلات'}</span>
+            esmaksan <span className="italic font-serif font-normal">{language === 'tr' ? 'makine' : language === 'en' ? 'machinery' : 'آلات'}</span>
           </h1>
           <p className="text-sm md:text-base font-bold tracking-widest uppercase text-white/80 leading-relaxed max-w-[250px] md:max-w-md">
             {t.about.hero.highlight.split(':')[0] || 'A GATEWAY TO IMMERSIVE INDUSTRIAL EXPERIENCE'}
@@ -239,7 +239,7 @@ const Home: React.FC = () => {
           {/* Brands Marquee */}
           <div className="mt-20 mb-4 pt-16 border-t border-white/10 relative flex flex-col w-full">
             <h3 className="text-center text-xs md:text-[11px] font-black uppercase tracking-[0.3em] text-white/50 mb-12">
-              {language === 'tr' ? 'Uyumlu Yedek Parça Markaları' : language === 'en' ? 'Compatible Spare Part Brands' : language === 'ru' ? 'Совместимые бренды запчастей' : 'العلامات التجارية لقطع الغيار المتوافقة'}
+              {language === 'tr' ? 'Uyumlu Yedek Parça Markaları' : language === 'en' ? 'Compatible Spare Part Brands' : 'العلامات التجارية لقطع الغيار المتوافقة'}
             </h3>
             
             <div 
