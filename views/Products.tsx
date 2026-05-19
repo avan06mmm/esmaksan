@@ -2,15 +2,17 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
+import { View } from '../types';
 
 import PageHero from '../components/PageHero';
 
 interface ProductsProps {
   initialCategory?: string;
   initialSubCategory?: string | null;
+  onNavigate?: (view: View, category?: string, subCategory?: string, section?: string) => void;
 }
 
-const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSubCategory = null }) => {
+const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSubCategory = null, onNavigate }) => {
   const { t, isRTL, language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState(initialCategory);
   const [activeSubFilter, setActiveSubFilter] = useState<string | null>(initialSubCategory);
@@ -277,29 +279,6 @@ const Products: React.FC<ProductsProps> = ({ initialCategory = 'all', initialSub
         )}
       </AnimatePresence>
 
-      {/* 3. ULTRA MODERN CTA */}
-      <section className="mt-32 max-w-[1600px] mx-auto px-6 md:px-8">
-        <div className="relative bg-[#050505] rounded-[3rem] overflow-hidden py-32 px-6 md:px-20 text-center shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand/30 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
-          
-          <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9]">
-              {t.products.cta.title}
-            </h2>
-            <p className="text-xl md:text-2xl text-white/60 font-medium mb-14 max-w-2xl leading-relaxed">
-              {t.products.cta.desc}
-            </p>
-            <div className={`flex flex-col sm:flex-row justify-center items-center gap-6 w-full sm:w-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-              <button className="w-full sm:w-auto bg-brand text-ink font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(250,204,21,0.5)]">
-                {t.products.cta.button}
-              </button>
-              <button className="w-full sm:w-auto bg-white/5 backdrop-blur-2xl border border-white/20 text-white font-black text-[14px] uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300">
-                {t.whatsapp}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </div>
   );

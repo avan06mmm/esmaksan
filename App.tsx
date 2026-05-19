@@ -26,6 +26,7 @@ const App: React.FC = () => {
   const [productCategory, setProductCategory] = useState<string>('all');
   const [productSubCategory, setProductSubCategory] = useState<string | null>(null);
   const [selectedMachine, setSelectedMachine] = useState<string | null>(null);
+  const [targetSection, setTargetSection] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
   const { t, isRTL } = useLanguage();
 
@@ -35,11 +36,22 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (isMounted) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (targetSection) {
+        const timer = setTimeout(() => {
+          const element = document.getElementById(targetSection);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          setTargetSection(null);
+        }, 100);
+        return () => clearTimeout(timer);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
-  }, [currentView, isMounted]);
+  }, [currentView, targetSection, isMounted]);
 
-  const handleNavigate = (view: View, category?: string, subCategory?: string) => {
+  const handleNavigate = (view: View, category?: string, subCategory?: string, section?: string) => {
     setCurrentView(view);
     if (view === 'products') {
       setProductCategory(category || 'all');
@@ -48,12 +60,17 @@ const App: React.FC = () => {
     if (view === 'machinery') {
       setSelectedMachine(category || null);
     }
+    if (section) {
+      setTargetSection(section);
+    } else {
+      setTargetSection(null);
+    }
   };
 
   const renderView = () => {
     switch (currentView) {
       case 'home': return <Home />;
-      case 'products': return <Products initialCategory={productCategory} initialSubCategory={productSubCategory} />;
+      case 'products': return <Products initialCategory={productCategory} initialSubCategory={productSubCategory} onNavigate={handleNavigate} />;
       case 'about': return <About />;
       case 'production': return <Production />;
       case 'machinery': return <Machinery initialMachine={selectedMachine} />;
